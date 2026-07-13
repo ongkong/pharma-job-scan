@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>제약/바이오 채용공고 대시보드</title>
+<script>%%REACT_SRC%%</script>
+<script>%%REACT_DOM_SRC%%</script>
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --page-plane: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --gridline: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+    --accent: #2a78d6;
+    --accent-bg: #eaf1fb;
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --status-warning-bg: #fff6e2;
+    --status-serious: #ec835a;
+    --status-critical: #d03b3b;
+    --status-critical-bg: #fbeceb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-1: #1a1a19;
+      --page-plane: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted: #898781;
+      --gridline: #2c2c2a;
+      --border: rgba(255,255,255,0.10);
+      --accent: #3987e5;
+      --accent-bg: #142438;
+      --status-good: #0ca30c;
+      --status-warning: #fab219;
+      --status-warning-bg: #332a10;
+      --status-serious: #ec835a;
+      --status-critical: #e66767;
+      --status-critical-bg: #3a1c1a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface-1: #1a1a19;
+    --page-plane: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --muted: #898781;
+    --gridline: #2c2c2a;
+    --border: rgba(255,255,255,0.10);
+    --accent: #3987e5;
+    --accent-bg: #142438;
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --status-warning-bg: #332a10;
+    --status-serious: #ec835a;
+    --status-critical: #e66767;
+    --status-critical-bg: #3a1c1a;
+  }
+  :root[data-theme="light"] {
+    --surface-1: #fcfcfb;
+    --page-plane: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --gridline: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+    --accent: #2a78d6;
+    --accent-bg: #eaf1fb;
+    --status-good: #0ca30c;
+    --status-warning: #fab219;
+    --status-warning-bg: #fff6e2;
+    --status-serious: #ec835a;
+    --status-critical: #d03b3b;
+    --status-critical-bg: #fbeceb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Malgun Gothic", "Segoe UI", sans-serif;
+    background: var(--page-plane);
+    color: var(--text-primary);
+  }
+  #root { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+  .header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px; margin-bottom: 20px; }
+  .header .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .header h1 { font-size: 22px; font-weight: 700; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+  .header .updated { text-align: right; }
+  .header .updated .updated-label { font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+  .header .updated .updated-date { font-size: 20px; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .stat-tile .label { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; }
+  .stat-tile .value { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .filters input, .filters select {
+    font-size: 13px; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface-1); color: var(--text-primary);
+  }
+  .filters input { flex: 1 1 200px; }
+  .group-list { display: flex; flex-direction: column; gap: 10px; }
+  .company-group { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .group-header { width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: none; border: none; cursor: pointer; text-align: left; }
+  .group-header:hover { background: color-mix(in srgb, var(--accent-bg) 35%, transparent); }
+  .group-chevron { color: var(--muted); font-size: 11px; width: 12px; flex-shrink: 0; transition: transform 0.15s ease; }
+  .group-chevron.open { transform: rotate(90deg); }
+  .group-name-btn { background: none; border: none; padding: 0; font: inherit; font-weight: 700; font-size: 14.5px; color: var(--text-primary); cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; white-space: nowrap; }
+  .group-name-btn:hover { color: var(--accent); }
+  .tier-badge { font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 999px; white-space: nowrap; cursor: pointer; }
+  .tier-S { background: var(--accent); color: white; }
+  .tier-A { background: var(--accent-bg); color: var(--accent); }
+  .tier-B { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  .tier-정보부족 { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
+  .tier-explain { display: flex; align-items: flex-start; gap: 9px; padding: 10px 12px; border-radius: 8px; margin-bottom: 16px; background: var(--accent-bg); }
+  .tier-explain .tier-badge { cursor: default; flex-shrink: 0; margin-top: 1px; }
+  .tier-explain-text { font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); }
+  .tier-S-bg { background: var(--accent-bg); }
+  .tier-A-bg { background: var(--accent-bg); }
+  .tier-B-bg, .tier-정보부족-bg { background: var(--page-plane); border: 1px solid var(--border); }
+  .group-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .group-deadlines { display: flex; flex-wrap: wrap; gap: 5px; margin-left: auto; justify-content: flex-end; }
+  .deadline-chip { font-size: 11.5px; font-variant-numeric: tabular-nums; padding: 2px 8px; border-radius: 999px; background: var(--page-plane); border: 1px solid var(--border); color: var(--text-secondary); white-space: nowrap; }
+  .deadline-chip.soon { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
+  @media (prefers-color-scheme: dark) { .deadline-chip.soon { color: var(--status-warning); } }
+  .group-body { border-top: 1px solid var(--gridline); padding: 4px 14px 12px; }
+  .posting-row { padding: 10px 0; border-bottom: 1px solid var(--gridline); }
+  .posting-row:last-child { border-bottom: none; }
+  .posting-summary { width: 100%; background: none; border: none; padding: 0; text-align: left; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font: inherit; color: inherit; }
+  .posting-main { flex: 1 1 320px; min-width: 0; }
+  .posting-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 0 0 auto; }
+  .title-row { display: flex; align-items: center; gap: 6px; }
+  .detail-chevron { font-size: 9px; color: var(--muted); transition: transform 0.15s ease; flex-shrink: 0; }
+  .detail-chevron.open { transform: rotate(90deg); }
+  a.title-link { color: var(--text-primary); font-weight: 500; text-decoration: none; }
+  a.title-link:hover { text-decoration: underline; }
+  .job-function { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .source-label { font-size: 11.5px; color: var(--muted); }
+  .posting-detail { margin-top: 10px; padding: 10px 12px; background: var(--page-plane); border-radius: 8px; border: 1px solid var(--border); }
+  .detail-empty { font-size: 12.5px; color: var(--muted); }
+  .low-priority-block { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
+  .low-priority-title { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .low-priority-block .posting-row { opacity: 0.82; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .badge-new { background: var(--accent-bg); color: var(--accent); }
+  .badge-warning { background: var(--status-warning-bg); color: #8a5a00; }
+  @media (prefers-color-scheme: dark) { .badge-warning { color: var(--status-warning); } }
+  .badge-critical { background: var(--status-critical-bg); color: var(--status-critical); }
+  .badge-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  .note { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .empty { text-align: center; padding: 40px 20px; color: var(--muted); }
+  details.unreachable { margin-top: 20px; font-size: 13px; color: var(--text-secondary); }
+  details.unreachable summary { cursor: pointer; font-weight: 600; padding: 6px 0; }
+  details.unreachable ul { margin: 6px 0 0; padding-left: 20px; }
+  .tabular { font-variant-numeric: tabular-nums; }
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 10; }
+  .modal { background: var(--surface-1); border-radius: 12px; border: 1px solid var(--border); max-width: 480px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 20px 22px; }
+  .modal h2 { margin: 0 0 14px; font-size: 17px; }
+  .modal-close { float: right; background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; line-height: 1; }
+  .info-row { margin-bottom: 12px; }
+  .info-row .k { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 3px; }
+  .info-row .v { font-size: 13.5px; line-height: 1.5; }
+  .info-empty { color: var(--muted); font-size: 13px; padding: 12px 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>window.__JOB_DATA__ = %%JOB_DATA%%;</script>
+
+<script>window.__COMPANY_INFO__ = %%COMPANY_INFO%%;</script>
+
+<script>
+const h = React.createElement;
+
+function daysUntil(dateStr, fromStr) {
+  if (!dateStr) return null;
+  const d = new Date(dateStr + "T00:00:00");
+  const from = new Date((fromStr || new Date().toISOString().slice(0,10)) + "T00:00:00");
+  return Math.round((d - from) / 86400000);
+}
+
+function parseSalary(str) {
+  if (!str) return null;
+  const matches = str.match(/([\d,]+)\s*만원/);
+  if (!matches) return null;
+  const n = parseInt(matches[1].replace(/,/g, ""), 10);
+  return isNaN(n) ? null : n;
+}
+
+function formatDateRange(p) {
+  if (p.postedDate && p.deadline) return "게시 " + p.postedDate + " ~ 마감 " + p.deadline;
+  if (p.deadline) return "마감 " + p.deadline;
+  if (isLowPriority(p)) return "상시채용";
+  return "마감일 미정";
+}
+
+function isLowPriority(p) {
+  const text = (p.employmentType || "") + " " + (p.note || "") + " " + (p.title || "");
+  return /인턴|상시/.test(text);
+}
+
+function sourceLabel(p) {
+  if (p.sourceLabel) return p.sourceLabel;
+  if (p.source === "official") return "공식 홈페이지";
+  const url = p.url || "";
+  if (/jobkorea/.test(url)) return "잡코리아";
+  if (/saramin/.test(url)) return "사람인";
+  if (/catch\.co\.kr/.test(url)) return "캐치";
+  if (/jobda\.im/.test(url)) return "잡다";
+  if (/jasoseol/.test(url)) return "자소설닷컴";
+  if (/linkareer/.test(url)) return "링커리어";
+  if (/greetinghr|recruiter\.co\.kr|career\.|recruit\./.test(url)) return "공식 채용사이트(간접확인)";
+  return "채용 플랫폼";
+}
+
+function StatTile(props) {
+  return h("div", { className: "stat-tile" },
+    h("div", { className: "label" }, props.label),
+    h("div", { className: "value tabular" }, props.value)
+  );
+}
+
+function Badge(props) {
+  return h("span", { className: "badge badge-" + props.kind }, props.icon ? props.icon + " " : "", props.children);
+}
+
+function InfoRow(props) {
+  if (!props.value) return null;
+  return h("div", { className: "info-row" },
+    h("div", { className: "k" }, props.label),
+    h("div", { className: "v" }, props.value)
+  );
+}
+
+function CompanyModal(props) {
+  const info = window.__COMPANY_INFO__[props.company];
+  const tier = info && info.recommendTier;
+  return h("div", { className: "modal-backdrop", onClick: props.onClose },
+    h("div", { className: "modal", onClick: e => e.stopPropagation() },
+      h("button", { className: "modal-close", onClick: props.onClose }, "×"),
+      h("h2", null, props.company),
+      tier
+        ? h("div", { className: "tier-explain tier-" + tier + "-bg" },
+            h("span", { className: "tier-badge tier-" + tier }, tier + "등급"),
+            h("span", { className: "tier-explain-text" }, info.recommendReason || "근거 정보 없음")
+          )
+        : null,
+      info
+        ? h("div", null,
+            h(InfoRow, { label: "초봉", value: info.startingSalary }),
+            h(InfoRow, { label: "평균연봉", value: info.avgSalary }),
+            h(InfoRow, { label: "인재상", value: info.talentPhilosophy }),
+            h(InfoRow, { label: "복지", value: info.benefits }),
+            h(InfoRow, { label: "기업문화 평점", value: info.cultureRating }),
+            h(InfoRow, { label: "장단점", value: info.cultureNote }),
+            h(InfoRow, { label: "출처", value: info.source }),
+            h(InfoRow, { label: "확인 시점", value: info.lastUpdated }),
+            info.note ? h(InfoRow, { label: "참고", value: info.note }) : null
+          )
+        : h("div", { className: "info-empty" }, "아직 이 기업의 연봉·인재상 정보가 수집되지 않았습니다. 다음 스캔 때 채워질 예정입니다.")
+    )
+  );
+}
+
+function PostingRow(props) {
+  const p = props.posting;
+  const d = daysUntil(p.deadline, props.today);
+  const [open, setOpen] = React.useState(false);
+  const hasDetail = p.location || p.requiredQualifications || p.preferredQualifications || p.jobDescription;
+
+  return h("div", { className: "posting-row" },
+    h("button", { className: "posting-summary", onClick: () => setOpen(!open) },
+      h("div", { className: "posting-main" },
+        h("div", { className: "title-row" },
+          h("span", { className: "detail-chevron" + (open ? " open" : "") }, "▶"),
+          h("span", { className: "title-link" }, p.title)
+        ),
+        h("div", { className: "job-function" }, (p.jobFunction || "-") + (p.location ? " · " + p.location : "")),
+        p.note ? h("div", { className: "note" }, p.note) : null
+      ),
+      h("div", { className: "posting-meta" },
+        h("span", { className: "tabular note" }, formatDateRange(p)),
+        p.isNew ? h(Badge, { kind: "new", icon: "●" }, "신규") : null,
+        (d !== null && d >= 0 && d <= 7) ? h(Badge, { kind: "warning", icon: "⚠" }, "D-" + d) : null,
+        (d !== null && d < 0) ? h(Badge, { kind: "critical", icon: "⛔" }, "마감") : null,
+        h("span", { className: "source-label" }, sourceLabel(p))
+      )
+    ),
+    open ? h("div", { className: "posting-detail" },
+      h("div", { className: "info-row" },
+        h("a", { href: p.url, target: "_blank", rel: "noopener noreferrer", className: "title-link" }, "원문 공고 열기 →")
+      ),
+      hasDetail
+        ? h("div", null,
+            h(InfoRow, { label: "근무지", value: p.location }),
+            h(InfoRow, { label: "직무 설명", value: p.jobDescription }),
+            h(InfoRow, { label: "필수 조건", value: p.requiredQualifications }),
+            h(InfoRow, { label: "우대 사항", value: p.preferredQualifications })
+          )
+        : h("div", { className: "detail-empty" }, "근무지·자격요건 상세 정보가 아직 수집되지 않았습니다. 다음 스캔 때 채워질 예정입니다.")
+    ) : null
+  );
+}
+
+function CompanyGroup(props) {
+  const [open, setOpen] = React.useState(false);
+  const postings = props.postings;
+  const mainPostings = postings.filter(p => !isLowPriority(p));
+  const lowPostings = postings.filter(p => isLowPriority(p));
+  const today = props.today;
+  const info = props.companyInfo[props.company];
+  const tier = info && info.recommendTier;
+
+  return h("div", { className: "company-group" },
+    h("button", { className: "group-header", onClick: () => setOpen(!open) },
+      h("span", { className: "group-chevron" + (open ? " open" : "") }, "▶"),
+      h("span", {
+        className: "group-name-btn",
+        onClick: e => { e.stopPropagation(); props.onSelectCompany(props.company); }
+      }, props.company),
+      tier ? h("span", {
+        className: "tier-badge tier-" + tier,
+        title: (info.recommendReason || "") + " (클릭하면 상세 근거 보기)",
+        onClick: e => { e.stopPropagation(); props.onSelectCompany(props.company); }
+      }, tier + "등급") : null,
+      h("span", { className: "group-count" }, postings.length + "건"),
+      h("span", { className: "group-deadlines" },
+        postings.map((p, i) => {
+          const d = daysUntil(p.deadline, today);
+          const soon = d !== null && d >= 0 && d <= 7;
+          return h("span", { key: i, className: "deadline-chip" + (soon ? " soon" : "") },
+            p.deadline || (isLowPriority(p) ? "상시" : "미정"));
+        })
+      )
+    ),
+    open ? h("div", { className: "group-body" },
+      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today })),
+      lowPostings.length > 0
+        ? h("div", { className: "low-priority-block" },
+            h("div", { className: "low-priority-title" }, "인턴 · 상시모집 (참고)"),
+            lowPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today }))
+          )
+        : null
+    ) : null
+  );
+}
+
+function App() {
+  const data = window.__JOB_DATA__ || { lastUpdated: null, unreachable: [], postings: [] };
+  const companyInfo = window.__COMPANY_INFO__ || {};
+  const today = (data.lastUpdated || new Date().toISOString()).slice(0,10);
+
+  const [query, setQuery] = React.useState("");
+  const [jobFunction, setJobFunction] = React.useState("전체");
+  const [source, setSource] = React.useState("전체");
+  const [sortBy, setSortBy] = React.useState("deadline");
+  const [selectedCompany, setSelectedCompany] = React.useState(null);
+
+  const active = (data.postings || []).filter(p => p.status !== "closed_or_missing");
+  const functions = ["전체", ...Array.from(new Set(active.map(p => p.jobFunction).filter(Boolean)))];
+
+  let rows = active.filter(p => {
+    if (jobFunction !== "전체" && p.jobFunction !== jobFunction) return false;
+    if (source !== "전체" && p.source !== source) return false;
+    if (query && !((p.company + " " + p.title).toLowerCase().includes(query.toLowerCase()))) return false;
+    return true;
+  });
+
+  const groupsMap = {};
+  rows.forEach(p => { (groupsMap[p.company] = groupsMap[p.company] || []).push(p); });
+  let groups = Object.keys(groupsMap).map(company => ({ company, postings: groupsMap[company] }));
+
+  const nearestDeadline = g => {
+    const ds = g.postings.map(p => p.deadline).filter(Boolean).map(d => new Date(d).getTime());
+    return ds.length ? Math.min(...ds) : Infinity;
+  };
+
+  groups.sort((a, b) => {
+    if (sortBy === "deadline") return nearestDeadline(a) - nearestDeadline(b);
+    if (sortBy === "company") return a.company.localeCompare(b.company, "ko");
+    if (sortBy === "new") {
+      const na = a.postings.some(p => p.isNew) ? 1 : 0;
+      const nb = b.postings.some(p => p.isNew) ? 1 : 0;
+      return nb - na;
+    }
+    if (sortBy === "salary") {
+      const sa = parseSalary(companyInfo[a.company] && companyInfo[a.company].avgSalary);
+      const sb = parseSalary(companyInfo[b.company] && companyInfo[b.company].avgSalary);
+      if (sa === null && sb === null) return 0;
+      if (sa === null) return 1;
+      if (sb === null) return -1;
+      return sb - sa;
+    }
+    return 0;
+  });
+
+  const newCount = active.filter(p => p.isNew).length;
+  const soonCount = active.filter(p => { const d = daysUntil(p.deadline, today); return d !== null && d >= 0 && d <= 7; }).length;
+  const unreachable = data.unreachable || [];
+
+  return h("div", null,
+    h("div", { className: "header" },
+      h("div", null,
+        h("div", { className: "eyebrow" }, "PHARMA · BIO · 신입/인턴"),
+        h("h1", null, "채용공고 대시보드")
+      ),
+      h("div", { className: "updated" },
+        h("div", { className: "updated-label" }, "업데이트"),
+        h("div", { className: "updated-date" }, data.lastUpdated || "없음")
+      )
+    ),
+    h("div", { className: "stat-row" },
+      h(StatTile, { label: "전체 공고", value: active.length }),
+      h(StatTile, { label: "신규 공고", value: newCount }),
+      h(StatTile, { label: "마감 임박 (7일 이내)", value: soonCount }),
+      h(StatTile, { label: "확인 실패 기업", value: unreachable.length })
+    ),
+    h("div", { className: "filters" },
+      h("input", { placeholder: "기업명·공고명 검색", value: query, onChange: e => setQuery(e.target.value) }),
+      h("select", { value: jobFunction, onChange: e => setJobFunction(e.target.value) },
+        functions.map(f => h("option", { key: f, value: f }, f))
+      ),
+      h("select", { value: source, onChange: e => setSource(e.target.value) },
+        h("option", { value: "전체" }, "출처 전체"),
+        h("option", { value: "official" }, "공식 사이트"),
+        h("option", { value: "secondary" }, "2차 (잡보드)")
+      ),
+      h("select", { value: sortBy, onChange: e => setSortBy(e.target.value) },
+        h("option", { value: "deadline" }, "마감임박순"),
+        h("option", { value: "new" }, "신규순"),
+        h("option", { value: "company" }, "기업명순"),
+        h("option", { value: "salary" }, "평균연봉 높은순")
+      )
+    ),
+    groups.length === 0
+      ? h("div", { className: "empty" }, data.postings.length === 0
+          ? "아직 스캔이 실행되지 않았습니다. job-scan 스킬을 실행하면 이 화면에 채용공고가 표시됩니다."
+          : "조건에 맞는 공고가 없습니다.")
+      : h("div", { className: "group-list" },
+          groups.map(g => h(CompanyGroup, {
+            key: g.company,
+            company: g.company,
+            postings: g.postings,
+            today: today,
+            companyInfo: companyInfo,
+            onSelectCompany: setSelectedCompany
+          }))
+        ),
+    unreachable.length > 0
+      ? h("details", { className: "unreachable" },
+          h("summary", null, "확인 실패한 기업 " + unreachable.length + "곳 (사이트 접근 불가 등)"),
+          h("ul", null, unreachable.map((u, i) => h("li", { key: i }, u.company + (u.note ? " — " + u.note : ""))))
+        )
+      : null,
+    selectedCompany ? h(CompanyModal, { company: selectedCompany, onClose: () => setSelectedCompany(null) }) : null
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(h(App));
+</script>
+</body>
+</html>
