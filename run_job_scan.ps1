@@ -17,4 +17,19 @@ try {
     Add-Content -Path $logFile -Value "PowerShell error: $($_.Exception.Message)" -Encoding UTF8
 }
 
+# GitHub Pages 대시보드 갱신 - 스캔 결과를 저장소에 커밋/푸시
+try {
+    git add -A
+    $changes = git status --porcelain
+    if ($changes) {
+        git commit -m "자동 스캔 결과 반영 $(Get-Date -Format 'yyyy-MM-dd HH:mm')" | Out-String | Add-Content -Path $logFile -Encoding UTF8
+        git push origin master 2>&1 | Out-String | Add-Content -Path $logFile -Encoding UTF8
+        Add-Content -Path $logFile -Value "git push exit code: $LASTEXITCODE" -Encoding UTF8
+    } else {
+        Add-Content -Path $logFile -Value "변경사항 없음, git push 생략" -Encoding UTF8
+    }
+} catch {
+    Add-Content -Path $logFile -Value "git push 오류: $($_.Exception.Message)" -Encoding UTF8
+}
+
 Add-Content -Path $logFile -Value "" -Encoding UTF8
