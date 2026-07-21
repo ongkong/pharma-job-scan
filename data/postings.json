@@ -1,6 +1,8 @@
 {
-  "lastUpdated": "2026-07-21",
-  "unreachable": [],
+  "lastUpdated": "2026-07-22",
+  "unreachable": [
+    { "company": "롯데바이오로직스", "note": "인턴 채용 채널(lottebiologics.career.greetinghr.com)이 2일 연속(07-21, 07-22) WebFetch 403으로 직접 열람 불가. WebSearch 스니펫으로 '8월 3일부터 상시채용' 문구만 확인, 상세 확정은 못함. 정규채용(신입/경력)은 공식사이트·잡코리아·사람인 3곳 교차확인 결과 진행중 0건으로 별도 확정됨." }
+  ],
   "postings": [
     {
       "id": "celltrion-2026h1-open",
