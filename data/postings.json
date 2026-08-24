@@ -684,7 +684,7 @@
       "status": "closed_or_missing",
       "note": "대상 직무(생산/QC/QA/공정/R&D) 포함 여부가 이미지 JD 특성상 불확실 — 지원 전 원문 이미지로 직접 재확인 필요. [2026-08-24] 마감일(08-23) 경과 및 2026-08-24 배치1 재확인 결과 셀트리온 대상 직무 신입 공고 재등장 없음 — 마감 처리.",
       "firstSeen": "2026-08-21",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "skbioscience-aug-recruit-202608",
@@ -724,7 +724,7 @@
       "status": "closed_or_missing",
       "note": "[2026-08-24] 마감일(08-23) 경과 및 2026-08-24 배치1 재확인 결과 SK플라즈마 대상 직무 신입 공고 재등장 없음 — 마감 처리.",
       "firstSeen": "2026-08-21",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "lotte-qc-sampler-202608",
@@ -844,7 +844,7 @@
       "status": "closed_or_missing",
       "note": "GC녹십자그룹 계열사(GC녹십자 산하). GC녹십자 본체는 진행중 공고 0건. [2026-08-24] 마감일(08-23) 경과. 2026-08-24 배치3은 GC녹십자웰빙을 별도 타겟에 포함하지 않았으나 마감일 기준으로 종료 처리.",
       "firstSeen": "2026-08-21",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "donga-production-pharmacist",
@@ -924,7 +924,7 @@
       "status": "closed_or_missing",
       "note": "생산 부대업무(원자재관리) 성격. [2026-08-24] 2026-08-24 배치3 재확인에서 재등장하지 않음(같은 회차의 생산팀/주사제생산직 공고는 재확인됨) — 마감일(08-30) 전이라 플랫폼 노출 변동 가능성 있어 다음 스캔에서 재확인 필요.",
       "firstSeen": "2026-08-21",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "skbioscience-dp-parttime-202608b",
