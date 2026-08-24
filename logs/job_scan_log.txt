@@ -271,3 +271,17 @@ exit code: 1
 You've hit your session limit 쨌 resets 7am (Asia/Seoul)
 
 exit code: 1
+[master 579f7dd] ?먮룞 ?ㅼ틪 寃곌낵 諛섏쁺 2026-08-24 02:30
+ 3 files changed, 252 insertions(+), 37 deletions(-)
+
+git : To https://github.com/ongkong/pharma-job-scan.git
+위치 C:\Users\PC\Desktop\01. @@ AI @@\01. 채용\run_job_scan.ps1:27 문자:9
++         git push origin master 2>&1 | Out-String | Add-Content -Path  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...ma-job-scan.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   dbc4b0c..579f7dd  master -> master
+
+git push exit code: 0
+

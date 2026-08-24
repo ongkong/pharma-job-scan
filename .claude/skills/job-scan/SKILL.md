@@ -34,22 +34,12 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 
 새 기업을 추가할 때는 `references/companies.md`의 "기업 범위" 기준(대기업 계열 또는 코스피 상장 대형 제약사 수준)을 반드시 통과해야 하며, 중소기업은 추가하지 않는다.
 
-## Phase 1b: 기업정보 보강 (연봉·인재상·복지)
-
-채용공고와 달리 기업정보(초봉/평균연봉/인재상/복지/기업문화 평점)는 자주 바뀌지 않으므로 매일 갱신하지 않는다. `data/companies.json`을 확인해 다음 조건에 해당하는 기업만 `company-profiler` 에이전트로 조사한다:
-- `data/companies.json`에 아예 없는 기업 (신규 등장 기업 포함)
-- `lastUpdated`가 30일 이상 지난 기업
-
-대상 기업이 있으면 `company-profiler` 에이전트에 4~5개씩 묶어 배정하고 **하나씩 순차로 실행한다(병렬 금지, Phase 1과 동일한 이유 — 세션 한도 초과 방지)**. **model 파라미터는 지정하지 않는다** — `company-profiler` 에이전트 정의(`model: sonnet`)를 그대로 따른다. 출력은 `_workspace/{오늘날짜}/profiler_batch{N}.json`. 완료되면 `data/companies.json`에 기업명을 키로 병합 저장한다.
-
-`report/index.html`에는 이 데이터를 `<script>window.__COMPANY_INFO__ = {...};</script>` 블록으로 인라인 주입한다 (채용공고와 동일한 이유 — 로컬 file:// CORS 회피). 기업명을 클릭하면 모달로 표시된다.
-
 ## Phase 2: 집계 및 신규 판별
 
-1. `_workspace/{오늘날짜}/scraper_batch*.json` 5개 파일을 모두 읽어 병합한다.
+1. `_workspace/{오늘날짜}/scraper_batch*.json` 3개 파일을 모두 읽어 병합한다.
 2. `status: "unreachable"` 항목은 별도로 모아 리포트에 "확인 실패 목록"으로 남긴다 (조용히 버리지 않는다).
 3. 유효한 공고끼리 `company + title` 기준으로 중복 제거 (같은 공고가 공식 사이트와 잡코리아 양쪽에서 잡히면 `source: "official"` 우선).
-4. `data/postings.json`이 있으면 이전 데이터와 비교해 새로 등장한 공고에 `isNew: true`를 표시하고, 이전에 있었지만 이번에 안 잡힌 공고는 `status: "closed_or_missing"`으로 표시(삭제하지 않음 — 마감된 건지 확인 실패인지는 다음 스캔에서 재확인).
+4. `data/postings.json`이 있으면 이전 데이터와 비교해 새로 등장한 공고에 `isNew: true`를 표시하고, 이전에 있었지만 이번에 안 잡힌 공고는 `status: "closed_or_missing"`으로 표시(삭제하지 않음 — 마감된 건지 확인 실패인지는 다음 스캔에서 재확인). **이때 `isNew`는 반드시 `false`로 같이 내린다** — `status`를 closed로 바꾸면서 `isNew: true`를 남겨두는 실수가 실제로 있었다(2026-08-24, 마감 처리된 공고가 대시보드에 "신규"로도 같이 뜸).
 5. 결과를 `data/postings.json`에 저장한다. 스키마:
    ```json
    {
@@ -57,11 +47,14 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
      "unreachable": [{"company": "...", "note": "..."}],
      "postings": [
        {"id": "company+title 해시 또는 슬러그", "company": "", "title": "", "url": "", "jobFunction": "",
-        "employmentType": "", "postedDate": null, "deadline": null, "source": "official|secondary",
+        "employmentType": "", "postedDate": null, "deadline": null,
+        "processSchedule": null,
+        "source": "official|secondary",
         "status": "confirmed|closed_or_missing", "note": "", "firstSeen": "YYYY-MM-DD", "isNew": true}
      ]
    }
    ```
+   `processSchedule`은 job-scraper가 준 값을 그대로 통과시킨다 — 공고문에 전형 일정표가 있으면 `{"documentAnnouncement": "...", "interviewDate": "...", "finalAnnouncement": "..."}` 형태(일부 필드만 있어도 됨, 나머진 null), 없으면 `null` 그대로. 상시채용류는 대부분 null인 게 정상이다.
 
 ## Phase 3: 대시보드 생성
 
@@ -73,6 +66,7 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 - 기업/직무/출처(공식·2차)로 필터링 가능
 - 공고는 **기업별 아코디언**으로 그룹화한다. 접힌 상태에서도 그 기업의 공고 개수와 마감일(여러 건이면 여러 개 칩)이 보여야 한다. 기업명 옆에는 `recommendTier` 배지(S/A/B/정보부족)를 표시한다. 기업명 클릭 시 연봉/인재상 모달이 뜬다.
 - 아코디언을 펼치면 공고별로 다시 한 번 펼쳐서(중첩 아코디언) 근무지·필수조건·우대사항·직무설명(JD)을 볼 수 있어야 한다 — 사용자가 원문 링크를 따로 열지 않아도 판단할 수 있게 하는 것이 목적. 해당 필드가 없으면 "상세 정보 없음" 정도로만 표시.
+- `processSchedule`이 있으면(null이 아니면) 같은 중첩 아코디언 안에 "전형 일정" 항목으로 서류발표(`documentAnnouncement`)/면접일(`interviewDate`)/최종발표(`finalAnnouncement`)를 표시한다 — 있는 필드만 보여주고 없는 필드는 항목 자체를 생략한다(전부 null이면 processSchedule 자체가 null일 것이므로 이 경우는 없음). `processSchedule`이 null이면 이 항목 자체를 표시하지 않는다(빈 "확인 필요" 문구를 넣지 않는다 — 상시채용류는 애초에 일정이 없는 게 정상이므로).
 - 마감일은 `postedDate`가 있으면 "게시 YYYY-MM-DD ~ 마감 YYYY-MM-DD" 범위로, 없으면 마감일만 표시.
 - 인턴/상시모집(`employmentType`/`note`에 "인턴" 또는 "상시" 포함)은 각 기업 아코디언 안에서 하위 섹션으로 분리.
 - 마지막 업데이트 날짜는 헤더에서 눈에 잘 띄게 크게 표시한다.
@@ -86,7 +80,7 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 - `report/vendor/react.production.min.js`, `react-dom.production.min.js` — 로컬에 받아둔 React 소스 (CDN 아님, Artifact 게시 시 외부 요청이 없어야 하므로 필요).
 - `report/build/build_dashboard.js` — 템플릿 + vendor + `data/*.json`을 안전한 `split('token').join(value)` 방식(치환 패턴 해석 없음)으로 합쳐 `report/index.html`을 재생성한다. 데이터만 바뀐 경우 실행 명령은 `node report/build/build_dashboard.js` (해당 디렉토리에서 실행).
 
-즉 매 스캔 후 순서: `data/postings.json` / `data/companies.json` 갱신 → `node build_dashboard.js` 실행 → `report/index.html`이 최신 상태로 재생성됨.
+즉 매 스캔 후 순서: `data/postings.json` 갱신(Phase 2) → `node build_dashboard.js` 실행 → `report/index.html`이 채용공고 기준으로는 최신 상태로 재생성됨. **이 시점에 곧바로 실행한다 — 기업정보 보강(Phase 3d)을 먼저 기다리지 않는다.** 이유는 Phase 3d 설명 참고.
 
 ## Phase 3c: Artifact 재게시
 
@@ -99,6 +93,20 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 2. 사용자에게 보고할 때 "로컬 파일은 최신화됐지만 이번 세션엔 웹 게시 도구가 없어 웹 링크는 못 갱신했다"고 명확히 알린다.
 
 **Phase 0에서 이 마커 파일을 항상 먼저 확인한다:** `data/artifact_republish_pending.txt`가 존재하고 이번 세션에 Artifact 도구가 있으면(대부분의 대화형 세션), 본 스캔 작업과 무관하게 즉시 현재 `report/index.html`을 `data/artifact_url.txt`의 URL로 재게시하고 마커 파일을 삭제한다 — 무인 실행 밤 동안 밀린 웹 게시를 다음 대화형 세션이 자동으로 따라잡기 위함이다.
+
+## Phase 3d: 기업정보 보강 (연봉·인재상·복지) — 반드시 맨 마지막, 소규모로만
+
+**이 Phase는 Phase 3c(대시보드 게시)까지 전부 끝난 뒤에만 시작한다.** 예전엔 Phase 1 직후(기업정보 보강 → 집계 → 대시보드 빌드 순)에 배치했었는데, 2026-08-24 새벽 실제로 이 순서 때문에 사고가 났다: 배치1~3 채용공고 스캔에 이미 세션 예산을 상당히 쓴 상태에서 기업정보 보강까지 이어 하다가 세션 한도(429)로 프로세스 전체가 중간에 죽었고, `data/postings.json`은 이미 갱신됐는데 `report/index.html` 재빌드(Phase 3)는 시작도 못 해서 며칠간 대시보드가 실제 데이터보다 뒤처진 채로 사용자에게 노출됐다(사용자가 "또 안됐다"고 지적). **핵심 교훈: 세션이 언제 죽어도 사용자가 보는 대시보드는 그 시점까지 확인된 채용공고를 반영한 최신 상태여야 한다.** 그래서 채용공고 파이프라인(Phase 1→2→3→3c)을 항상 먼저 끝까지 완주시키고, 상대적으로 덜 급한 기업정보 보강은 맨 마지막 여유 예산으로만 시도한다.
+
+채용공고와 달리 기업정보(초봉/평균연봉/인재상/복지/기업문화 평점)는 자주 바뀌지 않으므로 매일 갱신하지 않는다. `data/companies.json`을 확인해 다음 조건에 해당하는 기업을 후보로 추린다:
+- `data/companies.json`에 아예 없는 기업 (신규 등장 기업 포함) — 이건 우선순위 최상위
+- `lastUpdated`가 30일 이상 지난 기업 — `lastUpdated`가 가장 오래된 순으로 정렬
+
+**한 번 실행에 최대 5개사(= company-profiler 배치 1개)만 처리한다.** 후보가 5개보다 많아도 나머지는 다음 스캔으로 넘긴다 — 오래 밀려있던 걸 하루에 다 따라잡으려 하지 않는다(그게 바로 8/24 사고의 원인이었다). 매일 조금씩(최대 5개사) 처리하면 26개사가 밀려 있어도 며칠이면 자연히 다 돌게 된다. `company-profiler` 에이전트 하나에 5개사를 배정해 실행한다(더 잘게 쪼갤 필요 없음, 어차피 배치 1개뿐). **model 파라미터는 지정하지 않는다** — `company-profiler` 에이전트 정의(`model: sonnet`)를 그대로 따른다. 출력은 `_workspace/{오늘날짜}/profiler_batch1.json`. 완료되면 `data/companies.json`에 기업명을 키로 병합 저장한다.
+
+이 Phase가 `data/companies.json`을 실제로 바꿨다면, `node report/build/build_dashboard.js`를 한 번 더 실행해 `report/index.html`에 새 기업정보를 반영하고, Artifact 도구가 있으면 재게시도 한 번 더 한다(Phase 3c와 동일한 방법). 이 단계에서 세션 한도로 죽더라도 이미 Phase 3c까지 완료된 채용공고 대시보드는 그대로 유지되므로 사용자 입장에서는 손해가 없다.
+
+`report/index.html`에는 이 데이터를 `<script>window.__COMPANY_INFO__ = {...};</script>` 블록으로 인라인 주입한다 (채용공고와 동일한 이유 — 로컬 file:// CORS 회피). 기업명을 클릭하면 모달로 표시된다.
 
 ## Phase 4: 알림
 
@@ -115,8 +123,9 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 
 ## 테스트 시나리오
 
-- **정상 흐름:** 5개 배치 모두 성공 → 집계 → 신규 3건 발견 → 알림 → 대시보드 갱신
-- **에러 흐름:** 배치 3(중견 제약 전반) 접속 실패 → 1회 재시도도 실패 → 나머지 4개 배치로 집계 진행, 리포트에 배치 3 기업 목록은 "확인 실패"로 표시, 사용자에게 부분 실패 보고
+- **정상 흐름:** 배치 1~3 모두 성공 → 집계 → 대시보드 재빌드+게시 → 신규 3건 발견 알림 → (예산 남으면) 기업정보 5개사 보강
+- **에러 흐름:** 배치 3(대형 제약) 접속 실패 → 1회 재시도도 실패 → 나머지 배치로 집계 진행, 리포트에 배치 3 기업 목록은 "확인 실패"로 표시, 사용자에게 부분 실패 보고
+- **세션 한도 흐름(2026-08-24 실제 발생):** 배치 1~3과 Phase 2까지는 성공해 `data/postings.json`은 갱신됐으나, 이어지는 작업 중 세션 한도(429)로 프로세스가 강제 종료됨. Phase 3(대시보드 빌드)를 Phase 2 직후로 옮겨둔 덕에, 다음 스캔이 오기 전까지도 최소한 `report/index.html`은 그 시점까지 확인된 채용공고를 반영한 상태로 남는다 — 기업정보 보강(Phase 3d)이 다음으로 미뤄질 뿐, 사용자가 보는 대시보드가 낡은 채로 방치되지는 않는다.
 
 ## 참고
 - 대상 기업 및 소스 상세 목록: `references/companies.md`

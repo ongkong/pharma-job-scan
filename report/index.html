@@ -1949,7 +1949,8 @@ function PostingRow(props) {
   const p = props.posting;
   const d = daysUntil(p.deadline, props.today);
   const [open, setOpen] = React.useState(false);
-  const hasDetail = p.location || p.requiredQualifications || p.preferredQualifications || p.jobDescription;
+  const hasDetail = p.location || p.requiredQualifications || p.preferredQualifications || p.jobDescription || p.processSchedule;
+  const sched = p.processSchedule || {};
 
   return h("div", { className: "posting-row" },
     h("button", { className: "posting-summary", onClick: () => setOpen(!open) },
@@ -1978,7 +1979,10 @@ function PostingRow(props) {
             h(InfoRow, { label: "근무지", value: p.location }),
             h(InfoRow, { label: "직무 설명", value: p.jobDescription }),
             h(InfoRow, { label: "필수 조건", value: p.requiredQualifications }),
-            h(InfoRow, { label: "우대 사항", value: p.preferredQualifications })
+            h(InfoRow, { label: "우대 사항", value: p.preferredQualifications }),
+            h(InfoRow, { label: "서류 발표", value: sched.documentAnnouncement }),
+            h(InfoRow, { label: "면접일", value: sched.interviewDate }),
+            h(InfoRow, { label: "최종 발표", value: sched.finalAnnouncement })
           )
         : h("div", { className: "detail-empty" }, "근무지·자격요건 상세 정보가 아직 수집되지 않았습니다. 다음 스캔 때 채워질 예정입니다.")
     ) : null
