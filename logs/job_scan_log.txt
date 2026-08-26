@@ -285,3 +285,16 @@ git : To https://github.com/ongkong/pharma-job-scan.git
 
 git push exit code: 0
 
+==== 2026-08-25 02:00:03 ====
+You've hit your session limit 쨌 resets 7am (Asia/Seoul)
+
+exit code: 1
+실제 데이터 변경 없음 (스캔 실패했거나 신규 공고 없음) - git commit/push 생략
+
+==== 2026-08-26 02:00:03 ====
+You've hit your session limit 쨌 resets 7am (Asia/Seoul)
+
+exit code: 1
+실제 데이터 변경 없음 (스캔 실패했거나 신규 공고 없음) - git commit/push 생략
+
+==== 2026-08-26 11:08:14 ====

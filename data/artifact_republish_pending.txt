@@ -1,0 +1,1 @@
+2026-08-26T(대화형 세션): Artifact 도구가 이번 세션에도 제공되지 않아 https://claude.ai/code/artifact/6b590261-22d2-4844-a2d1-4f82dc5bb415 재게시 못함. GitHub Pages는 정상 갱신됨.
