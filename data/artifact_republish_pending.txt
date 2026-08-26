@@ -1,0 +1,1 @@
+2026-08-27T00:27 KST - Artifact 도구가 이 세션에 제공되지 않아 재게시 보류. report/index.html은 최신 상태(GitHub Pages로 게시됨). 다음 Artifact 도구 사용 가능 세션에서 data/artifact_url.txt 주소로 재게시 필요.
