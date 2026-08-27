@@ -15,7 +15,6 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
    - 없음 → **초기 실행**. 전체 배치 스캔.
    - 있음 → **후속 실행**. 기존 데이터를 읽어 이번 스캔 결과와 비교해 "신규 공고"를 판별한다.
 2. `_workspace/{오늘날짜}/` 폴더가 이미 있고 산출물이 있으면(같은 날 재실행), **사용자가 "다시"/"재실행"을 명시적으로 요청한 경우에만** 해당 산출물을 지우고 새로 스캔한다. 그 외의 경우(특히 자동 스케줄 실행)는 항상 기존 산출물을 그대로 재사용하고 아직 없는 부분만 이어서 진행한다 — 이 판단을 매번 새로 하지 않고 기계적으로 적용한다(2026-08-26부터: 로컬 자동 스캔이 하루 2회 — 00:00, 05:05~10 KST — 돌게 되면서, 두 번째 실행이 첫 번째 실행의 이어하기가 되도록 하기 위함. 상세는 Phase 1 참고).
-3. `data/artifact_republish_pending.txt` 존재 여부를 확인한다 — 새벽 무인 실행 세션에 Artifact 도구가 없어서 밀린 웹 재게시가 있다는 표시다. 있으면 (본 스캔 여부와 무관하게) Phase 3c의 안내대로 즉시 재게시하고 마커를 지운다.
 
 ## Phase 1: 팬아웃 스캔
 
@@ -84,17 +83,11 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 
 즉 매 스캔 후 순서: `data/postings.json` 갱신(Phase 2) → `node build_dashboard.js` 실행 → `report/index.html`이 채용공고 기준으로는 최신 상태로 재생성됨. **이 시점에 곧바로 실행한다 — 기업정보 보강(Phase 3d)을 먼저 기다리지 않는다.** 이유는 Phase 3d 설명 참고.
 
-## Phase 3c: Artifact 재게시
+## Phase 3c: Artifact 재게시 (은퇴함 — 기본적으로 건너뛴다)
 
-`data/artifact_url.txt`가 있으면 사용자가 이미 Claude Artifact로 대시보드를 게시해둔 것이다. `report/index.html`을 재생성한 뒤, Artifact 도구에 `url` 파라미터로 그 주소를 넘겨 같은 URL에 재게시한다 (파일 경로는 `report/index.html` 그대로, `favicon: "💊"` 유지 — 아이콘을 바꾸면 사용자가 탭을 못 찾는다). `data/artifact_url.txt`가 없으면 이 Phase는 건너뛴다 (사용자가 로컬 파일만 쓰기로 한 것).
+**2026-08-27부로 Artifact 채널은 쓰지 않기로 함.** 로컬 무인 실행(`claude -p`)에는 Artifact 도구 자체가 제공되지 않아, 매번 대화형 세션이 대신 재게시해줘야 하는 구조였는데(마커 파일을 남기고 사람이 챙겨야 함), 사용자가 "GitHub Pages 하나만 쓰겠다, 매일 채팅 안 해도 되게 해달라"고 명확히 요청함. `data/artifact_url.txt`가 삭제되어 있으므로(의도적) 이 Phase는 자동으로 건너뛴다 — 별도 판단 불필요.
 
-`data/artifact_url.txt`가 없는데 사용자가 "웹주소로도 보고싶다"고 새로 요청하면, 먼저 `report/build/build_dashboard.js`로 `report/index.html`이 완전히 인라인(외부 CDN 없음) 상태인지 확인한 뒤 Artifact로 새로 게시하고, 반환된 URL을 `data/artifact_url.txt`에 저장한다.
-
-**중요 — Artifact 도구가 이 세션에 없는 경우 (새벽 무인 실행 등):** 새벽 2시 예약 작업(`claude -p --dangerously-skip-permissions`)으로 돌아가는 세션에는 Artifact 도구 자체가 제공되지 않는다(2026-07-09~07-13에 매일 밤 확인된 사실 — `ToolSearch`로 찾아도 "No matching deferred tools found"). 이 경우 재게시를 조용히 포기하지 말고:
-1. `data/artifact_republish_pending.txt`에 현재 시각을 기록한다 (이미 파일이 있으면 내용을 그대로 갱신).
-2. 사용자에게 보고할 때 "로컬 파일은 최신화됐지만 이번 세션엔 웹 게시 도구가 없어 웹 링크는 못 갱신했다"고 명확히 알린다.
-
-**Phase 0에서 이 마커 파일을 항상 먼저 확인한다:** `data/artifact_republish_pending.txt`가 존재하고 이번 세션에 Artifact 도구가 있으면(대부분의 대화형 세션), 본 스캔 작업과 무관하게 즉시 현재 `report/index.html`을 `data/artifact_url.txt`의 URL로 재게시하고 마커 파일을 삭제한다 — 무인 실행 밤 동안 밀린 웹 게시를 다음 대화형 세션이 자동으로 따라잡기 위함이다.
+사용자가 다시 "웹주소를 Artifact로도 보고 싶다"고 명시적으로 요청하는 경우에만 예외적으로: `report/build/build_dashboard.js`로 `report/index.html`이 완전히 인라인(외부 CDN 없음) 상태인지 확인한 뒤 Artifact로 새로 게시하고, 반환된 URL을 `data/artifact_url.txt`에 저장한다(이러면 이 Phase가 다시 활성화됨). 그 경우 로컬 무인 세션엔 Artifact 도구가 없다는 점을 다시 명확히 알려줄 것 — 매번 대화형 세션에서 챙겨줘야 하는 수동 작업으로 되돌아간다.
 
 ## Phase 3d: 기업정보 보강 (연봉·인재상·복지) — 반드시 맨 마지막, 소규모로만
 
