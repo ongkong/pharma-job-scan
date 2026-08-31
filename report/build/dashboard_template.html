@@ -241,7 +241,7 @@ function CompanyModal(props) {
   return h("div", { className: "modal-backdrop", onClick: props.onClose },
     h("div", { className: "modal", onClick: e => e.stopPropagation() },
       h("button", { className: "modal-close", onClick: props.onClose }, "×"),
-      h("h2", null, props.company),
+      h("h2", null, props.company, info && info.companySize ? h("span", { className: "badge badge-secondary", style: { marginLeft: "8px", verticalAlign: "middle" }, title: info.companySizeNote || "" }, info.companySize) : null),
       tier
         ? h("div", { className: "tier-explain tier-" + tier + "-bg" },
             h("span", { className: "tier-badge tier-" + tier }, tier + "등급"),
@@ -330,6 +330,7 @@ function CompanyGroup(props) {
         title: (info.recommendReason || "") + " (클릭하면 상세 근거 보기)",
         onClick: e => { e.stopPropagation(); props.onSelectCompany(props.company); }
       }, tier + "등급") : null,
+      info && info.companySize ? h("span", { className: "badge badge-secondary", title: info.companySizeNote || "" }, info.companySize) : null,
       h("span", { className: "group-count" }, postings.length + "건"),
       h("span", { className: "group-deadlines" },
         postings.map((p, i) => {
