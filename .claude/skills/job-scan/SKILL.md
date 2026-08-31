@@ -100,6 +100,8 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 
 **한 번 실행에 최대 5개사(= company-profiler 배치 1개)만 처리한다.** 후보가 5개보다 많아도 나머지는 다음 스캔으로 넘긴다 — 오래 밀려있던 걸 하루에 다 따라잡으려 하지 않는다(그게 바로 8/24 사고의 원인이었다). 매일 조금씩(최대 5개사) 처리하면 26개사가 밀려 있어도 며칠이면 자연히 다 돌게 된다. `company-profiler` 에이전트 하나에 5개사를 배정해 실행한다(더 잘게 쪼갤 필요 없음, 어차피 배치 1개뿐). **model 파라미터는 지정하지 않는다** — `company-profiler` 에이전트 정의(`model: sonnet`)를 그대로 따른다. 출력은 `_workspace/{오늘날짜}/profiler_batch1.json`. 완료되면 `data/companies.json`에 기업명을 키로 병합 저장한다.
 
+**`companySize`/`companySizeNote`는 기업당 최초 1회만 조사한다(2026-08-31 확정).** 프롬프트에 넘길 대상 기업 목록을 만들 때, 이미 `companySize` 값이 있는 기업은 "이미 분류돼 있으니 재조사하지 말고 그대로 유지"라고 명시한다. `companySize`가 아예 없는 신규 기업만 새로 조사 대상이다 — 대기업집단 소속 여부는 연봉처럼 자주 안 바뀌므로 매번 다시 검색하면 사용량 낭비다.
+
 이 Phase가 `data/companies.json`을 실제로 바꿨다면, `node report/build/build_dashboard.js`를 한 번 더 실행해 `report/index.html`에 새 기업정보를 반영하고, Artifact 도구가 있으면 재게시도 한 번 더 한다(Phase 3c와 동일한 방법). 이 단계에서 세션 한도로 죽더라도 이미 Phase 3c까지 완료된 채용공고 대시보드는 그대로 유지되므로 사용자 입장에서는 손해가 없다.
 
 `report/index.html`에는 이 데이터를 `<script>window.__COMPANY_INFO__ = {...};</script>` 블록으로 인라인 주입한다 (채용공고와 동일한 이유 — 로컬 file:// CORS 회피). 기업명을 클릭하면 모달로 표시된다.
