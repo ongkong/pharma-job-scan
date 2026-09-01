@@ -394,3 +394,50 @@ GitHub Pages 諛섏쁺???꾪빐 而ㅻ컠/?몄떆?좉퉴?? ?꾨땲硫?濡쒖뺄 
 exit code: 0
 rebuilt index.html, size: 257882
 
+[master a300afa] ?먮룞 ?ㅼ틪 寃곌낵 諛섏쁺 2026-08-31 00:35
+ 4 files changed, 453 insertions(+), 138 deletions(-)
+
+git : To https://github.com/ongkong/pharma-job-scan.git
+위치 C:\Users\PC\Desktop\01. @@ AI @@\01. 채용\run_job_scan.ps1:42 문자:9
++         git push origin master 2>&1 | Out-String | Add-Content -Path  ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...ma-job-scan.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   f92069d..a300afa  master -> master
+
+git push exit code: 0
+
+==== 2026-08-31 05:05:02 ====
+?ㅻ뒛(2026-08-31) 00:00 濡쒖뺄 ?먮룞 ?ㅼ틪???대? 諛곗튂1~3 ?쒖감 ?ㅼ틪 + 湲곗뾽?뺣낫 蹂닿컯 + ??쒕낫???щ퉴?쒓퉴吏 ?꾨? ?꾨즺??GitHub??而ㅻ컠쨌?몄떆(`a300afa`)源뚯? ?앸궃 ?곹깭??듬땲?? ?ㅽ궗 洹쒖튃??媛숈? ???곗텧臾쇱씠 ?덉쑝硫??ъ궗?? 以묐났 ?ъ뒪罹붿? ?섏? ?딆븯怨? 寃곌낵留??뺤씤?덉뒿?덈떎.
+
+**?ㅻ뒛 ?좉퇋 怨듦퀬 7嫄?**
+- 濡?뜲諛붿씠?ㅻ줈吏곸뒪 ??Open Innovation Internship (?곸떆)
+- ??몃━?⑥젣?????뚰듃??대㉧ 梨꾩슜(諛붿씠?ㅼ깮?곕낫議?, 留덇컧 9/17
+- SK?뚮씪利덈쭏 ???쒖“愿由??쎌궗(?덈룞怨듭옣), 留덇컧 9/2
+- 醫낃렐?밸컮?댁삤 ???섍꼍? ?뺢퇋吏??ъ썝, 留덇컧 9/7
+- ?쒕룆 ??[怨꾩빟吏? ?뚮씪?ㅽ?? ??? 留덇컧 9/6
+- LG?뷀븰 ??R&D ?몄옱?깅줉(?앸챸怨쇳븰, ?곸떆)
+- ??낆젣?????ㅼ넚猷⑦뵾?큂C? 誘몄깮臾쇳뙆??怨꾩빟吏?, 留덇컧 9/11
+
+湲곗뾽?뺣낫??5怨?媛깆떊?먭퀬, ?뺤씤 ?ㅽ뙣(unreachable) 湲곗뾽? 0怨녹엯?덈떎. ??쒕낫?쒕뒗 https://ongkong.github.io/pharma-job-scan/report/index.html ?먯꽌 理쒖떊 ?곹깭濡??뺤씤 媛?ν빀?덈떎.
+
+李멸퀬濡?吏湲?05:05)? ??踰덉㎏ ?먮룞 ?ㅽ뻾(?댁뼱?섍린????留??쒖옉???쒖젏?몃뜲, ?ㅻ뒛? 泥??ㅽ뻾???대? ?꾩＜?댁꽌 ???ㅽ뻾? 蹂꾨떎瑜??묒뾽 ?놁씠 議곗슜??醫낅즺??寃껋쑝濡?蹂댁엯?덈떎.
+
+exit code: 0
+실제 데이터 변경 없음 (스캔 실패했거나 신규 공고 없음) - git commit/push 생략
+
+==== 2026-09-01 00:00:02 ====
+You've hit your session limit 쨌 resets 5am (Asia/Seoul)
+
+exit code: 1
+실제 데이터 변경 없음 (스캔 실패했거나 신규 공고 없음) - git commit/push 생략
+
+==== 2026-09-01 05:05:03 ====
+==== 2026-09-02 00:00:03 ====
+You've hit your session limit 쨌 resets 5am (Asia/Seoul)
+
+exit code: 1
+실제 데이터 변경 없음 (스캔 실패했거나 신규 공고 없음) - git commit/push 생략
+
+==== 2026-09-02 05:05:02 ====
