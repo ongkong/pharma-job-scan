@@ -18,6 +18,7 @@
     --accent: #2a78d6;
     --accent-bg: #eaf1fb;
     --status-good: #0ca30c;
+    --status-good-bg: #e7f7e7;
     --status-warning: #fab219;
     --status-warning-bg: #fff6e2;
     --status-serious: #ec835a;
@@ -36,6 +37,7 @@
       --accent: #3987e5;
       --accent-bg: #142438;
       --status-good: #0ca30c;
+      --status-good-bg: #10321a;
       --status-warning: #fab219;
       --status-warning-bg: #332a10;
       --status-serious: #ec835a;
@@ -54,6 +56,7 @@
     --accent: #3987e5;
     --accent-bg: #142438;
     --status-good: #0ca30c;
+    --status-good-bg: #10321a;
     --status-warning: #fab219;
     --status-warning-bg: #332a10;
     --status-serious: #ec835a;
@@ -71,6 +74,7 @@
     --accent: #2a78d6;
     --accent-bg: #eaf1fb;
     --status-good: #0ca30c;
+    --status-good-bg: #e7f7e7;
     --status-warning: #fab219;
     --status-warning-bg: #fff6e2;
     --status-serious: #ec835a;
@@ -145,6 +149,7 @@
   .low-priority-block .posting-row { opacity: 0.82; }
   .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
   .badge-new { background: var(--accent-bg); color: var(--accent); }
+  .badge-recent { background: var(--status-good-bg); color: var(--status-good); }
   .badge-warning { background: var(--status-warning-bg); color: #8a5a00; }
   @media (prefers-color-scheme: dark) { .badge-warning { color: var(--status-warning); } }
   .badge-critical { background: var(--status-critical-bg); color: var(--status-critical); }
@@ -224,7 +229,7 @@ function StatTile(props) {
 }
 
 function Badge(props) {
-  return h("span", { className: "badge badge-" + props.kind }, props.icon ? props.icon + " " : "", props.children);
+  return h("span", { className: "badge badge-" + props.kind, title: props.title }, props.icon ? props.icon + " " : "", props.children);
 }
 
 function InfoRow(props) {
@@ -268,6 +273,8 @@ function CompanyModal(props) {
 function PostingRow(props) {
   const p = props.posting;
   const d = daysUntil(p.deadline, props.today);
+  const daysSinceFirstSeen = p.firstSeen ? -daysUntil(p.firstSeen, props.today) : null;
+  const isRecent = !p.isNew && daysSinceFirstSeen !== null && daysSinceFirstSeen >= 1 && daysSinceFirstSeen <= 3;
   const [open, setOpen] = React.useState(false);
   const hasDetail = p.location || p.requiredQualifications || p.preferredQualifications || p.jobDescription || p.processSchedule;
   const sched = p.processSchedule || {};
@@ -285,6 +292,7 @@ function PostingRow(props) {
       h("div", { className: "posting-meta" },
         h("span", { className: "tabular note" }, formatDateRange(p)),
         p.isNew ? h(Badge, { kind: "new", icon: "●" }, "신규") : null,
+        isRecent ? h(Badge, { kind: "recent", icon: "●", title: daysSinceFirstSeen + "일 전 처음 확인됨" }, daysSinceFirstSeen + "일 전 신규") : null,
         (d !== null && d >= 0 && d <= 7) ? h(Badge, { kind: "warning", icon: "⚠" }, "D-" + d) : null,
         (d !== null && d < 0) ? h(Badge, { kind: "critical", icon: "⛔" }, "마감") : null,
         h("span", { className: "source-label" }, sourceLabel(p))
