@@ -414,9 +414,12 @@ function App() {
     if (sortBy === "deadline") return nearestDeadline(a) - nearestDeadline(b);
     if (sortBy === "company") return a.company.localeCompare(b.company, "ko");
     if (sortBy === "new") {
-      const na = a.postings.some(p => p.isNew) ? 1 : 0;
-      const nb = b.postings.some(p => p.isNew) ? 1 : 0;
-      return nb - na;
+      const rank = g => {
+        if (g.postings.some(p => p.isNew)) return 2;
+        if (g.postings.some(p => isRecentPosting(p, today))) return 1;
+        return 0;
+      };
+      return rank(b) - rank(a);
     }
     if (sortBy === "salary") {
       const sa = parseSalary(companyInfo[a.company] && companyInfo[a.company].avgSalary);
@@ -462,7 +465,7 @@ function App() {
       ),
       h("select", { value: sortBy, onChange: e => setSortBy(e.target.value) },
         h("option", { value: "deadline" }, "마감임박순"),
-        h("option", { value: "new" }, "신규순"),
+        h("option", { value: "new" }, "신규·최근순"),
         h("option", { value: "company" }, "기업명순"),
         h("option", { value: "salary" }, "평균연봉 높은순")
       )
