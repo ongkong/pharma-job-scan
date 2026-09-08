@@ -385,7 +385,7 @@ function App() {
   const [query, setQuery] = React.useState("");
   const [jobFunction, setJobFunction] = React.useState("전체");
   const [source, setSource] = React.useState("전체");
-  const [sortBy, setSortBy] = React.useState("deadline");
+  const [sortBy, setSortBy] = React.useState("new");
   const [selectedCompany, setSelectedCompany] = React.useState(null);
 
   const active = (data.postings || []).filter(p => p.status !== "closed_or_missing");
@@ -419,7 +419,8 @@ function App() {
         if (g.postings.some(p => isRecentPosting(p, today))) return 1;
         return 0;
       };
-      return rank(b) - rank(a);
+      const rd = rank(b) - rank(a);
+      return rd !== 0 ? rd : nearestDeadline(a) - nearestDeadline(b);
     }
     if (sortBy === "salary") {
       const sa = parseSalary(companyInfo[a.company] && companyInfo[a.company].avgSalary);
