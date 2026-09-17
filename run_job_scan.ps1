@@ -41,7 +41,7 @@ job-scan 스킬을 사용해서 오늘자 제약/바이오 신입 채용공고�
     try {
         $output = & codex --search -m gpt-5.6-terra -c 'model_reasoning_effort="low"' -a never -s danger-full-access -C $projectRoot exec --ephemeral $prompt 2>&1
         $codexExitCode = $LASTEXITCODE
-        $output | Out-String | Write-ScanLog
+        Write-ScanLog ($output | Out-String)
         Write-ScanLog "Codex exit code: $codexExitCode"
     } catch {
         Write-ScanLog "Codex 실행 오류: $($_.Exception.Message)"
@@ -53,7 +53,7 @@ job-scan 스킬을 사용해서 오늘자 제약/바이오 신입 채용공고�
         try {
             $buildOutput = & node report/build/build_dashboard.js 2>&1
             $buildExitCode = $LASTEXITCODE
-            $buildOutput | Out-String | Write-ScanLog
+            Write-ScanLog ($buildOutput | Out-String)
             Write-ScanLog "dashboard build exit code: $buildExitCode"
             if ($buildExitCode -ne 0) {
                 throw "대시보드 빌드가 종료 코드 $buildExitCode 로 실패했습니다."
@@ -70,14 +70,14 @@ job-scan 스킬을 사용해서 오늘자 제약/바이오 신입 채용공고�
             git add -- data/postings.json data/companies.json report/index.html
             $commitOutput = & git commit -m "자동 스캔 결과 반영 $(Get-Date -Format 'yyyy-MM-dd HH:mm')" 2>&1
             $commitExitCode = $LASTEXITCODE
-            $commitOutput | Out-String | Write-ScanLog
+            Write-ScanLog ($commitOutput | Out-String)
             if ($commitExitCode -ne 0) {
                 throw "git commit이 종료 코드 $commitExitCode 로 실패했습니다."
             }
 
             $pushOutput = & git push origin master 2>&1
             $pushExitCode = $LASTEXITCODE
-            $pushOutput | Out-String | Write-ScanLog
+            Write-ScanLog ($pushOutput | Out-String)
             Write-ScanLog "git push exit code: $pushExitCode"
             if ($pushExitCode -ne 0) {
                 throw "git push가 종료 코드 $pushExitCode 로 실패했습니다. 로컬 커밋은 보존됩니다."
