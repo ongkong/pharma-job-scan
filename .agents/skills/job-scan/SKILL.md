@@ -41,7 +41,7 @@ description: 제약/바이오 기업(셀트리온, 삼성바이오로직스, SK�
 1. `_workspace/{오늘날짜}/scraper_batch*.json` 3개 파일을 모두 읽어 병합한다.
 2. `status: "unreachable"` 항목은 별도로 모아 리포트에 "확인 실패 목록"으로 남긴다 (조용히 버리지 않는다).
 3. 유효한 공고끼리 `company + title` 기준으로 중복 제거 (같은 공고가 공식 사이트와 잡코리아 양쪽에서 잡히면 `source: "official"` 우선).
-4. `data/postings.json`이 있으면 이전 데이터와 비교해 새로 등장한 공고에 `isNew: true`를 표시하고, 이전에 있었지만 이번에 안 잡힌 공고는 `status: "closed_or_missing"`으로 표시(삭제하지 않음 — 마감된 건지 확인 실패인지는 다음 스캔에서 재확인). **이때 `isNew`는 반드시 `false`로 같이 내린다** — `status`를 closed로 바꾸면서 `isNew: true`를 남겨두는 실수가 실제로 있었다(2026-08-24, 마감 처리된 공고가 대시보드에 "신규"로도 같이 뜸).
+4. `data/postings.json`이 있으면 이전 데이터와 비교해 새로 등장한 공고에 `isNew: true`를 표시한다. **이전 confirmed 공고가 이번 스캔에 안 잡혔다는 이유만으로 즉시 `closed_or_missing`으로 내리지 않는다.** 검색 누락이 곧 대시보드 누락으로 번지는 것을 막기 위해, 마감일이 지났거나 공식/상세 페이지에서 종료·삭제가 명시적으로 확인된 경우에만 `closed_or_missing`으로 변경하고 `isNew: false`로 내린다. 이번 결과에서 단순히 보이지 않은 공고는 기존 confirmed 상태와 `firstSeen`을 유지하고 note에 재확인 필요 사유를 남긴다. 실제로 2026-09-17 HK이노엔 신입공채를 한 플랫폼에서 놓쳐 진행 공고를 닫아버린 사고가 있었으므로 이 규칙을 보수적으로 적용한다.
 5. 결과를 `data/postings.json`에 저장한다. 스키마:
    ```json
    {
