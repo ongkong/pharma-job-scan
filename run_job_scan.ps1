@@ -1,9 +1,15 @@
-$env:Path = "C:\Program Files\nodejs;C:\Users\PC\AppData\Roaming\npm;" + [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+﻿$env:Path = "C:\Program Files\nodejs;C:\Users\PC\AppData\Roaming\npm;" + [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 $env:PYTHONIOENCODING = "utf-8"
 $OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 
 $projectRoot = $PSScriptRoot
+$codexExe = (Get-Command codex -ErrorAction SilentlyContinue).Source
+if (-not $codexExe -or -not (Test-Path -LiteralPath $codexExe)) {
+    $codexBinRoot = Join-Path $env:LOCALAPPDATA "OpenAI\Codex\bin"
+    $codexExe = Get-ChildItem -LiteralPath $codexBinRoot -Filter "codex.exe" -File -Recurse -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName
+}
+if (-not $codexExe) { throw "Codex executable was not found." }
 Set-Location -LiteralPath $projectRoot
 
 $logFile = Join-Path $projectRoot "logs\job_scan_log.txt"
@@ -29,17 +35,17 @@ try {
     }
 
     Write-ScanLog "==== $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') ===="
-    Write-ScanLog "runner: Codex / model: gpt-5.6-terra / reasoning: low"
+    Write-ScanLog "runner: Codex / model: gpt-6-luna / reasoning: low"
 
     $prompt = @"
-job-scan 스킬을 사용해서 오늘자 제약/바이오 신입 채용공고와 기업정보를 스캔하고 report/index.html 대시보드를 최신화해줘.
+job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기업의 신입/인턴 채용공고를 직무 제한 없이 스캔하고 report/index.html 대시보드를 최신화해줘.
 기존 data/postings.json, data/companies.json, Git 히스토리와 GitHub Pages URL을 유지해라.
 .claude 폴더와 Claude/Anthropic CLI 또는 API는 사용하지 마라. 현재 프로젝트의 .agents 스킬과 .codex 에이전트 정의, 로컬 빌드 스크립트만 사용해라.
 "@
 
     $codexExitCode = 1
     try {
-        $output = & codex --search -m gpt-5.6-terra -c 'model_reasoning_effort="low"' -a never -s danger-full-access -C $projectRoot exec --ephemeral $prompt 2>&1
+        $output = & $codexExe --search -m gpt-6-luna -c 'model_reasoning_effort="low"' -a never -s danger-full-access -C $projectRoot exec --ephemeral $prompt 2>&1
         $codexExitCode = $LASTEXITCODE
         Write-ScanLog ($output | Out-String)
         Write-ScanLog "Codex exit code: $codexExitCode"
