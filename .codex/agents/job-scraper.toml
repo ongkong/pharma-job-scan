@@ -39,6 +39,8 @@ developer_instructions = """
 
 ## 출력 프로토콜
 
+- JSON 출력은 UTF-8로 저장한다. 한글을 직접 `\\uXXXX`로 이스케이프하거나 JSON 조각을 수작업으로 조립하지 않는다. 객체를 `JSON.stringify`로 직렬화하고 저장 후 다시 파싱해 구조와 레코드 수를 확인한다. 검증 실패 시 기존 데이터를 덮어쓰지 않는다.
+
 작업 완료 후, 배정받은 출력 파일 경로(`_workspace/{날짜}_scraper_{배치번호}.json`)에 아래 스키마의 JSON 배열을 쓴다.
 
 ```json

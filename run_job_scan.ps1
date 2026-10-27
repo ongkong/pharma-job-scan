@@ -41,6 +41,7 @@ try {
 job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기업의 신입/인턴 채용공고를 직무 제한 없이 스캔하고 report/index.html 대시보드를 최신화해줘.
 기존 data/postings.json, data/companies.json, Git 히스토리와 GitHub Pages URL을 유지해라.
 .claude 폴더와 Claude/Anthropic CLI 또는 API는 사용하지 마라. 현재 프로젝트의 .agents 스킬과 .codex 에이전트 정의, 로컬 빌드 스크립트만 사용해라.
+한글 JSON을 직접 수동 이스케이프하거나 JSON.parse('"'+문자열+'"')로 만들지 마라. 객체를 UTF-8 JSON으로 직렬화하고, 저장 직후 JSON 파싱을 검증해라.
 "@
 
     $codexExitCode = 1
@@ -51,6 +52,17 @@ job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기�
         Write-ScanLog "Codex exit code: $codexExitCode"
     } catch {
         Write-ScanLog "Codex 실행 오류: $($_.Exception.Message)"
+    }
+
+    # 손상된 JSON을 HTML로 빌드하거나 GitHub Pages에 게시하지 않는다.
+    $validationOutput = & node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('data/postings.json','utf8'));JSON.parse(fs.readFileSync('data/companies.json','utf8'));if(!Array.isArray(p.postings)||!/^\d{4}-\d{2}-\d{2}$/.test(p.lastUpdated))throw new Error('postings.json schema/date validation failed');" 2>&1
+    $validationExitCode = $LASTEXITCODE
+    Write-ScanLog ($validationOutput | Out-String)
+    Write-ScanLog "JSON validation exit code: $validationExitCode"
+    if ($validationExitCode -ne 0) {
+        Write-ScanLog "JSON 검증 실패 - 대시보드 빌드와 게시를 건너뜁니다. 기존 공개 페이지를 유지합니다."
+        Write-ScanLog ""
+        exit 0
     }
 
     # AI 실행이 중간에 끝나도 JSON이 바뀌었다면 로컬 빌더가 HTML을 데이터와 맞춘다.
