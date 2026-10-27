@@ -1,4 +1,4 @@
-﻿$env:Path = "C:\Program Files\nodejs;C:\Users\PC\AppData\Roaming\npm;" + [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+$env:Path = "C:\Program Files\nodejs;C:\Users\PC\AppData\Roaming\npm;" + [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 $env:PYTHONIOENCODING = "utf-8"
 $OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
@@ -35,7 +35,7 @@ try {
     }
 
     Write-ScanLog "==== $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') ===="
-    Write-ScanLog "runner: Codex / model: gpt-6-luna / reasoning: low"
+    Write-ScanLog "runner: Codex / model: gpt-5.6-luna / reasoning: low"
 
     $prompt = @"
 job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기업의 신입/인턴 채용공고를 직무 제한 없이 스캔하고 report/index.html 대시보드를 최신화해줘.
@@ -46,7 +46,7 @@ job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기�
 
     $codexExitCode = 1
     try {
-        $output = & $codexExe --search -m gpt-6-luna -c 'model_reasoning_effort="low"' -a never -s danger-full-access -C $projectRoot exec --ephemeral $prompt 2>&1
+        $output = & $codexExe --search -m gpt-5.6-luna -c 'model_reasoning_effort="low"' -a never -s danger-full-access -C $projectRoot exec --ephemeral $prompt 2>&1
         $codexExitCode = $LASTEXITCODE
         Write-ScanLog ($output | Out-String)
         Write-ScanLog "Codex exit code: $codexExitCode"
