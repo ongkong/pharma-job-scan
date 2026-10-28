@@ -10,6 +10,10 @@ if (-not $codexExe -or -not (Test-Path -LiteralPath $codexExe)) {
     $codexExe = Get-ChildItem -LiteralPath $codexBinRoot -Filter "codex.exe" -File -Recurse -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName
 }
 if (-not $codexExe) { throw "Codex executable was not found." }
+$codexDirectory = Split-Path -Parent $codexExe
+if (($env:Path -split ';') -notcontains $codexDirectory) {
+    $env:Path = "$codexDirectory;$env:Path"
+}
 Set-Location -LiteralPath $projectRoot
 
 $logFile = Join-Path $projectRoot "logs\job_scan_log.txt"
@@ -42,6 +46,7 @@ job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기�
 기존 data/postings.json, data/companies.json, Git 히스토리와 GitHub Pages URL을 유지해라.
 .claude 폴더와 Claude/Anthropic CLI 또는 API는 사용하지 마라. 현재 프로젝트의 .agents 스킬과 .codex 에이전트 정의, 로컬 빌드 스크립트만 사용해라.
 한글 JSON을 직접 수동 이스케이프하거나 JSON.parse('"'+문자열+'"')로 만들지 마라. 객체를 UTF-8 JSON으로 직렬화하고, 저장 직후 JSON 파싱을 검증해라.
+현재 실행 중인 Codex나 이 작업 스크립트를 Stop-Process/taskkill로 종료하거나 중첩 실행해서 재시작하지 마라. 진행 중인 작업은 끝까지 기다리고, 완료할 수 없는 배치는 결과에 사유를 남겨라.
 "@
 
     $codexExitCode = 1
