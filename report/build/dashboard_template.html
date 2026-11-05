@@ -452,7 +452,7 @@ function App() {
       h(StatTile, { label: "전체 공고", value: active.length }),
       h(StatTile, { label: "신규 공고", value: newCount }),
       h(StatTile, { label: "마감 임박 (7일 이내)", value: soonCount }),
-      h(StatTile, { label: "확인 실패 기업", value: unreachable.length })
+      h(StatTile, { label: "공고 확인 미완료", value: unreachable.length })
     ),
     h("div", { className: "filters" },
       h("input", { placeholder: "기업명·공고명 검색", value: query, onChange: e => setQuery(e.target.value) }),
@@ -487,7 +487,7 @@ function App() {
         ),
     unreachable.length > 0
       ? h("details", { className: "unreachable" },
-          h("summary", null, "확인 실패한 기업 " + unreachable.length + "곳 (사이트 접근 불가 등)"),
+          h("summary", null, "공고 또는 상세페이지 확인이 안 된 기업 " + unreachable.length + "곳 (마지막 스캔 기준)"),
           h("ul", null, unreachable.map((u, i) => h("li", { key: i }, u.company + (u.note ? " — " + u.note : ""))))
         )
       : null,
