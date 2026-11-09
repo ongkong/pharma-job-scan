@@ -39,11 +39,19 @@ try {
     }
 
     Write-ScanLog "==== $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') ===="
+    $syncOutput = & git pull --no-rebase --autostash origin master 2>&1
+    $syncExitCode = $LASTEXITCODE
+    Write-ScanLog ($syncOutput | Out-String)
+    Write-ScanLog "upstream sync exit code: $syncExitCode"
+    if ($syncExitCode -ne 0) {
+        Write-ScanLog "원격 최신 변경을 안전하게 병합하지 못해 스캔을 시작하지 않습니다. 로컬/원격 자료는 그대로 보존합니다."
+        exit 1
+    }
     Write-ScanLog "runner: Codex / model: gpt-5.6-luna / reasoning: low"
 
     $prompt = @"
 job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기업의 신입/인턴 채용공고를 직무 제한 없이 스캔하고 report/index.html 대시보드를 최신화해줘.
-기존 data/postings.json, data/companies.json, Git 히스토리와 GitHub Pages URL을 유지해라.
+기존 data/postings.json, data/companies.json, Git 히스토리와 GitHub Pages URL을 유지해라. Claude나 다른 작성자가 원격 저장소에 추가한 공고를 포함해 기존 공고를 모두 보존하고 이번 검색 결과만으로 전체 목록을 덮어쓰지 마라. 기존 공고는 동일 URL/제목으로 병합하고, 공식 페이지에서 종료나 마감이 확인된 경우에만 닫아라. git reset --hard, git clean, force push는 사용하지 마라.
 .claude 폴더와 Claude/Anthropic CLI 또는 API는 사용하지 마라. 현재 프로젝트의 .agents 스킬과 .codex 에이전트 정의, 로컬 빌드 스크립트만 사용해라.
 한글 JSON을 직접 수동 이스케이프하거나 JSON.parse('"'+문자열+'"')로 만들지 마라. 객체를 UTF-8 JSON으로 직렬화하고, 저장 직후 JSON 파싱을 검증해라.
 이 자동 실행을 지금부터 직접 수행해라. 현재 Codex/PowerShell 프로세스나 작업 스케줄러를 조회해 자기 자신이 이미 실행 중이라고 판단하거나, 이를 기다리며 Start-Sleep/폴링하지 마라. 배치 1~3을 순서대로 실제 조사하고, 각 결과를 _workspace/{오늘날짜}/scraper_batch{N}.json에 저장해라. 사이트 접속 실패는 실제 접근 차단이 확인된 경우에만 unreachable로 기록하고, 검색 가능한 사이트를 확인했으나 신입/인턴 공고를 못 찾은 경우는 실패 목록에 넣지 마라. 세 배치 결과를 병합하고 대시보드까지 완료한 뒤 종료해라. 완료하지 못한 배치가 있으면 성공으로 끝내지 말고 구체적인 실패 사유를 남겨라.
