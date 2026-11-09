@@ -24,7 +24,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 // Search word -> optional exclude pattern for look-alike company names.
 const TARGETS = [
-  ['셀트리온'], ['셀트리온제약'], ['삼성바이오로직스'], ['삼성바이오에피스'], ['SK바이오팜'], ['SK바이오사이언스'],
+  ['셀트리온'], ['삼성바이오로직스'], ['삼성바이오에피스'], ['SK바이오팜'], ['SK바이오사이언스'],
   ['SK플라즈마'], ['SK케미칼'], ['롯데바이오로직스'], ['GC녹십자'], ['녹십자홀딩스'], ['유한양행'], ['종근당'],
   ['한미약품'], ['대웅제약'], ['대웅바이오'], ['광동제약'], ['휴온스'], ['동아에스티'], ['HK이노엔'], ['보령', /덕산지에스/],
   ['대원제약'], ['일동제약'], ['JW중외제약'], ['동국제약'], ['제일약품'], ['동화약품'], ['삼진제약'], ['안국약품'],
@@ -165,6 +165,12 @@ async function getHtml(word) {
     if (JSON.stringify(a) !== JSON.stringify(b) && !(a.status === 'confirmed' && b.status !== 'confirmed')) throw new Error('integrity: modified ' + b.id);
   }
 
+  // 기업정보(초봉) 없는 신규 기업 목록: 다음 Claude/Codex 세션에서 초봉 조사 후 4천 미만이면 excluded:'low-salary' 처리.
+  let known_cos = new Set();
+  try { const c = JSON.parse(fs.readFileSync(path.join(path.dirname(DATA), 'companies.json'), 'utf8')); (Array.isArray(c) ? c.map((x) => x.company) : Object.keys(c)).forEach((n) => known_cos.add(norm(n))); } catch (e) {}
+  const unknownCos = [...new Set(added.map((p) => p.company))].filter((n) => ![...known_cos].some((k) => n.includes(k) || k.includes(n)));
+  added.forEach((p) => { if (unknownCos.includes(p.company)) p.salaryCheck = 'pending'; });
+  if (unknownCos.length) console.log('NEEDS_SALARY_CHECK: ' + unknownCos.join(', '));
   console.log(JSON.stringify({ date: TODAY, mode: APPLY ? 'apply' : 'dry-run', lookups: attempted, failed, matched: found.size, added: added.length, revived: revived.length }, null, 1));
   added.forEach((p) => console.log(`+ ${p.company} | ${p.title} | ${p.deadline || '-'} | ${p.url}`));
   revived.forEach((t) => console.log(`~ revived ${t}`));
