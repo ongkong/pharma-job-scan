@@ -1,5 +1,5 @@
 # Saramin cross-check runner (no LLM, zero tokens). ASCII only on purpose: no BOM issues on PowerShell 5.1.
-# Runs only on days of month ending in 2 or 7 (ChatGPT/Codex runner covers 0 and 5). Use -Force to run any day.
+# Runs only on days ending 2/7; Codex covers days ending 0/5. Use -Force to run any day.
 param([switch]$Force)
 
 $env:Path = "C:\Program Files\nodejs;" + [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
@@ -7,9 +7,7 @@ $env:PYTHONIOENCODING = "utf-8"
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 
 $day = (Get-Date).Day
-# Codex paused until 2026-11-25 (no tokens): run daily until then, afterwards only on days ending 2/7.
-$inGap = ((Get-Date) -lt [datetime]"2026-11-26")
-if (-not $Force -and -not $inGap -and (($day % 10) -ne 2) -and (($day % 10) -ne 7)) { exit 0 }
+if (-not $Force -and (($day % 10) -ne 2) -and (($day % 10) -ne 7)) { exit 0 }
 
 Set-Location -LiteralPath $PSScriptRoot
 $logDir = Join-Path $PSScriptRoot "logs"
