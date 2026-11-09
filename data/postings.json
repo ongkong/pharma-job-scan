@@ -4442,7 +4442,8 @@
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/04). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "excluded": "small-company"
     },
     {
       "id": "saramin-55356064",
@@ -4464,7 +4465,8 @@
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/21). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "excluded": "small-company"
     },
     {
       "id": "saramin-55390860",
@@ -4486,7 +4488,8 @@
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "excluded": "small-company"
     },
     {
       "id": "saramin-55413563",
@@ -4508,7 +4511,8 @@
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/28). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "excluded": "small-company"
     },
     {
       "id": "saramin-55417865",
@@ -4530,7 +4534,8 @@
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/29). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "excluded": "small-company"
     },
     {
       "id": "saramin-55413576",
@@ -4552,7 +4557,8 @@
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/28). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "excluded": "small-company"
     },
     {
       "id": "saramin-55225938",
@@ -4574,7 +4580,8 @@
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/29). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "excluded": "small-company"
     },
     {
       "id": "saramin-55492024",
