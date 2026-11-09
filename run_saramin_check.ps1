@@ -7,7 +7,9 @@ $env:PYTHONIOENCODING = "utf-8"
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 
 $day = (Get-Date).Day
-if (-not $Force -and (($day % 10) -ne 2) -and (($day % 10) -ne 7)) { exit 0 }
+# Codex paused until 2026-11-25 (no tokens): run daily until then, afterwards only on days ending 2/7.
+$inGap = ((Get-Date) -lt [datetime]"2026-11-26")
+if (-not $Force -and -not $inGap -and (($day % 10) -ne 2) -and (($day % 10) -ne 7)) { exit 0 }
 
 Set-Location -LiteralPath $PSScriptRoot
 $logDir = Join-Path $PSScriptRoot "logs"

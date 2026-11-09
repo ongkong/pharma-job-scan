@@ -39,3 +39,5 @@
 | 2026-11-09 | Claude 더블체크 시험 실행: 사람인 기업별 조회로 기존 대시보드에 없던 공고 59건을 추가(기존 160건은 삭제·변경 없음). 기존 공고는 이번 스캔에서 못 찾았다는 이유로 닫지 않는 규칙을 SKILL.md Phase 2에 명시. LLM 없이 토큰 0으로 도는 tools/saramin_diff.js와 run_saramin_check.ps1(날짜 끝자리 2·7일에만 실행) 추가. 작업 스케줄러 등록은 아직 안 함 | data/postings.json, report/index.html, tools/saramin_diff.js, run_saramin_check.ps1, package.json, SKILL.md | 챗지피티(0·5일)와 번갈아 더블체크하되 토큰을 쓰지 않고 한쪽이 놓친 공고를 서로 보완하려는 요청 |
 
 - 2026-11-09 (Claude): 사용자 요청으로 문과 직무(총무·인사·영업/MR·마케팅·구매·IR·상품기획 등)는 대시보드에서 숨김(`excluded:"non-science"`, 삭제 아님). 마감일이 지난 공고도 대시보드에서 숨김. 복수 직무 통합공고는 이공계 직무가 포함되면 유지. 신규 추가 시 문과 단독 직무는 넣지 말 것.
+
+- 2026-11-09: Codex(ChatGPT) 실행은 토큰 부족으로 2026-11-25까지 중단. 그 기간 run_saramin_check.ps1은 매일 실행(이후 2/7일만).
