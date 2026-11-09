@@ -45,3 +45,5 @@
 - 2026-11-09: 대상은 중견~대기업만. 중소기업은 제외(`excluded:"small-company"`로 숨김), 바이넥스 숨김 및 점검 대상에서 제거.
 
 - 2026-11-09: 사용자 기준 "초봉 4천 미만 예상 기업 = 중소"로 간주해 제외(`excluded:"low-salary"`). 현재 해당: 셀트리온제약·한독·SK디스커버리·GC녹십자웰빙(companies.json 초봉 추정 기준). 경계선(약 4,000): 휴온스 계열, 종근당바이오.
+
+- 2026-11-09: companies.json에 없는 신규 기업 공고는 `salaryCheck:"pending"`으로 표시되고 점검 로그에 NEEDS_SALARY_CHECK로 나옴. 다음 Claude/Codex 세션에서 company-profiler로 초봉 조사 → 4천 미만이면 `excluded:"low-salary"`, 아니면 salaryCheck 제거. 캐치는 로그인 없이는 초봉이 안 보여 잡플래닛·공고문·기사 기준으로 조사할 것.

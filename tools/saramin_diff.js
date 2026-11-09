@@ -165,6 +165,12 @@ async function getHtml(word) {
     if (JSON.stringify(a) !== JSON.stringify(b) && !(a.status === 'confirmed' && b.status !== 'confirmed')) throw new Error('integrity: modified ' + b.id);
   }
 
+  // 기업정보(초봉) 없는 신규 기업 목록: 다음 Claude/Codex 세션에서 초봉 조사 후 4천 미만이면 excluded:'low-salary' 처리.
+  let known_cos = new Set();
+  try { const c = JSON.parse(fs.readFileSync(path.join(path.dirname(DATA), 'companies.json'), 'utf8')); (Array.isArray(c) ? c : c.companies || []).forEach((x) => known_cos.add(norm(x.company))); } catch (e) {}
+  const unknownCos = [...new Set(added.map((p) => p.company))].filter((n) => ![...known_cos].some((k) => n.includes(k) || k.includes(n)));
+  added.forEach((p) => { if (unknownCos.includes(p.company)) p.salaryCheck = 'pending'; });
+  if (unknownCos.length) console.log('NEEDS_SALARY_CHECK: ' + unknownCos.join(', '));
   console.log(JSON.stringify({ date: TODAY, mode: APPLY ? 'apply' : 'dry-run', lookups: attempted, failed, matched: found.size, added: added.length, revived: revived.length }, null, 1));
   added.forEach((p) => console.log(`+ ${p.company} | ${p.title} | ${p.deadline || '-'} | ${p.url}`));
   revived.forEach((t) => console.log(`~ revived ${t}`));
