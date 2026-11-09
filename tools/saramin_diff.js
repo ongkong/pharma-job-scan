@@ -140,6 +140,7 @@ async function getHtml(word) {
       }
       continue;
     }
+    if (/경영지원|영업·마케팅/.test(fn(r.title)) || /총무|인사|IR팀|영업직|MR\b|구매|회계|재무|법무/.test(r.title)) continue; // 문과 직무 제외(2026-11-09 사용자 요청)
     added.push({
       id: `saramin-${r.rec}`, company: r.company, title: r.title,
       url: `https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=${r.rec}`, jobFunction: fn(r.title),

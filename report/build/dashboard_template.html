@@ -388,7 +388,7 @@ function App() {
   const [sortBy, setSortBy] = React.useState("new");
   const [selectedCompany, setSelectedCompany] = React.useState(null);
 
-  const active = (data.postings || []).filter(p => p.status !== "closed_or_missing");
+  const active = (data.postings || []).filter(p => p.status !== "closed_or_missing" && !p.excluded && !(p.deadline && daysUntil(p.deadline, today) < 0));
   const functions = ["전체", ...Array.from(new Set(active.map(p => p.jobFunction).filter(Boolean)))];
 
   let rows = active.filter(p => {
