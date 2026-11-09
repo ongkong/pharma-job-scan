@@ -13,6 +13,7 @@ function sub(str, token, value) {
   return str.split(token).join(value);
 }
 
+template = sub(template, '%%CLASSIFY_SRC%%', fs.readFileSync(path.join(__dirname, 'classify.js'), 'utf8'));
 template = sub(template, '%%REACT_SRC%%', reactSrc);
 template = sub(template, '%%REACT_DOM_SRC%%', reactDomSrc);
 template = sub(template, '%%JOB_DATA%%', postings.trim());

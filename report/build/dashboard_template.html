@@ -126,6 +126,13 @@
   .tier-B-bg, .tier-정보부족-bg { background: var(--page-plane); border: 1px solid var(--border); }
   .group-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .group-deadlines { display: flex; flex-wrap: wrap; gap: 5px; margin-left: auto; justify-content: flex-end; }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 2px; }
+  .tag { font-size: 11.5px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--page-plane); color: var(--text-secondary); white-space: nowrap; }
+  .tag.hl { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
+  .tag.ok { color: var(--text-primary); }
+  .section-title { font-size: 15px; font-weight: 600; margin: 26px 0 8px; }
+  .section-sub { font-size: 12.5px; color: var(--text-secondary); font-weight: 400; margin-left: 6px; }
+  .excl-list { font-size: 12.5px; color: var(--text-secondary); line-height: 1.7; margin: 8px 0 0 18px; }
   .deadline-chip { font-size: 11.5px; font-variant-numeric: tabular-nums; padding: 2px 8px; border-radius: 999px; background: var(--page-plane); border: 1px solid var(--border); color: var(--text-secondary); white-space: nowrap; }
   .deadline-chip.soon { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
   @media (prefers-color-scheme: dark) { .deadline-chip.soon { color: var(--status-warning); } }
@@ -196,6 +203,8 @@ function isRecentPosting(p, today) {
   const days = daysSinceFirstSeenOf(p, today);
   return !p.isNew && days !== null && days >= 1 && days <= 3;
 }
+
+%%CLASSIFY_SRC%%
 
 function parseSalary(str) {
   if (!str) return null;
@@ -297,6 +306,14 @@ function PostingRow(props) {
           h("span", { className: "title-link" }, p.title)
         ),
         h("div", { className: "job-function" }, (p.jobFunction || "-") + (p.location ? " · " + p.location : "")),
+        props.cls ? h("div", { className: "tags" },
+          h("span", { className: "tag" + (props.cls.track === "core" ? " ok" : "") }, props.cls.track === "core" ? "바이오 핵심" : (props.cls.track === "lowprio" ? "후순위(비바이오 R&D)" : "인접직무")),
+          h("span", { className: "tag" + (props.cls.master === "석사 필수" ? " hl" : "") }, props.cls.master === "표기 없음" ? "학력 석사 표기 없음" : props.cls.master),
+          h("span", { className: "tag" + (props.cls.newgrad === "확인 필요" ? " hl" : "") }, "신입 " + props.cls.newgrad),
+          props.cls.emp === "conv_intern" ? h("span", { className: "tag" }, "정규직 전환형 인턴") : null,
+          props.cls.emp === "intern_unknown" ? h("span", { className: "tag hl" }, "인턴(전환 여부 확인 필요)") : null,
+          h("span", { className: "tag" + (props.cls.salaryNum === null ? " hl" : "") }, props.cls.salaryNum === null ? "연봉 미확인" : "초봉 약 " + props.cls.salaryNum.toLocaleString() + "만원(추정)")
+        ) : null,
         p.note ? h("div", { className: "note" }, p.note) : null
       ),
       h("div", { className: "posting-meta" },
@@ -331,8 +348,7 @@ function PostingRow(props) {
 function CompanyGroup(props) {
   const [open, setOpen] = React.useState(false);
   const postings = props.postings;
-  const mainPostings = postings.filter(p => !isLowPriority(p));
-  const lowPostings = postings.filter(p => isLowPriority(p));
+  const mainPostings = postings;
   const today = props.today;
   const info = props.companyInfo[props.company];
   const tier = info && info.recommendTier;
@@ -361,18 +377,12 @@ function CompanyGroup(props) {
           const soon = d !== null && d >= 4 && d <= 7;
           const urgent = d !== null && d >= 0 && d <= 3;
           return h("span", { key: i, className: "deadline-chip" + (soon ? " soon" : "") + (urgent ? " urgent" : "") },
-            p.deadline || (isLowPriority(p) ? "상시" : "미정"));
+            p.deadline || "미정");
         })
       )
     ),
     open ? h("div", { className: "group-body" },
-      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today })),
-      lowPostings.length > 0
-        ? h("div", { className: "low-priority-block" },
-            h("div", { className: "low-priority-title" }, "인턴 · 상시모집 (참고)"),
-            lowPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today }))
-          )
-        : null
+      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today, cls: props.clsMap.get(p) }))
     ) : null
   );
 }
@@ -383,34 +393,45 @@ function App() {
   const today = (data.lastUpdated || new Date().toISOString()).slice(0,10);
 
   const [query, setQuery] = React.useState("");
-  const [jobFunction, setJobFunction] = React.useState("전체");
   const [source, setSource] = React.useState("전체");
   const [sortBy, setSortBy] = React.useState("new");
   const [selectedCompany, setSelectedCompany] = React.useState(null);
 
-  const active = (data.postings || []).filter(p => p.status !== "closed_or_missing" && !p.excluded && !(p.deadline && daysUntil(p.deadline, today) < 0));
-  const functions = ["전체", ...Array.from(new Set(active.map(p => p.jobFunction).filter(Boolean)))];
-
-  let rows = active.filter(p => {
-    if (jobFunction !== "전체" && p.jobFunction !== jobFunction) return false;
+  const infoOf = p => companyInfo[p.company];
+  const live = (data.postings || []).filter(p => p.status !== "closed_or_missing" && !(p.deadline && daysUntil(p.deadline, today) < 0));
+  const clsMap = new Map();
+  live.forEach(p => clsMap.set(p, classifyPosting(p, infoOf(p))));
+  const [trackFilter, setTrackFilter] = React.useState("전체");
+  const [eduFilter, setEduFilter] = React.useState("전체");
+  const passes = p => {
+    const c = clsMap.get(p);
+    if (trackFilter === "바이오 핵심" && c.track !== "core") return false;
+    if (eduFilter === "석사 필수 제외" && c.master === "석사 필수") return false;
+    if (eduFilter === "석사 필수만" && c.master !== "석사 필수") return false;
     if (source !== "전체" && p.source !== source) return false;
     if (query && !((p.company + " " + p.title).toLowerCase().includes(query.toLowerCase()))) return false;
     return true;
-  });
-
-  const groupsMap = {};
-  rows.forEach(p => { (groupsMap[p.company] = groupsMap[p.company] || []).push(p); });
-  Object.values(groupsMap).forEach(list => {
-    list.sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || ""));
-  });
-  let groups = Object.keys(groupsMap).map(company => ({ company, postings: groupsMap[company] }));
+  };
+  const sectionRows = name => live.filter(p => clsMap.get(p).section === name && passes(p));
+  const active = live.filter(p => clsMap.get(p).section !== "excluded");
+  const excludedAll = live.filter(p => clsMap.get(p).section === "excluded");
 
   const nearestDeadline = g => {
     const ds = g.postings.map(p => p.deadline).filter(Boolean).map(d => new Date(d).getTime());
     return ds.length ? Math.min(...ds) : Infinity;
   };
+  const buildGroups = rows => {
+    const groupsMap = {};
+    rows.forEach(p => { (groupsMap[p.company] = groupsMap[p.company] || []).push(p); });
+    Object.values(groupsMap).forEach(list => {
+      list.sort((a, b) => (b.firstSeen || "").localeCompare(a.firstSeen || ""));
+    });
+    const groups = Object.keys(groupsMap).map(company => ({ company, postings: groupsMap[company] }));
+    groups.sort(sortFn);
+    return groups;
+  };
 
-  groups.sort((a, b) => {
+  const sortFn = (a, b) => {
     if (sortBy === "deadline") return nearestDeadline(a) - nearestDeadline(b);
     if (sortBy === "company") return a.company.localeCompare(b.company, "ko");
     if (sortBy === "new") {
@@ -431,8 +452,23 @@ function App() {
       return sb - sa;
     }
     return 0;
-  });
+  };
 
+  const mainGroups = buildGroups(sectionRows("main"));
+  const poolGroups = buildGroups(sectionRows("pool"));
+  const lowGroups = buildGroups(sectionRows("low"));
+  const renderSection = (title, sub, groups, always) => {
+    if (groups.length === 0 && !always) return null;
+    return h("div", { key: title },
+      h("div", { className: "section-title" }, title, h("span", { className: "section-sub" }, groups.reduce((n, g) => n + g.postings.length, 0) + "건 · " + sub)),
+      groups.length === 0
+        ? h("div", { className: "empty" }, "조건에 맞는 공고가 없습니다.")
+        : h("div", { className: "group-list" }, groups.map(g => h(CompanyGroup, {
+            key: title + g.company, company: g.company, postings: g.postings, today: today,
+            companyInfo: companyInfo, clsMap: clsMap, onSelectCompany: setSelectedCompany
+          })))
+    );
+  };
   const newCount = active.filter(p => p.isNew).length;
   const soonCount = active.filter(p => { const d = daysUntil(p.deadline, today); return d !== null && d >= 0 && d <= 7; }).length;
   const unreachable = data.unreachable || [];
@@ -456,8 +492,14 @@ function App() {
     ),
     h("div", { className: "filters" },
       h("input", { placeholder: "기업명·공고명 검색", value: query, onChange: e => setQuery(e.target.value) }),
-      h("select", { value: jobFunction, onChange: e => setJobFunction(e.target.value) },
-        functions.map(f => h("option", { key: f, value: f }, f))
+      h("select", { value: trackFilter, onChange: e => setTrackFilter(e.target.value) },
+        h("option", { value: "전체" }, "직무 전체(핵심+인접)"),
+        h("option", { value: "바이오 핵심" }, "바이오 핵심만")
+      ),
+      h("select", { value: eduFilter, onChange: e => setEduFilter(e.target.value) },
+        h("option", { value: "전체" }, "학력 전체"),
+        h("option", { value: "석사 필수 제외" }, "석사 필수 제외"),
+        h("option", { value: "석사 필수만" }, "석사 필수만")
       ),
       h("select", { value: source, onChange: e => setSource(e.target.value) },
         h("option", { value: "전체" }, "출처 전체"),
@@ -471,20 +513,15 @@ function App() {
         h("option", { value: "salary" }, "평균연봉 높은순")
       )
     ),
-    groups.length === 0
-      ? h("div", { className: "empty" }, data.postings.length === 0
-          ? "아직 스캔이 실행되지 않았습니다. job-scan 스킬을 실행하면 이 화면에 채용공고가 표시됩니다."
-          : "조건에 맞는 공고가 없습니다.")
-      : h("div", { className: "group-list" },
-          groups.map(g => h(CompanyGroup, {
-            key: g.company,
-            company: g.company,
-            postings: g.postings,
-            today: today,
-            companyInfo: companyInfo,
-            onSelectCompany: setSelectedCompany
-          }))
-        ),
+    renderSection("정규직 · 정규직 전환형 인턴", "바이오 생산·공정개발·분석/QC·R&D + 인접직무", mainGroups, true),
+    renderSection("상시 인재풀 등록형", "마감 없는 상시 채용·인재풀", poolGroups, false),
+    renderSection("후순위 (비바이오 R&D)", "화학 합성·제형·화장품/식품 소재 연구 등", lowGroups, false),
+    excludedAll.length > 0
+      ? h("details", { className: "unreachable" },
+          h("summary", null, "필터로 제외된 공고 " + excludedAll.length + "건 (사유 확인용)"),
+          h("ul", { className: "excl-list" }, excludedAll.map((p, i) => h("li", { key: i }, p.company + " · " + p.title + " — " + clsMap.get(p).reasons.join(", "))))
+        )
+      : null,
     unreachable.length > 0
       ? h("details", { className: "unreachable" },
           h("summary", null, "공고 또는 상세페이지 확인이 안 된 기업 " + unreachable.length + "곳 (마지막 스캔 기준)"),

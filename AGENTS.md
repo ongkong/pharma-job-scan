@@ -38,3 +38,5 @@
 | 2026-09-01 | 9/1 05:05 로컬 실행이 로그에 시작 헤더만 남기고 그 뒤로 아무 기록 없이 조용히 죽은 새로운 실패 유형 발견. Windows 이벤트 로그(Microsoft-Windows-TaskScheduler/Operational)로 확정 지으려 했으나 그 로그 자체가 기본적으로 꺼져있어 100% 확정은 못 함 — 대신 작업 스케줄러 설정에서 `ExecutionTimeLimit: 1시간`(PT1H)이 걸려있는 걸 확인, 8/26에 실제로 67분 걸린 스캔이 있었으므로 1시간 초과 시 강제종료됐을 가능성이 가장 유력한 설명으로 판단. `ExecutionTimeLimit`을 3시간(PT3H)으로 늘림. 이벤트 로그도 켜려 했으나 관리자 권한 없어 실패(`wevtutil sl ... /e:true`를 관리자 PowerShell에서 실행해야 함 — 다음에 시간 되면 사용자에게 요청) | PharmaJobScanDaily 작업 스케줄러 설정 (ExecutionTimeLimit) | "왜 안 됐냐" 질문에 이번엔 확정적 증거가 없어서 "가장 유력한 설명"이라고 불확실성을 명시하고 넘어감 — 확인 불가능한 부분(이벤트 로그 꺼짐)까지 정직하게 밝히는 게 [[feedback-verify-before-asserting]]의 취지에 맞음 |
 
 - 2026-11-09: 문과 단독 직무(총무·인사·영업/MR·마케팅·구매·IR)는 제외하고 `excluded:"non-science"`로 표시, 마감 지난 공고는 대시보드에서 숨김(CLAUDE.md 참고).
+
+- 2026-11-09: 분류·제외는 report/build/classify.js가 대시보드에서 자동 처리함. 공고는 걸러내지 말고 전부 postings.json에 수집할 것(CLAUDE.md 참고).
