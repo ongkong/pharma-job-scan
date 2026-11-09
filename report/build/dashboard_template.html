@@ -376,8 +376,8 @@ function CompanyGroup(props) {
           const d = daysUntil(p.deadline, today);
           const soon = d !== null && d >= 4 && d <= 7;
           const urgent = d !== null && d >= 0 && d <= 3;
-          return h("span", { key: i, className: "deadline-chip" + (soon ? " soon" : "") + (urgent ? " urgent" : "") },
-            p.deadline || "미정");
+          return h("span", { key: i, title: p.deadline || "", className: "deadline-chip" + (soon ? " soon" : "") + (urgent ? " urgent" : "") },
+            d === null ? "미정" : (d === 0 ? "D-DAY" : "D-" + d));
         })
       )
     ),
