@@ -1,0 +1,12 @@
+{
+  "name": "pharma-job-scan",
+  "private": true,
+  "description": "Pharma/bio entry-level job dashboard tooling",
+  "scripts": {
+    "saramin:check": "node tools/saramin_diff.js",
+    "saramin:apply": "node tools/saramin_diff.js --apply"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  }
+}
