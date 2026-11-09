@@ -50,7 +50,7 @@ try {
     Write-ScanLog "runner: Codex / model: gpt-5.6-luna / reasoning: low"
 
     $prompt = @"
-job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기업의 신입/인턴 채용공고를 직무 제한 없이 스캔하고 report/index.html 대시보드를 최신화해줘.
+job-scan 스킬을 사용해서 오늘자 제약/바이오 대기업·중견기업의 신입/인턴 채용공고를 조사하고 report/index.html 대시보드를 최신화해줘. 총무·인사·영업/MR·마케팅·구매·IR·상품기획 등 문과 단독 직무는 새 공고로 추가하지 마라. 기존 데이터에 있으면 삭제하지 말고 excluded:"non-science"로 표시해 대시보드에서 숨겨라. 이공계 직무가 명시된 복수 직무 통합공고는 유지해라. 마감 지난 공고는 데이터에서 지우지 말고 대시보드에서만 숨겨라.
 기존 data/postings.json, data/companies.json, Git 히스토리와 GitHub Pages URL을 유지해라. Claude나 다른 작성자가 원격 저장소에 추가한 공고를 포함해 기존 공고를 모두 보존하고 이번 검색 결과만으로 전체 목록을 덮어쓰지 마라. 기존 공고는 동일 URL/제목으로 병합하고, 공식 페이지에서 종료나 마감이 확인된 경우에만 닫아라. git reset --hard, git clean, force push는 사용하지 마라.
 .claude 폴더와 Claude/Anthropic CLI 또는 API는 사용하지 마라. 현재 프로젝트의 .agents 스킬과 .codex 에이전트 정의, 로컬 빌드 스크립트만 사용해라.
 한글 JSON을 직접 수동 이스케이프하거나 JSON.parse('"'+문자열+'"')로 만들지 마라. 객체를 UTF-8 JSON으로 직렬화하고, 저장 직후 JSON 파싱을 검증해라.
