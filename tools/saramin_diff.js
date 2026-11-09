@@ -56,14 +56,18 @@ function fn(t) {
   if (/공정개발|공정연구/.test(t)) return '공정개발';
   if (/Regulatory|RA\b|허가/.test(t)) return '인허가(RA)';
   if (/제제연구|제품개발|연구소|연구/.test(t)) return '연구개발';
-  if (/영업|MR|마케팅|MD|상품기획/.test(t)) return '영업·마케팅';
-  if (/IR|총무|인사|경영/.test(t)) return '경영지원';
   if (/SCM/.test(t)) return 'SCM';
   if (/CRS|Medical/.test(t)) return '의학·임상';
   if (/정보보호/.test(t)) return 'IT·정보보호';
   if (/생산|제조|DP|포장|칭량|Utility|유틸리티|설비|배양|정제|원액|완제|분말|고형제/.test(t)) return '생산·공정';
+  if (/영업|MR|마케팅|MD|상품기획/.test(t)) return '영업·마케팅';
+  if (/IR|총무|인사|경영/.test(t)) return '경영지원';
   return '부문별 모집';
 }
+
+const BUSINESS_ONLY = /총무|인사|영업|\bMR\b|마케팅|구매|\bIR\b|상품기획|\bMD\b|경영지원|회계|재무|세무|법무/i;
+const STEM_ROLE = /연구개발|공정개발|제품개발|연구|R&D|QC|품질관리|품질보증|QA|생산|제조|공정|분석|시험|밸리데이션|임상|엔지니어|설비/i;
+const isBusinessOnly = (title) => BUSINESS_ONLY.test(title || '') && !STEM_ROLE.test(title || '');
 
 function parsePage(html, word, exclude) {
   const $ = cheerio.load(html);
@@ -140,7 +144,7 @@ async function getHtml(word) {
       }
       continue;
     }
-    if (/경영지원|영업·마케팅/.test(fn(r.title)) || /총무|인사|IR팀|영업직|MR\b|구매|회계|재무|법무/.test(r.title)) continue; // 문과 직무 제외(2026-11-09 사용자 요청)
+    if (isBusinessOnly(r.title)) continue; // 문과 단독 직무만 제외(2026-11-09; 이공계 직무 병기 시 유지)
     added.push({
       id: `saramin-${r.rec}`, company: r.company, title: r.title,
       url: `https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=${r.rec}`, jobFunction: fn(r.title),
