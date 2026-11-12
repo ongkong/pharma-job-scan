@@ -416,8 +416,8 @@ function ApplicationsPanel(props) {
   const [showHidden, setShowHidden] = React.useState(false);
   const all = (props.apps && props.apps.applications) || [];
   const today = props.today;
-  const hiddenStatuses = ["불합격", "제외"];
-  const visible = all.filter(a => showHidden || hiddenStatuses.indexOf(a.status) < 0);
+  const shownStatuses = ["지원완료", "인적성·면접 대기", "서류합격"];
+  const visible = all.filter(a => showHidden || shownStatuses.indexOf(a.status) >= 0);
   const dd = x => { const d = daysUntil(x, today); return d === null ? null : (d < 0 ? "마감" : d === 0 ? "D-DAY" : "D-" + d); };
   const nextEv = a => (a.nextEvents || []).filter(e => daysUntil(e.dateEnd || e.date, today) >= 0).sort((x, y) => x.date.localeCompare(y.date))[0];
   const key = a => {
@@ -435,7 +435,7 @@ function ApplicationsPanel(props) {
     h("div", { className: "apps-head" },
       h("h2", null, "내 지원 현황"),
       h("span", { className: "apps-count" }, (props.apps && props.apps.statuses || []).filter(s => counts[s]).map(s => s + " " + counts[s]).join(" · ")),
-      h("button", { className: "apps-toggle", onClick: () => setShowHidden(!showHidden) }, showHidden ? "불합격·제외 숨기기" : "불합격·제외 보기")
+      h("button", { className: "apps-toggle", onClick: () => setShowHidden(!showHidden) }, showHidden ? "서류 대기·면접 대기만 보기" : "작성중·관심·불합격 포함 전체 보기")
     ),
     sorted.length === 0 ? h("div", { className: "empty" }, "등록된 지원 내역이 없습니다.") : sorted.map(a => {
       const ev = nextEv(a);
