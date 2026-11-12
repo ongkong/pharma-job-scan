@@ -50,6 +50,7 @@ function classifyPosting(p, info) {
   var newgrad = /신입/.test(et + " " + title) ? "가능" : (/무관/.test(et) ? "가능(경력무관)" : "확인 필요");
 
   var section = reasons.length ? "excluded" : (track === "lowprio" ? "low" : (pool ? "pool" : "main"));
-  return { section: section, reasons: reasons, track: track, emp: emp, pool: pool, master: master, newgrad: newgrad, salaryNum: salaryNum };
+  var recommend = (section === "main" || section === "pool") && track === "core" && salaryNum !== null && salaryNum >= 4000;
+  return { recommend: recommend, section: section, reasons: reasons, track: track, emp: emp, pool: pool, master: master, newgrad: newgrad, salaryNum: salaryNum };
 }
 if (typeof module !== "undefined") module.exports = { classifyPosting };

@@ -126,6 +126,24 @@
   .tier-B-bg, .tier-정보부족-bg { background: var(--page-plane); border: 1px solid var(--border); }
   .group-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .group-deadlines { display: flex; flex-wrap: wrap; gap: 5px; margin-left: auto; justify-content: flex-end; }
+  .apps-panel { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-bottom: 18px; background: var(--page-plane); }
+  .apps-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .apps-head h2 { font-size: 15px; margin: 0; }
+  .apps-count { font-size: 12px; color: var(--text-secondary); }
+  .apps-toggle { margin-left: auto; font-size: 12px; background: none; border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; cursor: pointer; color: var(--text-secondary); }
+  .app-row { display: grid; grid-template-columns: minmax(0, 2.2fr) auto minmax(0, 2fr); gap: 4px 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--gridline); font-size: 13px; }
+  .app-row .app-name { font-weight: 600; }
+  .app-row .app-role { color: var(--text-secondary); font-size: 12.5px; }
+  .app-row .app-sub { font-size: 12px; color: var(--text-secondary); }
+  .tag.st-관심 { }
+  .tag.st-작성중 { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
+  .tag.st-지원완료 { color: var(--text-primary); }
+  .tag.st-서류합격 { background: var(--status-new-bg, #e6f4ea); color: #1e6b34; border-color: transparent; }
+  .tag.st-불합격, .tag.st-제외 { opacity: .6; }
+  .tag.rec { background: #e6f4ea; color: #1e6b34; border-color: transparent; font-weight: 600; }
+  .fav-btn { font-size: 12px; border: 1px solid var(--border); background: var(--page-plane); color: var(--text-secondary); border-radius: 999px; padding: 1px 10px; cursor: pointer; }
+  .toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 13px; z-index: 50; max-width: 90vw; }
+  @media (max-width: 640px) { .app-row { grid-template-columns: 1fr; } }
   .tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 2px; }
   .tag { font-size: 11.5px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--page-plane); color: var(--text-secondary); white-space: nowrap; }
   .tag.hl { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
@@ -182,6 +200,7 @@
 <div id="root"></div>
 
 <script>window.__JOB_DATA__ = %%JOB_DATA%%;</script>
+<script>window.__APPLICATIONS__ = %%APPLICATIONS%%;</script>
 
 <script>window.__COMPANY_INFO__ = %%COMPANY_INFO%%;</script>
 
@@ -307,12 +326,16 @@ function PostingRow(props) {
         ),
         h("div", { className: "job-function" }, (p.jobFunction || "-") + (p.location ? " · " + p.location : "")),
         props.cls ? h("div", { className: "tags" },
+          props.cls.recommend ? h("span", { className: "tag rec", title: "초봉 4,000만원 이상 + 바이오 생산·공정·분석·QC·R&D" }, "★ 추천") : null,
           h("span", { className: "tag" + (props.cls.track === "core" ? " ok" : "") }, props.cls.track === "core" ? "바이오 핵심" : (props.cls.track === "lowprio" ? "후순위(비바이오 R&D)" : "인접직무")),
           h("span", { className: "tag" + (props.cls.master === "석사 필수" ? " hl" : "") }, props.cls.master === "표기 없음" ? "학력 석사 표기 없음" : props.cls.master),
           h("span", { className: "tag" + (props.cls.newgrad === "확인 필요" ? " hl" : "") }, "신입 " + props.cls.newgrad),
           props.cls.emp === "conv_intern" ? h("span", { className: "tag" }, "정규직 전환형 인턴") : null,
           props.cls.emp === "intern_unknown" ? h("span", { className: "tag hl" }, "인턴(전환 여부 확인 필요)") : null,
-          h("span", { className: "tag" + (props.cls.salaryNum === null ? " hl" : "") }, props.cls.salaryNum === null ? "연봉 미확인" : "초봉 약 " + props.cls.salaryNum.toLocaleString() + "만원(추정)")
+          h("span", { className: "tag" + (props.cls.salaryNum === null ? " hl" : "") }, props.cls.salaryNum === null ? "연봉 미확인" : "초봉 약 " + props.cls.salaryNum.toLocaleString() + "만원(추정)"),
+          props.app
+            ? h("span", { className: "tag st-" + props.app.status }, "내 지원: " + props.app.status)
+            : h("span", { className: "fav-btn", role: "button", onClick: e => { e.stopPropagation(); props.onFav && props.onFav(p); } }, "☆ 관심 추가")
         ) : null,
         p.note ? h("div", { className: "note" }, p.note) : null
       ),
@@ -382,14 +405,63 @@ function CompanyGroup(props) {
       )
     ),
     open ? h("div", { className: "group-body" },
-      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today, cls: props.clsMap.get(p) }))
+      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today, cls: props.clsMap.get(p), app: props.appByPosting.get(p.id), onFav: props.onFav }))
     ) : null
+  );
+}
+
+function appKey(p) { return (p.id || p.title); }
+
+function ApplicationsPanel(props) {
+  const [showHidden, setShowHidden] = React.useState(false);
+  const all = (props.apps && props.apps.applications) || [];
+  const today = props.today;
+  const hiddenStatuses = ["불합격", "제외"];
+  const visible = all.filter(a => showHidden || hiddenStatuses.indexOf(a.status) < 0);
+  const dd = x => { const d = daysUntil(x, today); return d === null ? null : (d < 0 ? "마감" : d === 0 ? "D-DAY" : "D-" + d); };
+  const nextEv = a => (a.nextEvents || []).filter(e => daysUntil(e.dateEnd || e.date, today) >= 0).sort((x, y) => x.date.localeCompare(y.date))[0];
+  const key = a => {
+    const d = a.deadline ? daysUntil(a.deadline, today) : null;
+    const e = nextEv(a);
+    const de = e ? daysUntil(e.date, today) : null;
+    const open = d !== null && d >= 0 ? d : null;
+    return open !== null ? open : (de !== null ? 1000 + de : 100000);
+  };
+  const sorted = visible.slice().sort((x, y) => key(x) - key(y));
+  const counts = {};
+  all.forEach(a => { counts[a.status] = (counts[a.status] || 0) + 1; });
+  const fmtEv = e => e.label + " " + e.date.slice(5).replace("-", "/") + (e.dateEnd ? "~" + e.dateEnd.slice(5).replace("-", "/") : "") + " (" + dd(e.date) + ")";
+  return h("div", { className: "apps-panel" },
+    h("div", { className: "apps-head" },
+      h("h2", null, "내 지원 현황"),
+      h("span", { className: "apps-count" }, (props.apps && props.apps.statuses || []).filter(s => counts[s]).map(s => s + " " + counts[s]).join(" · ")),
+      h("button", { className: "apps-toggle", onClick: () => setShowHidden(!showHidden) }, showHidden ? "불합격·제외 숨기기" : "불합격·제외 보기")
+    ),
+    sorted.length === 0 ? h("div", { className: "empty" }, "등록된 지원 내역이 없습니다.") : sorted.map(a => {
+      const ev = nextEv(a);
+      return h("div", { className: "app-row", key: a.id },
+        h("div", null,
+          h("div", { className: "app-name" }, a.company),
+          h("div", { className: "app-role" }, a.role)
+        ),
+        h("div", { style: { display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" } },
+          h("span", { className: "tag st-" + a.status }, a.status),
+          a.deadline && daysUntil(a.deadline, today) >= 0 ? h("span", { className: "tag" + (daysUntil(a.deadline, today) <= 3 ? " hl" : ""), title: a.deadline + (a.deadlineTime ? " " + a.deadlineTime : "") }, "마감 " + dd(a.deadline) + (a.deadlineTime ? " " + a.deadlineTime : "")) : null
+        ),
+        h("div", { className: "app-sub" },
+          ev ? h("div", null, "다음 일정: " + fmtEv(ev)) : null,
+          a.appliedDate ? h("div", null, "지원 " + a.appliedDate.slice(5).replace("-", "/")) : null,
+          a.memo ? h("div", null, a.memo) : null
+        )
+      );
+    })
   );
 }
 
 function App() {
   const data = window.__JOB_DATA__ || { lastUpdated: null, unreachable: [], postings: [] };
   const companyInfo = window.__COMPANY_INFO__ || {};
+  const appsData = window.__APPLICATIONS__ || { applications: [] };
   const today = (data.lastUpdated || new Date().toISOString()).slice(0,10);
 
   const [query, setQuery] = React.useState("");
@@ -398,6 +470,14 @@ function App() {
   const [selectedCompany, setSelectedCompany] = React.useState(null);
 
   const infoOf = p => companyInfo[p.company];
+  const appByPosting = new Map();
+  ((appsData && appsData.applications) || []).forEach(a => { if (a.postingId) appByPosting.set(a.postingId, a); });
+  const [toast, setToast] = React.useState("");
+  const onFav = p => {
+    const line = "관심 추가: " + p.company + " / " + p.title + " (id: " + p.id + ")";
+    const done = ok => { setToast(ok ? "복사됨 — 채팅에 붙여넣으면 지원 현황에 '관심'으로 등록됩니다" : line); setTimeout(() => setToast(""), 4000); };
+    try { navigator.clipboard.writeText(line).then(() => done(true), () => done(false)); } catch (e) { done(false); }
+  };
   const live = (data.postings || []).filter(p => p.status !== "closed_or_missing" && !(p.deadline && daysUntil(p.deadline, today) < 0));
   const clsMap = new Map();
   live.forEach(p => clsMap.set(p, classifyPosting(p, infoOf(p))));
@@ -465,7 +545,7 @@ function App() {
         ? h("div", { className: "empty" }, "조건에 맞는 공고가 없습니다.")
         : h("div", { className: "group-list" }, groups.map(g => h(CompanyGroup, {
             key: title + g.company, company: g.company, postings: g.postings, today: today,
-            companyInfo: companyInfo, clsMap: clsMap, onSelectCompany: setSelectedCompany
+            companyInfo: companyInfo, clsMap: clsMap, appByPosting: appByPosting, onFav: onFav, onSelectCompany: setSelectedCompany
           })))
     );
   };
@@ -484,12 +564,7 @@ function App() {
         h("div", { className: "updated-date" }, data.lastUpdated || "없음")
       )
     ),
-    h("div", { className: "stat-row" },
-      h(StatTile, { label: "전체 공고", value: active.length }),
-      h(StatTile, { label: "신규 공고", value: newCount }),
-      h(StatTile, { label: "마감 임박 (7일 이내)", value: soonCount }),
-      h(StatTile, { label: "공고 확인 미완료", value: unreachable.length })
-    ),
+    h(ApplicationsPanel, { apps: appsData, today: today }),
     h("div", { className: "filters" },
       h("input", { placeholder: "기업명·공고명 검색", value: query, onChange: e => setQuery(e.target.value) }),
       h("select", { value: trackFilter, onChange: e => setTrackFilter(e.target.value) },
@@ -528,6 +603,7 @@ function App() {
           h("ul", null, unreachable.map((u, i) => h("li", { key: i }, u.company + (u.note ? " — " + u.note : ""))))
         )
       : null,
+    toast ? h("div", { className: "toast" }, toast) : null,
     selectedCompany ? h(CompanyModal, { company: selectedCompany, onClose: () => setSelectedCompany(null) }) : null
   );
 }

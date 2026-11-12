@@ -424,6 +424,24 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   .tier-B-bg, .tier-정보부족-bg { background: var(--page-plane); border: 1px solid var(--border); }
   .group-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .group-deadlines { display: flex; flex-wrap: wrap; gap: 5px; margin-left: auto; justify-content: flex-end; }
+  .apps-panel { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-bottom: 18px; background: var(--page-plane); }
+  .apps-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .apps-head h2 { font-size: 15px; margin: 0; }
+  .apps-count { font-size: 12px; color: var(--text-secondary); }
+  .apps-toggle { margin-left: auto; font-size: 12px; background: none; border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; cursor: pointer; color: var(--text-secondary); }
+  .app-row { display: grid; grid-template-columns: minmax(0, 2.2fr) auto minmax(0, 2fr); gap: 4px 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--gridline); font-size: 13px; }
+  .app-row .app-name { font-weight: 600; }
+  .app-row .app-role { color: var(--text-secondary); font-size: 12.5px; }
+  .app-row .app-sub { font-size: 12px; color: var(--text-secondary); }
+  .tag.st-관심 { }
+  .tag.st-작성중 { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
+  .tag.st-지원완료 { color: var(--text-primary); }
+  .tag.st-서류합격 { background: var(--status-new-bg, #e6f4ea); color: #1e6b34; border-color: transparent; }
+  .tag.st-불합격, .tag.st-제외 { opacity: .6; }
+  .tag.rec { background: #e6f4ea; color: #1e6b34; border-color: transparent; font-weight: 600; }
+  .fav-btn { font-size: 12px; border: 1px solid var(--border); background: var(--page-plane); color: var(--text-secondary); border-radius: 999px; padding: 1px 10px; cursor: pointer; }
+  .toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 13px; z-index: 50; max-width: 90vw; }
+  @media (max-width: 640px) { .app-row { grid-template-columns: 1fr; } }
   .tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 2px; }
   .tag { font-size: 11.5px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--page-plane); color: var(--text-secondary); white-space: nowrap; }
   .tag.hl { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
@@ -480,7 +498,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 <div id="root"></div>
 
 <script>window.__JOB_DATA__ = {
-  "lastUpdated": "2026-11-10",
+  "lastUpdated": "2026-11-12",
   "unreachable": [],
   "postings": [
     {
@@ -5232,9 +5250,466 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       "id": "scan-20261110-aHR0cHM6Ly9zZWFyY2hqb2Iu",
       "firstSeen": "2026-11-10",
       "isNew": true
+    },
+    {
+      "id": "saramin-55518649",
+      "company": "셀트리온제약",
+      "title": "(주)셀트리온제약 품질관리팀 파트타이머 모집(진천)",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55518649",
+      "jobFunction": "품질관리",
+      "employmentType": "경력무관 / 파트·계약직",
+      "location": "충북 진천군",
+      "requiredQualifications": "학력 학력무관",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-09",
+      "deadline": "2026-01-08",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55529895",
+      "company": "셀트리온제약",
+      "title": "(주)셀트리온제약 교대근무 파트타이머 모집(오창)",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55529895",
+      "jobFunction": "부문별 모집",
+      "employmentType": "경력무관 / 파트·아르바이트",
+      "location": "충북 청주시 청원구",
+      "requiredQualifications": "학력 학력무관",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-10",
+      "deadline": null,
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55424778",
+      "company": "셀트리온제약",
+      "title": "(주)셀트리온제약 생산 보조 파트타이머 모집(오창)",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55424778",
+      "jobFunction": "생산·공정",
+      "employmentType": "경력무관 / 파트·아르바이트",
+      "location": "충북 청주시 청원구",
+      "requiredQualifications": "학력 학력무관",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-10-29",
+      "deadline": null,
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/29). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55408226",
+      "company": "셀트리온스킨큐어",
+      "title": "[셀트리온그룹사] 뷰티브랜드 중국 B2C 마케팅·운영 담당 채용",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55408226",
+      "jobFunction": "영업·마케팅",
+      "employmentType": "경력무관 / 정규직",
+      "location": "서울 서초구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-10-27",
+      "deadline": "2026-11-26",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55543779",
+      "company": "종근당바이오",
+      "title": "종근당바이오 제조관리자 약사 채용",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55543779",
+      "jobFunction": "약사",
+      "employmentType": "경력무관 / 정규직",
+      "location": "경기 안산시 단원구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": null,
+      "deadline": "2026-11-23",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55529956",
+      "company": "종근당",
+      "title": "(주)종근당 생산본부 계약직 수시채용(생산)",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55529956",
+      "jobFunction": "생산·공정",
+      "employmentType": "경력무관 / 기간제·계약직",
+      "location": "충남 천안시 서북구",
+      "requiredQualifications": "학력 고졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-10",
+      "deadline": "2026-11-23",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55525644",
+      "company": "종근당건강",
+      "title": "종근당건강 당진공장 연질생산 담당 (교대근무)",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55525644",
+      "jobFunction": "생산·공정",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "충남 당진시",
+      "requiredQualifications": "학력 고졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-09",
+      "deadline": "2026-11-25",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55554910",
+      "company": "대웅제약",
+      "title": "[대웅제약] 나보타QC3팀(제품파트) 계약직",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55554910",
+      "jobFunction": "품질관리",
+      "employmentType": "경력무관 / 계약직",
+      "location": "경기 화성시",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-12",
+      "deadline": "2026-11-26",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55553171",
+      "company": "휴온스메디텍",
+      "title": "[휴온스그룹] 의료기기 생산관리직 모집",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55553171",
+      "jobFunction": "생산·공정",
+      "employmentType": "신입·경력 / 계약직",
+      "location": "경기 성남시 중원구",
+      "requiredQualifications": "학력 초대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": null,
+      "deadline": "2026-12-12",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55546584",
+      "company": "휴온스글로벌",
+      "title": "휴온스 종병사업실(의약품 영업) 신입 및 경력직 모집",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55546584",
+      "jobFunction": "영업·마케팅",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "경기 성남시 수정구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-11",
+      "deadline": "2026-11-29",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55546369",
+      "company": "휴온스글로벌",
+      "title": "휴온스 로컬사업실(의약품 영업) 신입 및 경력직 모집",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55546369",
+      "jobFunction": "영업·마케팅",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "경기 성남시 수정구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-11",
+      "deadline": "2026-11-29",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55553138",
+      "company": "휴온스메디텍",
+      "title": "[휴온스그룹] 의료기기 영업직 모집",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55553138",
+      "jobFunction": "영업·마케팅",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "경기 성남시 중원구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-12",
+      "deadline": "2026-12-12",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55553157",
+      "company": "휴온스메디텍",
+      "title": "[휴온스그룹/부산] 의약품 생산지원직 모집",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55553157",
+      "jobFunction": "생산·공정",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "부산 강서구",
+      "requiredQualifications": "학력 초대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-12",
+      "deadline": "2026-12-12",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55520722",
+      "company": "보령바이오파마",
+      "title": "[보령바이오파마] 생산본부 TE팀 (공무, 기술)",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55520722",
+      "jobFunction": "생산·공정",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "충북 진천군",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": null,
+      "deadline": "2026-11-15",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55536162",
+      "company": "신풍제약",
+      "title": "[신풍제약] 생산본부 완제생산팀 신입 및 경력 채용",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55536162",
+      "jobFunction": "생산·공정",
+      "employmentType": "경력무관 / 정규직",
+      "location": "충북 청주시 흥덕구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-10",
+      "deadline": "2026-11-29",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55520937",
+      "company": "신풍제약",
+      "title": "신풍제약 의약품 생산 신입사원 채용[정규직/완제생산팀]",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55520937",
+      "jobFunction": "생산·공정",
+      "employmentType": "경력무관 / 정규직",
+      "location": "경기 안산시 단원구",
+      "requiredQualifications": "학력 고졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-09",
+      "deadline": "2026-12-09",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55541607",
+      "company": "신풍제약",
+      "title": "[신풍제약] 영업본부 MR 신입 및 경력 채용",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55541607",
+      "jobFunction": "영업·마케팅",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "서울 강남구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-11",
+      "deadline": "2026-11-29",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55544276",
+      "company": "부광약품",
+      "title": "OCI그룹 부광약품 2026 하반기 신입공채 및 경력 채용",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55544276",
+      "jobFunction": "부문별 모집",
+      "employmentType": "신입·경력 / 정규직",
+      "location": "서울 동작구",
+      "requiredQualifications": "학력 대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": null,
+      "deadline": "2026-11-24",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55543129",
+      "company": "코오롱생명과학",
+      "title": "[코오롱생명과학(주)] 김천공장 환경시설 운전원 신입 채용",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55543129",
+      "jobFunction": "부문별 모집",
+      "employmentType": "신입 / 정규직",
+      "location": "경북 김천시",
+      "requiredQualifications": "학력 초대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-11",
+      "deadline": "2026-11-22",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
+    },
+    {
+      "id": "saramin-55520797",
+      "company": "휴젤",
+      "title": "[완제공정팀] 완제 공정 작업원 신입/경력",
+      "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55520797",
+      "jobFunction": "생산·공정",
+      "employmentType": "경력무관 / 정규직",
+      "location": "강원 춘천시",
+      "requiredQualifications": "학력 초대졸↑",
+      "preferredQualifications": null,
+      "jobDescription": null,
+      "postedDate": "2026-11-09",
+      "deadline": null,
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인(Claude 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "firstSeen": "2026-11-12",
+      "isNew": true,
+      "addedBy": "claude"
     }
   ],
   "excludedNote": "excluded=non-science: 문과 직무(총무/인사/영업/마케팅/구매/IR 등)는 사용자 요청(2026-11-09)으로 대시보드에서 숨김. 삭제 아님."
+};</script>
+<script>window.__APPLICATIONS__ = {
+  "lastUpdated": "2026-11-12",
+  "statuses": ["관심", "작성중", "지원완료", "인적성·면접 대기", "서류합격", "불합격", "제외"],
+  "applications": [
+    { "id": "daewoongbio-research", "company": "대웅바이오", "role": "바이오의약품 분석연구", "status": "지원완료", "appliedDate": "2026-11-08", "deadline": null, "nextEvents": [{ "label": "인적성", "date": "2026-11-21", "dateEnd": "2026-11-22" }], "postingId": "daewoongbio-group-research-newgrad-20261019", "memo": "" },
+    { "id": "sdbiosensor-cgms", "company": "SD바이오센서", "role": "CGMS 센서개발", "status": "지원완료", "appliedDate": "2026-10-28", "deadline": null, "nextEvents": [], "postingId": "sdbiosensor-cgms-sensor-material-rd-20260917", "memo": "결과 대기" },
+    { "id": "dongkuk-bio-research", "company": "동국제약", "role": "바이오연구", "status": "지원완료", "appliedDate": "2026-11-11", "deadline": null, "nextEvents": [], "postingId": "saramin-55458152", "memo": "" },
+    { "id": "hanmi-process-dev", "company": "한미약품", "role": "평택 공정개발", "status": "작성중", "appliedDate": null, "deadline": "2026-11-15", "deadlineTime": "23:59", "nextEvents": [{ "label": "인적성", "date": "2026-11-17", "dateEnd": "2026-11-18" }], "postingId": "saramin-55493495", "memo": "" },
+    { "id": "skchem-cheongju-prod", "company": "SK케미칼", "role": "청주 생산공정 (전환형 인턴)", "status": "작성중", "appliedDate": null, "deadline": "2026-11-15", "deadlineTime": "23:59", "nextEvents": [], "postingId": "skchemicals-production-intern-20261027", "memo": "" },
+    { "id": "sbl-process-support", "company": "삼성바이오로직스", "role": "바이오공정지원직 5급", "status": "관심", "appliedDate": null, "deadline": "2026-11-17", "deadlineTime": "17:00", "nextEvents": [], "postingId": null, "memo": "" },
+    { "id": "pool-celltrion-prod", "company": "셀트리온", "role": "생산 (상시 인재풀)", "status": "관심", "appliedDate": null, "deadline": null, "nextEvents": [], "postingId": null, "memo": "11/16 이후 등록 예정" },
+    { "id": "pool-yuhan", "company": "유한양행", "role": "상시 인재풀", "status": "관심", "appliedDate": null, "deadline": null, "nextEvents": [], "postingId": null, "memo": "11/16 이후 등록 예정" },
+    { "id": "pool-lotte-bio", "company": "롯데바이오로직스", "role": "상시 인재풀", "status": "관심", "appliedDate": null, "deadline": null, "nextEvents": [], "postingId": null, "memo": "11/16 이후 등록 예정" },
+    { "id": "pool-sbe-episcovery", "company": "삼성바이오에피스", "role": "EPIScovery (상시 인재풀)", "status": "관심", "appliedDate": null, "deadline": null, "nextEvents": [], "postingId": null, "memo": "11/16 이후 등록 예정" },
+    { "id": "pool-lgchem-rd", "company": "LG화학", "role": "R&D (상시 인재풀)", "status": "관심", "appliedDate": null, "deadline": null, "nextEvents": [], "postingId": null, "memo": "11/16 이후 등록 예정" }
+  ]
 };</script>
 
 <script>window.__COMPANY_INFO__ = {
@@ -5759,7 +6234,8 @@ function classifyPosting(p, info) {
   var newgrad = /신입/.test(et + " " + title) ? "가능" : (/무관/.test(et) ? "가능(경력무관)" : "확인 필요");
 
   var section = reasons.length ? "excluded" : (track === "lowprio" ? "low" : (pool ? "pool" : "main"));
-  return { section: section, reasons: reasons, track: track, emp: emp, pool: pool, master: master, newgrad: newgrad, salaryNum: salaryNum };
+  var recommend = (section === "main" || section === "pool") && track === "core" && salaryNum !== null && salaryNum >= 4000;
+  return { recommend: recommend, section: section, reasons: reasons, track: track, emp: emp, pool: pool, master: master, newgrad: newgrad, salaryNum: salaryNum };
 }
 if (typeof module !== "undefined") module.exports = { classifyPosting };
 
@@ -5865,12 +6341,16 @@ function PostingRow(props) {
         ),
         h("div", { className: "job-function" }, (p.jobFunction || "-") + (p.location ? " · " + p.location : "")),
         props.cls ? h("div", { className: "tags" },
+          props.cls.recommend ? h("span", { className: "tag rec", title: "초봉 4,000만원 이상 + 바이오 생산·공정·분석·QC·R&D" }, "★ 추천") : null,
           h("span", { className: "tag" + (props.cls.track === "core" ? " ok" : "") }, props.cls.track === "core" ? "바이오 핵심" : (props.cls.track === "lowprio" ? "후순위(비바이오 R&D)" : "인접직무")),
           h("span", { className: "tag" + (props.cls.master === "석사 필수" ? " hl" : "") }, props.cls.master === "표기 없음" ? "학력 석사 표기 없음" : props.cls.master),
           h("span", { className: "tag" + (props.cls.newgrad === "확인 필요" ? " hl" : "") }, "신입 " + props.cls.newgrad),
           props.cls.emp === "conv_intern" ? h("span", { className: "tag" }, "정규직 전환형 인턴") : null,
           props.cls.emp === "intern_unknown" ? h("span", { className: "tag hl" }, "인턴(전환 여부 확인 필요)") : null,
-          h("span", { className: "tag" + (props.cls.salaryNum === null ? " hl" : "") }, props.cls.salaryNum === null ? "연봉 미확인" : "초봉 약 " + props.cls.salaryNum.toLocaleString() + "만원(추정)")
+          h("span", { className: "tag" + (props.cls.salaryNum === null ? " hl" : "") }, props.cls.salaryNum === null ? "연봉 미확인" : "초봉 약 " + props.cls.salaryNum.toLocaleString() + "만원(추정)"),
+          props.app
+            ? h("span", { className: "tag st-" + props.app.status }, "내 지원: " + props.app.status)
+            : h("span", { className: "fav-btn", role: "button", onClick: e => { e.stopPropagation(); props.onFav && props.onFav(p); } }, "☆ 관심 추가")
         ) : null,
         p.note ? h("div", { className: "note" }, p.note) : null
       ),
@@ -5940,14 +6420,63 @@ function CompanyGroup(props) {
       )
     ),
     open ? h("div", { className: "group-body" },
-      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today, cls: props.clsMap.get(p) }))
+      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today, cls: props.clsMap.get(p), app: props.appByPosting.get(p.id), onFav: props.onFav }))
     ) : null
+  );
+}
+
+function appKey(p) { return (p.id || p.title); }
+
+function ApplicationsPanel(props) {
+  const [showHidden, setShowHidden] = React.useState(false);
+  const all = (props.apps && props.apps.applications) || [];
+  const today = props.today;
+  const hiddenStatuses = ["불합격", "제외"];
+  const visible = all.filter(a => showHidden || hiddenStatuses.indexOf(a.status) < 0);
+  const dd = x => { const d = daysUntil(x, today); return d === null ? null : (d < 0 ? "마감" : d === 0 ? "D-DAY" : "D-" + d); };
+  const nextEv = a => (a.nextEvents || []).filter(e => daysUntil(e.dateEnd || e.date, today) >= 0).sort((x, y) => x.date.localeCompare(y.date))[0];
+  const key = a => {
+    const d = a.deadline ? daysUntil(a.deadline, today) : null;
+    const e = nextEv(a);
+    const de = e ? daysUntil(e.date, today) : null;
+    const open = d !== null && d >= 0 ? d : null;
+    return open !== null ? open : (de !== null ? 1000 + de : 100000);
+  };
+  const sorted = visible.slice().sort((x, y) => key(x) - key(y));
+  const counts = {};
+  all.forEach(a => { counts[a.status] = (counts[a.status] || 0) + 1; });
+  const fmtEv = e => e.label + " " + e.date.slice(5).replace("-", "/") + (e.dateEnd ? "~" + e.dateEnd.slice(5).replace("-", "/") : "") + " (" + dd(e.date) + ")";
+  return h("div", { className: "apps-panel" },
+    h("div", { className: "apps-head" },
+      h("h2", null, "내 지원 현황"),
+      h("span", { className: "apps-count" }, (props.apps && props.apps.statuses || []).filter(s => counts[s]).map(s => s + " " + counts[s]).join(" · ")),
+      h("button", { className: "apps-toggle", onClick: () => setShowHidden(!showHidden) }, showHidden ? "불합격·제외 숨기기" : "불합격·제외 보기")
+    ),
+    sorted.length === 0 ? h("div", { className: "empty" }, "등록된 지원 내역이 없습니다.") : sorted.map(a => {
+      const ev = nextEv(a);
+      return h("div", { className: "app-row", key: a.id },
+        h("div", null,
+          h("div", { className: "app-name" }, a.company),
+          h("div", { className: "app-role" }, a.role)
+        ),
+        h("div", { style: { display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" } },
+          h("span", { className: "tag st-" + a.status }, a.status),
+          a.deadline && daysUntil(a.deadline, today) >= 0 ? h("span", { className: "tag" + (daysUntil(a.deadline, today) <= 3 ? " hl" : ""), title: a.deadline + (a.deadlineTime ? " " + a.deadlineTime : "") }, "마감 " + dd(a.deadline) + (a.deadlineTime ? " " + a.deadlineTime : "")) : null
+        ),
+        h("div", { className: "app-sub" },
+          ev ? h("div", null, "다음 일정: " + fmtEv(ev)) : null,
+          a.appliedDate ? h("div", null, "지원 " + a.appliedDate.slice(5).replace("-", "/")) : null,
+          a.memo ? h("div", null, a.memo) : null
+        )
+      );
+    })
   );
 }
 
 function App() {
   const data = window.__JOB_DATA__ || { lastUpdated: null, unreachable: [], postings: [] };
   const companyInfo = window.__COMPANY_INFO__ || {};
+  const appsData = window.__APPLICATIONS__ || { applications: [] };
   const today = (data.lastUpdated || new Date().toISOString()).slice(0,10);
 
   const [query, setQuery] = React.useState("");
@@ -5956,6 +6485,14 @@ function App() {
   const [selectedCompany, setSelectedCompany] = React.useState(null);
 
   const infoOf = p => companyInfo[p.company];
+  const appByPosting = new Map();
+  ((appsData && appsData.applications) || []).forEach(a => { if (a.postingId) appByPosting.set(a.postingId, a); });
+  const [toast, setToast] = React.useState("");
+  const onFav = p => {
+    const line = "관심 추가: " + p.company + " / " + p.title + " (id: " + p.id + ")";
+    const done = ok => { setToast(ok ? "복사됨 — 채팅에 붙여넣으면 지원 현황에 '관심'으로 등록됩니다" : line); setTimeout(() => setToast(""), 4000); };
+    try { navigator.clipboard.writeText(line).then(() => done(true), () => done(false)); } catch (e) { done(false); }
+  };
   const live = (data.postings || []).filter(p => p.status !== "closed_or_missing" && !(p.deadline && daysUntil(p.deadline, today) < 0));
   const clsMap = new Map();
   live.forEach(p => clsMap.set(p, classifyPosting(p, infoOf(p))));
@@ -6023,7 +6560,7 @@ function App() {
         ? h("div", { className: "empty" }, "조건에 맞는 공고가 없습니다.")
         : h("div", { className: "group-list" }, groups.map(g => h(CompanyGroup, {
             key: title + g.company, company: g.company, postings: g.postings, today: today,
-            companyInfo: companyInfo, clsMap: clsMap, onSelectCompany: setSelectedCompany
+            companyInfo: companyInfo, clsMap: clsMap, appByPosting: appByPosting, onFav: onFav, onSelectCompany: setSelectedCompany
           })))
     );
   };
@@ -6042,12 +6579,7 @@ function App() {
         h("div", { className: "updated-date" }, data.lastUpdated || "없음")
       )
     ),
-    h("div", { className: "stat-row" },
-      h(StatTile, { label: "전체 공고", value: active.length }),
-      h(StatTile, { label: "신규 공고", value: newCount }),
-      h(StatTile, { label: "마감 임박 (7일 이내)", value: soonCount }),
-      h(StatTile, { label: "공고 확인 미완료", value: unreachable.length })
-    ),
+    h(ApplicationsPanel, { apps: appsData, today: today }),
     h("div", { className: "filters" },
       h("input", { placeholder: "기업명·공고명 검색", value: query, onChange: e => setQuery(e.target.value) }),
       h("select", { value: trackFilter, onChange: e => setTrackFilter(e.target.value) },
@@ -6086,6 +6618,7 @@ function App() {
           h("ul", null, unreachable.map((u, i) => h("li", { key: i }, u.company + (u.note ? " — " + u.note : ""))))
         )
       : null,
+    toast ? h("div", { className: "toast" }, toast) : null,
     selectedCompany ? h(CompanyModal, { company: selectedCompany, onClose: () => setSelectedCompany(null) }) : null
   );
 }
