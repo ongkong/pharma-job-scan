@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-12",
+  "lastUpdated": "2026-11-15",
   "unreachable": [],
   "postings": [
     {
@@ -2526,11 +2526,12 @@
       "processSchedule": null,
       "source": "secondary",
       "sourceLabel": "사람인 상세공고·잡코리아·인크루트 교차확인",
-      "note": "2026-10-28 기준 사람인 상세공고가 접수중이며 10/26 시작, 11/15 23:00 마감으로 표시. 잡코리아와 인크루트에서도 신입 전환형 인턴 및 동일 마감 확인. 공식 SK Careers 상세페이지는 접근 가능한 검색 결과에서 확인되지 않았고 지원은 회사 홈페이지로 안내됨.",
+      "note": "배치 2 기업 탐색을 수행했으며, 기존 confirmed 레코드와 동일 URL·마감일로 확인되어 상세 필드를 재사용함.",
       "status": "confirmed",
       "firstSeen": "2026-10-27",
       "isNew": false,
-      "jobDescription": "고형제 의약품 생산공정 운영, GMP 업무, 공정 트러블슈팅 및 신제품 생산, 현장 안전관리와 작업환경 개선, 공정 데이터 분석 및 AI 활용 공정 최적화."
+      "jobDescription": "고형제 의약품 생산공정 운영, GMP 업무, 공정 트러블슈팅 및 신제품 생산, 현장 안전관리와 작업환경 개선, 공정 데이터 분석 및 AI 활용 공정 최적화.",
+      "reused": true
     },
     {
       "id": "lottebiologics-qc-sample-management-intern-20261027",
@@ -3352,22 +3353,27 @@
       "company": "종근당바이오",
       "title": "바이오생산파트 사원 채용",
       "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=55459409",
-      "jobFunction": "생산·공정",
-      "employmentType": "신입·경력 / 정규직",
-      "location": "충북 청주시 흥덕구",
-      "requiredQualifications": "학력 대졸↑",
-      "preferredQualifications": null,
-      "jobDescription": null,
-      "postedDate": null,
+      "jobFunction": "바이오 원료의약품 생산",
+      "employmentType": "신입·경력(경력 3년 이하) / 정규직",
+      "location": "충북 청주시 흥덕구 오송읍 오송생명4로 22",
+      "requiredQualifications": "학사 이상; 생물학·미생물학·생명공학 등 바이오 계열 관련 전공; 생명학 관련 20학점 이상; 경력 3년 이하",
+      "preferredQualifications": "바이오 원료의약품 생산장비·발효기·크로마토그래피 운전 경험, GMP 제조업체 근무 경험, 국가보훈자 및 장애인",
+      "jobDescription": "보툴리눔톡신 원료의약품 생산, 배양·정제, 배양기·발효기·크로마토그래피 등 원액 생산라인 운영, SOP·제조지시 및 기록서 작성·개정, 완제품 포장 및 이물검사 지원.",
+      "postedDate": "2026-11-02",
       "deadline": "2026-11-16",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차 면접 후 인적성 검사, 2차 면접",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인·잡코리아·캐치 교차확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "사람인 상세공고와 잡코리아·캐치에서 동일 공고 및 2026-11-16 마감을 확인함. 경력 표기가 플랫폼별로 일부 다르지만 신입 지원 가능 표기가 있어 포함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": false
     },
     {
       "id": "saramin-55151867",
@@ -3470,14 +3476,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55495413",
@@ -3492,14 +3503,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55495023",
@@ -3514,14 +3530,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55493088",
@@ -3536,14 +3557,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55494795",
@@ -3558,14 +3584,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55493602",
@@ -3580,14 +3611,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55493353",
@@ -3602,14 +3638,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55493495",
@@ -3624,14 +3665,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55493256",
@@ -3646,14 +3692,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55495135",
@@ -3668,14 +3719,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55492372",
@@ -3690,15 +3746,20 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
       "addedBy": "claude",
-      "excluded": "non-science"
+      "excluded": "non-science",
+      "reused": true
     },
     {
       "id": "saramin-55494649",
@@ -3713,14 +3774,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55495258",
@@ -3735,14 +3801,19 @@
       "jobDescription": null,
       "postedDate": null,
       "deadline": "2026-11-15",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접 2026년 11월 중; 2차면접 2026년 12월 중",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인(Claude 교차확인); 한미약품 공식 채용 페이지 교차 확인",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55494945",
@@ -3761,10 +3832,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55429880",
@@ -3783,10 +3855,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/06). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/06). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55479546",
@@ -3805,10 +3878,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/04). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/04). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55394927",
@@ -3827,11 +3901,12 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
       "addedBy": "claude",
-      "excluded": "non-science"
+      "excluded": "non-science",
+      "reused": true
     },
     {
       "id": "saramin-55427412",
@@ -4050,10 +4125,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55428920",
@@ -4072,10 +4148,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/29). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/29). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55417284",
@@ -4116,10 +4193,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/19). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/19). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55460043",
@@ -4138,10 +4216,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55373904",
@@ -4182,10 +4261,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/21). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/21). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55449409",
@@ -4204,11 +4284,12 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
       "isNew": true,
       "addedBy": "claude",
-      "excluded": "non-science"
+      "excluded": "non-science",
+      "reused": true
     },
     {
       "id": "saramin-55458392",
@@ -4680,8 +4761,8 @@
       "source": "secondary",
       "sourceLabel": "사람인",
       "status": "confirmed",
-      "note": "사람인 상세 검색 결과에서 확인. 공고 페이지의 개별 직무·마감일은 추가 확인이 필요하므로 확인된 범위만 기록.",
-      "reused": false,
+      "note": "사람인 상세 검색 결과에서 확인. 공고 페이지의 개별 직무·마감일은 추가 확인이 필요하므로 확인된 범위만 기록. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
+      "reused": true,
       "id": "scan-20261110-aHR0cHM6Ly93d3cuc2FyYW1p",
       "firstSeen": "2026-11-10",
       "isNew": true
@@ -4746,8 +4827,8 @@
       "source": "secondary",
       "sourceLabel": "SearchJob",
       "status": "confirmed",
-      "note": "SearchJob 기업 채용목록에서 2026-11-10 기준 D-6로 확인.",
-      "reused": false,
+      "note": "SearchJob 기업 채용목록에서 2026-11-10 기준 D-6로 확인. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
+      "reused": true,
       "id": "scan-20261110-aHR0cHM6Ly9zZWFyY2hqb2Iu",
       "firstSeen": "2026-11-10",
       "isNew": true
@@ -4879,10 +4960,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-12",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55525644",
@@ -4923,10 +5005,11 @@
       "source": "secondary",
       "sourceLabel": "사람인(Claude 교차확인)",
       "status": "confirmed",
-      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-12",
       "isNew": true,
-      "addedBy": "claude"
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55553171",
@@ -5191,6 +5274,94 @@
       "firstSeen": "2026-11-12",
       "isNew": true,
       "addedBy": "claude"
+    },
+    {
+      "company": "SK바이오텍",
+      "title": "[신입] SK바이오텍 Peptide 공정개발 연구원(R&D) 신입사원 모집",
+      "url": "https://www.skcareers.com/Recruit/Detail/R262507",
+      "jobFunction": "Tech R&D - 연구개발",
+      "employmentType": "신입 / 정규직",
+      "location": "대전",
+      "requiredQualifications": "석사 이상(화학, 생화학, 약학, 생명과학 및 관련 전공), 유관 경력 1년 미만, 영어 업무 수행 가능자",
+      "preferredQualifications": "박사 학위, Peptide 또는 Oligonucleotide 정제 연구 경력, 대전·세종·충청 지역인재",
+      "jobDescription": "Peptide 합성·정제 연구, 상업 생산을 위한 scale-up study, 영문 연구 보고서 작성",
+      "postedDate": "2026-11-13",
+      "deadline": "2026-12-07",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "SK Careers 공식 채용사이트",
+      "status": "confirmed",
+      "note": "공식 상세페이지에서 신입·정규직·접수기간·직무·자격요건을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
+      "reused": false,
+      "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
+      "firstSeen": "2026-11-15",
+      "isNew": true
+    },
+    {
+      "company": "SK바이오텍",
+      "title": "[신입] SK바이오텍 생산운전원 신입사원 모집",
+      "url": "https://www.skcareers.com/Recruit/Detail/R262441",
+      "jobFunction": "제조 - 생산",
+      "employmentType": "신입 / 정규직",
+      "location": "세종",
+      "requiredQualifications": "공식 상세페이지에 신입 지원 가능으로 표시됨",
+      "preferredQualifications": "화학·화공·바이오 계열, 산업안전·위험물·가스·소방설비 등 관련 자격증, GMP 또는 화학 플랜트 운전 경험, 대전·세종·충청 지역인재",
+      "jobDescription": "의약품 제조공정 생산운전 업무",
+      "postedDate": "2026-11-09",
+      "deadline": "2026-11-23",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "SK Careers 공식 채용사이트",
+      "status": "confirmed",
+      "note": "공식 상세페이지에서 신입·정규직·세종 근무·접수기간을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
+      "reused": false,
+      "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
+      "firstSeen": "2026-11-15",
+      "isNew": true
+    },
+    {
+      "company": "SK바이오텍",
+      "title": "[신입] SK바이오텍 보관소 운전원 신입사원 모집",
+      "url": "https://www.skcareers.com/Recruit/Detail/R262432",
+      "jobFunction": "구매 - 물류",
+      "employmentType": "신입 / 정규직",
+      "location": "세종",
+      "requiredQualifications": "고졸 이상, 유관 경력 3년 미만, 지게차 운전 자격증, 중량물 취급 가능자",
+      "preferredQualifications": "물류·화학·화공 관련 전공, 위험물 취급·분류 등 관련 자격증, GMP 또는 의약품·화학·식품 규제산업 물류·창고 경험, ERP/WMS·재고실사 경험, 대전·세종·충청 지역인재",
+      "jobDescription": "원료·제품 보관소 운영, 설비 점검·재고관리, 입고·검수·검체채취·Tank Loading, 칭량·출고·제품 출하",
+      "postedDate": "2026-11-05",
+      "deadline": "2026-11-30",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "SK Careers 공식 채용사이트",
+      "status": "confirmed",
+      "note": "공식 상세페이지에서 신입·정규직·세종 근무·접수기간을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
+      "reused": false,
+      "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
+      "firstSeen": "2026-11-15",
+      "isNew": true
+    },
+    {
+      "company": "SK바이오텍",
+      "title": "[신입] SK바이오텍 품질보증 약사(제조관리자) 신입사원 모집",
+      "url": "https://www.skcareers.com/Recruit/Detail/R262505",
+      "jobFunction": "제조 - 품질보증",
+      "employmentType": "신입 / 정규직",
+      "location": "세종",
+      "requiredQualifications": "약사 면허 소지자, 관련 경력 1년 미만",
+      "preferredQualifications": "원료의약품(API) 제조·품질보증 경험, 영어 문서 검토 및 해외 고객사 커뮤니케이션, 대전·세종·충청 지역인재",
+      "jobDescription": "의약품 GMP 제조관리·품질보증, 제조기록서·시험결과·출하문서 및 SOP 검토·승인, 변경·일탈·OOS·CAPA 검토·승인, 규제기관·고객사 Audit 대응 지원",
+      "postedDate": "2026-11-13",
+      "deadline": "2026-12-07",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "SK Careers 공식 채용사이트",
+      "status": "confirmed",
+      "note": "공식 상세페이지에서 신입·정규직·세종 근무·접수기간을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
+      "reused": false,
+      "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
+      "firstSeen": "2026-11-15",
+      "isNew": true
     }
   ],
   "excludedNote": "excluded=non-science: 문과 직무(총무/인사/영업/마케팅/구매/IR 등)는 사용자 요청(2026-11-09)으로 대시보드에서 숨김. 삭제 아님."
