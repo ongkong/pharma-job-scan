@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-15",
+  "lastUpdated": "2026-11-19T15:12:58.276Z",
   "unreachable": [],
   "postings": [
     {
@@ -42,31 +42,6 @@
       "status": "closed_or_missing",
       "note": "오늘 재사용 — 잡코리아에서 동일 URL·마감일(D-8=9/17)로 오늘도 게시중임을 확인, 상세페이지 재조회 생략. | 단일 스캔 미발견만으로 종료하지 않음; 재확인 유지",
       "firstSeen": "2026-08-31",
-      "isNew": false
-    },
-    {
-      "id": "삼성바이오로직스-2026년-하반기-신입사원-공개채용-삼성그룹-19개-관계사-공채-참여-20260908",
-      "company": "삼성바이오로직스",
-      "title": "2026년 하반기 신입사원 공개채용 (삼성그룹 19개 관계사 공채 참여)",
-      "url": "https://www.samsungcareers.com",
-      "jobFunction": "공정개발(CDO)/Engineering(공정엔지니어링)/생산/MSAT/QC/QA/경영지원 (삼성커리어스 로그인 후 관계사·직무 선택 시 세부 공고 확인 가능)",
-      "employmentType": "신입",
-      "location": "인천 (송도)",
-      "requiredQualifications": "학사 이상(직무별 상이), 2026년 하반기 입사 가능자, 해외여행 결격사유 없음, 병역 필/면제",
-      "preferredQualifications": "바이오 계열 전공자 및 유관과목 이수자, 영어 공인 자격 보유자, 국가등록장애인/국가보훈대상자, 중국어자격 보유자",
-      "jobDescription": "삼성 계열사 통합 신입 공채로 삼성바이오로직스도 참여. 바이오의약품 생산 관련 공정개발/엔지니어링/생산/MSAT/QC/QA 등 직무별로 모집(직전 상반기 공채 기준 공정엔지니어링직/경영지원직 모집 이력 있음). 개별 직무별 상세 공고는 삼성커리어스 로그인 후에만 열람 가능(SPA + 로그인 게이트로 WebFetch 확인 불가), 뉴스보도(헤럴드경제·청년일보 등 복수 언론)로 접수기간·전형일정만 확정 확인.",
-      "postedDate": "2026-09-08",
-      "deadline": "2026-09-15",
-      "processSchedule": {
-        "documentAnnouncement": null,
-        "interviewDate": "11월 (구체 일자 미공개, SW직군은 SW역량테스트로 GSAT 대체·디자인직군은 포트폴리오 심사)",
-        "finalAnnouncement": null
-      },
-      "source": "secondary",
-      "sourceLabel": "뉴스보도(헤럴드경제, 청년일보 등 복수 언론) + 삼성커리어스 공식(목록 접근은 SPA+로그인으로 제한)",
-      "status": "closed_or_missing",
-      "note": "오늘 재사용 — 오늘도 다수 언론(파이낸셜뉴스, 서울파이낸스, 주간한국 등)에서 9/8 시작~9/15 마감, 19개 관계사(삼성바이오로직스 포함, 삼성에피스홀딩스는 미포함) 참여를 재확인. URL·마감일 동일하여 상세 재조회 생략.",
-      "firstSeen": "2026-09-08",
       "isNew": false
     },
     {
@@ -849,24 +824,24 @@
       "isNew": false
     },
     {
-      "id": "휴온스-휴온스-제천공장-경구제-생산직-채용-20260901",
       "company": "휴온스",
-      "title": "[휴온스그룹] 휴온스 제천공장 경구제 생산직 채용",
+      "title": "[휴온스그룹] 휴온스 제천공장 주사제 생산직 채용",
       "url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=dzRxQzBkakQxQVcycGZVV2dUT0Rtdz09",
-      "jobFunction": "생산(DP, 경구제)",
+      "jobFunction": "생산(DP, 주사제)",
       "employmentType": "신입/경력 정규직",
       "location": "충북 제천시",
       "requiredQualifications": "고졸 이상, 신입 지원 가능, 2교대 근무",
       "preferredQualifications": null,
-      "jobDescription": "휴온스 제천공장에서 경구제 의약품 생산·제조 업무를 담당한다. 2교대 생산직으로 모집한다.",
+      "jobDescription": "휴온스 제천공장에서 주사제 의약품 생산·제조 업무를 담당한다. 2교대 생산직으로 모집한다.",
       "postedDate": "2026-09-15",
       "deadline": "2026-09-27",
       "processSchedule": null,
       "source": "secondary",
       "sourceLabel": "사람인",
       "status": "closed_or_missing",
-      "note": "사람인 기업 채용목록 및 별도 검색결과에서 진행중 상태, 신입 가능, 근무지와 마감일을 확인. 상세공고 고유 URL은 동적 목록에서 노출되지 않음.",
-      "firstSeen": "2026-09-01",
+      "note": "사람인 기업 채용목록과 지역·고졸 채용목록에서 진행중 상태, 신입 가능, 근무지 및 마감일을 교차확인. 상세공고 고유 URL은 동적 목록에서 노출되지 않음.",
+      "id": "휴온스-휴온스그룹-휴온스-제천공장-주사제-생산직-채용-20260917",
+      "firstSeen": "2026-09-17",
       "isNew": false
     },
     {
@@ -912,33 +887,25 @@
     },
     {
       "id": "daewoong-qa-nabota",
-      "company": "대웅제약",
-      "title": "나보타QA팀 계약직(1년)",
+      "company": "대웅바이오",
+      "title": "[대웅바이오] 이화학(생화학)QC 계약직 팀원",
       "url": "https://career.daewoong.co.kr/apply/posting",
-      "jobFunction": "품질보증(QA)",
-      "employmentType": "신입·경력(계약직 1년)",
-      "postedDate": null,
-      "deadline": "2026-07-15",
+      "jobFunction": "이화학·생화학 QC",
+      "employmentType": "계약직/인턴",
+      "postedDate": "2026-11-16",
+      "deadline": "2026-11-28",
       "source": "official",
-      "status": "closed_or_missing",
-      "note": "2026-07-12 재확인 결과 대웅그룹 공식 사이트 진행중 10건 중에도 여전히 미노출(전부 관리자급/경력직 R&D). 3회 연속 재확인 불가로 마감 처리된 것으로 판단.",
+      "status": "confirmed",
+      "note": "대웅바이오 공식 채용 목록에서 진행 중으로 확인.",
       "firstSeen": "2026-07-06",
-      "isNew": false
-    },
-    {
-      "id": "daewoong-dp-osong",
-      "company": "대웅제약",
-      "title": "오송루피어생산팀 주사제 충전&포장 계약직(1년)",
-      "url": "https://www.jobkorea.co.kr/company/1571753/recruit",
-      "jobFunction": "생산(DP)",
-      "employmentType": "신입·경력(계약직 1년)",
-      "postedDate": null,
-      "deadline": "2026-07-07",
-      "source": "secondary",
-      "status": "closed_or_missing",
-      "note": "마감일(07-07) 경과로 종료.",
-      "firstSeen": "2026-07-06",
-      "isNew": false
+      "isNew": false,
+      "location": "경기 화성시 향남",
+      "requiredQualifications": "공식 채용 목록에서 계약직/인턴으로 표시됨. 세부 자격요건은 상세 공고 확인 필요.",
+      "preferredQualifications": null,
+      "jobDescription": "의약품 품질관리(QC) 중 이화학·생화학 시험 및 관련 품질관리 업무.",
+      "processSchedule": null,
+      "sourceLabel": "대웅 공식 채용 홈페이지",
+      "reused": false
     },
     {
       "id": "daewoong-qa-hyangnam",
@@ -2193,27 +2160,6 @@
       "isNew": false
     },
     {
-      "company": "휴온스",
-      "title": "[휴온스그룹] 휴온스 제천공장 주사제 생산직 채용",
-      "url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=dzRxQzBkakQxQVcycGZVV2dUT0Rtdz09",
-      "jobFunction": "생산(DP, 주사제)",
-      "employmentType": "신입/경력 정규직",
-      "location": "충북 제천시",
-      "requiredQualifications": "고졸 이상, 신입 지원 가능, 2교대 근무",
-      "preferredQualifications": null,
-      "jobDescription": "휴온스 제천공장에서 주사제 의약품 생산·제조 업무를 담당한다. 2교대 생산직으로 모집한다.",
-      "postedDate": "2026-09-15",
-      "deadline": "2026-09-27",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "사람인",
-      "status": "closed_or_missing",
-      "note": "사람인 기업 채용목록과 지역·고졸 채용목록에서 진행중 상태, 신입 가능, 근무지 및 마감일을 교차확인. 상세공고 고유 URL은 동적 목록에서 노출되지 않음.",
-      "id": "휴온스-휴온스그룹-휴온스-제천공장-주사제-생산직-채용-20260917",
-      "firstSeen": "2026-09-17",
-      "isNew": false
-    },
-    {
       "company": "한독",
       "title": "[계약직] 생산 포장작업자",
       "url": "https://careers.handok.com/job/Seoul-%EA%B3%84%EC%95%BD%EC%A7%81-%EC%83%9D%EC%82%B0-%ED%8F%AC%EC%9E%A5%EC%9E%91%EC%97%85%EC%9E%90-%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84-06235/4457650/",
@@ -2620,24 +2566,24 @@
       "excluded": "non-science"
     },
     {
-      "id": "daewoong-group-production-newgrad-20261019",
-      "company": "대웅제약·대웅바이오",
+      "id": "daewoongbio-production-group-newgrad-20261019",
+      "company": "대웅바이오",
       "title": "[2026 하반기 대웅그룹 신입 채용] 생산 부문",
       "url": "https://pre-view.me/jobs/daewoong-2026h2",
-      "jobFunction": "대웅제약·대웅바이오 QA/QC, 대웅바이오 생산, 대웅제약 SCM",
+      "jobFunction": "생산·품질(QA/QC)",
       "employmentType": "채용연계형 인턴십 후 평가에 따라 정규직 전환",
+      "location": "경기 화성 향남 등 직무별 상이",
+      "requiredQualifications": "신입. 4년제 대학 졸업 및 2027년 1월 근무 가능. 품질 직무는 약학·화학·화학공학·생명과학·생명공학 등 관련 전공.",
+      "preferredQualifications": null,
+      "jobDescription": "대웅바이오 생산 및 품질 분야 신입 채용.",
       "postedDate": "2026-10-19",
       "deadline": "2026-11-08",
-      "location": "향남(경기 화성), 서울 삼성 등 직무별 상이",
-      "requiredQualifications": "신입. 4년제 대학 졸업 및 2027년 1월 출근 가능. 품질·생산 직무는 약학·화학·화학공학·생명과학·생명공학 등 관련 전공.",
-      "preferredQualifications": null,
-      "jobDescription": "대웅제약·대웅바이오 품질 직무, 대웅바이오 생산, 대웅제약 SCM 신입 모집.",
       "processSchedule": null,
       "source": "secondary",
-      "sourceLabel": "대웅그룹 채용 안내(Pre:View); 공식 대웅 채용 공고 URL 교차 확인",
-      "note": "채용 안내에서 직무별 계열사 배치와 신입 자격을 확인. 대웅그룹 공식 공고로 지원하며 조사 기준일 접수 중. | 2026-10-28 재확인: 오늘 마감/세부 법인별 직무로 대체되어 종료 처리.",
-      "status": "closed_or_missing",
-      "firstSeen": "2026-10-27",
+      "sourceLabel": "대웅그룹 채용 안내(Pre:View); 공식 대웅 채용 공고 교차 확인",
+      "status": "confirmed",
+      "note": "그룹 채용 안내에서 계열사·직무별 모집, 신입 자격과 11/08 마감을 확인함.",
+      "firstSeen": "2026-10-28",
       "isNew": false
     },
     {
@@ -2704,43 +2650,23 @@
       "isNew": false
     },
     {
-      "id": "daewonpharm-dna-newgrad-20261019",
+      "id": "daewonpharm-dna-pharmacist-newgrad-20261019",
       "company": "대원제약",
-      "title": "2026 DNA채용(수시채용)",
+      "title": "2026 DNA채용(수시채용) — 관리약사",
       "url": "https://daewonpharm.recruiter.co.kr/career/jobs/131471",
-      "jobFunction": "OTC 약국영업, 합성연구, 제조설비 기술, 생산, 품질관리, 관리약사 등",
-      "employmentType": "정규직 및 직무별 계약직",
+      "jobFunction": "관리약사",
+      "employmentType": "정규직",
+      "location": "경기 화성 등",
+      "requiredQualifications": "신입 지원 가능. 약사 면허 필수.",
+      "preferredQualifications": null,
+      "jobDescription": "사업장 관리약사 업무.",
       "postedDate": "2026-10-19",
       "deadline": "2026-10-29",
-      "location": "서울·경기 화성·충북 진천 등 직무별 상이",
-      "requiredQualifications": "신입 모집 직무 확인: OTC MR(대졸 이상), 합성연구(관련 전공 석사 이상), 설비기술(전문대졸 이상), 생산(고졸 이상), 품질관리 계약직(고졸 이상·화학 관련 전공), 관리약사(약사 면허 필수).",
-      "preferredQualifications": "직무별 상이: 교대근무 가능, 관련 자격·전공, 유관 경험 등.",
-      "jobDescription": "대원제약 수시채용 통합 공고. 명시적으로 신입 채용인 직무만 추렸으며, 경력 전용 직무는 제외.",
       "processSchedule": null,
       "source": "official",
-      "sourceLabel": "대원제약 공식 채용 페이지; 인비원·직행 상세 공고 교차 확인",
-      "note": "공식 공고 URL과 접수기간을 확인. 신입으로 표시된 직무만 정리. 조사 기준일 접수 중. | 2026-10-28 재확인: 오늘 마감/세부 법인별 직무로 대체되어 종료 처리.",
-      "status": "closed_or_missing",
-      "firstSeen": "2026-10-27",
-      "isNew": false
-    },
-    {
-      "id": "celltrion-20261028-sample-management",
-      "company": "셀트리온",
-      "title": "샘플관리 분야 신입 수시채용 (계약직)",
-      "url": "https://www.zighang.com/recruitment/7bfa8e39-ef16-457c-bf61-2119d972c2cc",
-      "jobFunction": "샘플관리",
-      "employmentType": "계약직",
-      "postedDate": "2026-10-26",
-      "deadline": "2026-11-08",
-      "location": "인천 송도",
-      "requiredQualifications": "고졸 이상 또는 전문학사 이상; 신입 지원 가능",
-      "preferredQualifications": "관련 업무 경험 및 GMP 문서 관리 경험 우대",
-      "processSchedule": null,
-      "source": "Zighang",
-      "sourceLabel": "채용 상세 페이지",
-      "note": "셀트리온 공식 지원 페이지로 연결되는 상세 공고에서 접수기간 확인.",
+      "sourceLabel": "대원제약 공식 채용 상세; 인비원·직행 공고 교차 확인",
       "status": "confirmed",
+      "note": "통합 공고 내 신입 모집 직무이며, 2026-10-29 17:30 마감으로 안내됨.",
       "firstSeen": "2026-10-28",
       "isNew": false
     },
@@ -2848,48 +2774,6 @@
       "firstSeen": "2026-10-28",
       "isNew": false,
       "excluded": "non-science"
-    },
-    {
-      "id": "daewoongph-production-group-newgrad-20261019",
-      "company": "대웅제약",
-      "title": "[2026 하반기 대웅그룹 신입 채용] 생산 부문 (품질·SCM)",
-      "url": "https://pre-view.me/jobs/daewoong-2026h2",
-      "jobFunction": "품질(QA/QC)·SCM",
-      "employmentType": "채용연계형 인턴십 후 평가에 따라 정규직 전환",
-      "location": "경기 화성 향남·서울 등 직무별 상이",
-      "requiredQualifications": "신입. 4년제 대학 졸업 및 2027년 1월 근무 가능. 품질 직무는 약학·화학·화학공학·생명과학·생명공학 등 관련 전공.",
-      "preferredQualifications": null,
-      "jobDescription": "대웅제약 품질 및 SCM 분야 신입 채용.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-11-08",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "대웅그룹 채용 안내(Pre:View); 공식 대웅 채용 공고 교차 확인",
-      "status": "confirmed",
-      "note": "그룹 채용 안내에서 계열사·직무별 모집, 신입 자격과 11/08 마감을 확인함.",
-      "firstSeen": "2026-10-28",
-      "isNew": false
-    },
-    {
-      "id": "daewoongbio-production-group-newgrad-20261019",
-      "company": "대웅바이오",
-      "title": "[2026 하반기 대웅그룹 신입 채용] 생산 부문",
-      "url": "https://pre-view.me/jobs/daewoong-2026h2",
-      "jobFunction": "생산·품질(QA/QC)",
-      "employmentType": "채용연계형 인턴십 후 평가에 따라 정규직 전환",
-      "location": "경기 화성 향남 등 직무별 상이",
-      "requiredQualifications": "신입. 4년제 대학 졸업 및 2027년 1월 근무 가능. 품질 직무는 약학·화학·화학공학·생명과학·생명공학 등 관련 전공.",
-      "preferredQualifications": null,
-      "jobDescription": "대웅바이오 생산 및 품질 분야 신입 채용.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-11-08",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "대웅그룹 채용 안내(Pre:View); 공식 대웅 채용 공고 교차 확인",
-      "status": "confirmed",
-      "note": "그룹 채용 안내에서 계열사·직무별 모집, 신입 자격과 11/08 마감을 확인함.",
-      "firstSeen": "2026-10-28",
-      "isNew": false
     },
     {
       "id": "handok-solid-tumor-msl-20261027",
@@ -3042,133 +2926,6 @@
       "isNew": false
     },
     {
-      "id": "daewonpharm-dna-otc-mr-newgrad-20261019",
-      "company": "대원제약",
-      "title": "2026 DNA채용(수시채용) — OTC 약국영업(MR)",
-      "url": "https://daewonpharm.recruiter.co.kr/career/jobs/131471",
-      "jobFunction": "OTC 약국영업(MR)",
-      "employmentType": "정규직",
-      "location": "서울·경기 등",
-      "requiredQualifications": "신입. 학사 이상.",
-      "preferredQualifications": null,
-      "jobDescription": "약국 대상 OTC 제품 영업.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-10-29",
-      "processSchedule": null,
-      "source": "official",
-      "sourceLabel": "대원제약 공식 채용 상세; 인비원·직행 공고 교차 확인",
-      "status": "confirmed",
-      "note": "통합 공고 내 신입 모집 직무이며, 2026-10-29 17:30 마감으로 안내됨.",
-      "firstSeen": "2026-10-28",
-      "isNew": false,
-      "excluded": "non-science"
-    },
-    {
-      "id": "daewonpharm-dna-synthesis-rd-newgrad-20261019",
-      "company": "대원제약",
-      "title": "2026 DNA채용(수시채용) — 합성연구",
-      "url": "https://daewonpharm.recruiter.co.kr/career/jobs/131471",
-      "jobFunction": "합성연구",
-      "employmentType": "정규직",
-      "location": "서울·경기 등 직무별 상이",
-      "requiredQualifications": "신입. 관련 전공 석사 이상.",
-      "preferredQualifications": null,
-      "jobDescription": "의약품 합성 연구개발.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-10-29",
-      "processSchedule": null,
-      "source": "official",
-      "sourceLabel": "대원제약 공식 채용 상세; 인비원·직행 공고 교차 확인",
-      "status": "confirmed",
-      "note": "통합 공고 내 신입 모집 직무이며, 2026-10-29 17:30 마감으로 안내됨.",
-      "firstSeen": "2026-10-28",
-      "isNew": false
-    },
-    {
-      "id": "daewonpharm-dna-facilities-newgrad-20261019",
-      "company": "대원제약",
-      "title": "2026 DNA채용(수시채용) — 제조설비 기술",
-      "url": "https://daewonpharm.recruiter.co.kr/career/jobs/131471",
-      "jobFunction": "제조설비 기술",
-      "employmentType": "정규직",
-      "location": "경기 화성 등",
-      "requiredQualifications": "신입. 전문대학 졸업 이상.",
-      "preferredQualifications": "관련 자격·전공 우대.",
-      "jobDescription": "제조설비 기술 업무.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-10-29",
-      "processSchedule": null,
-      "source": "official",
-      "sourceLabel": "대원제약 공식 채용 상세; 인비원·직행 공고 교차 확인",
-      "status": "confirmed",
-      "note": "통합 공고 내 신입 모집 직무이며, 2026-10-29 17:30 마감으로 안내됨.",
-      "firstSeen": "2026-10-28",
-      "isNew": false
-    },
-    {
-      "id": "daewonpharm-dna-production-newgrad-20261019",
-      "company": "대원제약",
-      "title": "2026 DNA채용(수시채용) — 생산",
-      "url": "https://daewonpharm.recruiter.co.kr/career/jobs/131471",
-      "jobFunction": "생산",
-      "employmentType": "정규직",
-      "location": "충북 진천 등",
-      "requiredQualifications": "신입. 고졸 이상.",
-      "preferredQualifications": "교대근무 가능자 우대.",
-      "jobDescription": "의약품 생산 업무.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-10-29",
-      "processSchedule": null,
-      "source": "official",
-      "sourceLabel": "대원제약 공식 채용 상세; 인비원·직행 공고 교차 확인",
-      "status": "confirmed",
-      "note": "통합 공고 내 신입 모집 직무이며, 2026-10-29 17:30 마감으로 안내됨.",
-      "firstSeen": "2026-10-28",
-      "isNew": false
-    },
-    {
-      "id": "daewonpharm-dna-quality-contract-newgrad-20261019",
-      "company": "대원제약",
-      "title": "2026 DNA채용(수시채용) — 품질관리 계약직",
-      "url": "https://daewonpharm.recruiter.co.kr/career/jobs/131471",
-      "jobFunction": "품질관리(QC)",
-      "employmentType": "계약직",
-      "location": "충북 진천",
-      "requiredQualifications": "신입. 고졸 이상이며 화학 관련 전공.",
-      "preferredQualifications": null,
-      "jobDescription": "의약품 품질관리 업무.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-10-29",
-      "processSchedule": null,
-      "source": "official",
-      "sourceLabel": "대원제약 공식 채용 상세; 인비원·직행 공고 교차 확인",
-      "status": "confirmed",
-      "note": "통합 공고 내 신입 모집 직무이며, 계약직 접수 마감은 2026-10-29 17:30으로 안내됨.",
-      "firstSeen": "2026-10-28",
-      "isNew": false
-    },
-    {
-      "id": "daewonpharm-dna-pharmacist-newgrad-20261019",
-      "company": "대원제약",
-      "title": "2026 DNA채용(수시채용) — 관리약사",
-      "url": "https://daewonpharm.recruiter.co.kr/career/jobs/131471",
-      "jobFunction": "관리약사",
-      "employmentType": "정규직",
-      "location": "경기 화성 등",
-      "requiredQualifications": "신입 지원 가능. 약사 면허 필수.",
-      "preferredQualifications": null,
-      "jobDescription": "사업장 관리약사 업무.",
-      "postedDate": "2026-10-19",
-      "deadline": "2026-10-29",
-      "processSchedule": null,
-      "source": "official",
-      "sourceLabel": "대원제약 공식 채용 상세; 인비원·직행 공고 교차 확인",
-      "status": "confirmed",
-      "note": "통합 공고 내 신입 모집 직무이며, 2026-10-29 17:30 마감으로 안내됨.",
-      "firstSeen": "2026-10-28",
-      "isNew": false
-    },
-    {
       "company": "SK바이오팜",
       "title": "HR 인턴 구성원 영입",
       "url": "https://office.invione.com/jobs/recruitment/open/detail/183077",
@@ -3186,100 +2943,32 @@
       "status": "confirmed",
       "note": "사람인·캐치 검색 결과와 인비온 상세 공고를 교차 확인.",
       "firstSeen": "2026-11-05",
-      "isNew": true,
+      "isNew": false,
       "reused": false,
       "id": "sk바이오팜-hr-인턴-구성원-영입",
       "excluded": "non-science"
     },
     {
       "company": "GC녹십자",
-      "title": "총무 운영 인턴(채용연계형)",
+      "title": "생산 운영 담당자 (Ochang Plant) (계약직)",
       "url": "https://searchjob.co.kr/company/gc/",
-      "jobFunction": "경영지원·총무",
-      "employmentType": "인턴(채용연계형)",
-      "location": "경기 용인",
-      "requiredQualifications": "학사 이상",
+      "jobFunction": "생산 운영",
+      "employmentType": "신입 / 계약직",
+      "location": "충북 오창",
+      "requiredQualifications": "신입",
       "preferredQualifications": null,
-      "jobDescription": "임직원 경험 개선 서비스와 그룹 사내 행사 기획·운영",
-      "postedDate": null,
-      "deadline": "2026-11-10",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "SEARCHJOB",
-      "status": "confirmed",
-      "note": "캐치·SEARCHJOB에 진행 중 공고로 노출.",
-      "firstSeen": "2026-11-05",
-      "isNew": true,
-      "reused": false,
-      "id": "gc녹십자-총무-운영-인턴-채용연계형-",
-      "excluded": "non-science"
-    },
-    {
-      "company": "녹십자웰빙",
-      "title": "병의원영업(MR)_창원(신입)",
-      "url": "https://searchjob.co.kr/company/gc/",
-      "jobFunction": "영업",
-      "employmentType": "신입",
-      "location": "경남 창원",
-      "requiredQualifications": "학사 이상, 전공무관",
-      "preferredQualifications": null,
-      "jobDescription": "병의원 대상 비급여 주사제·건강기능식품 영업",
-      "postedDate": null,
-      "deadline": "2026-11-11",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "SEARCHJOB",
-      "status": "confirmed",
-      "note": "SEARCHJOB 상세 검색 결과 기준.",
-      "firstSeen": "2026-11-05",
-      "isNew": true,
-      "reused": false,
-      "id": "녹십자웰빙-병의원영업-mr-창원-신입-",
-      "excluded": "non-science"
-    },
-    {
-      "company": "GC녹십자MS",
-      "title": "면역진단(신입/경력)",
-      "url": "https://searchjob.co.kr/company/gc/",
-      "jobFunction": "연구개발·진단",
-      "employmentType": "신입/경력",
-      "location": "경기 용인",
-      "requiredQualifications": "신입 또는 관련 경력 3년 이상",
-      "preferredQualifications": null,
-      "jobDescription": "면역형광 진단키트 개발·조건 최적화·양산 이관",
+      "jobDescription": "혈장 분획 공정(혈장 풀링, 단백질 분리) 수행",
       "postedDate": null,
       "deadline": "2026-11-15",
       "processSchedule": null,
       "source": "secondary",
-      "sourceLabel": "SEARCHJOB",
+      "sourceLabel": "SearchJob",
       "status": "confirmed",
-      "note": "SEARCHJOB 상세 검색 결과 기준.",
-      "firstSeen": "2026-11-05",
-      "isNew": true,
-      "reused": false,
-      "id": "gc녹십자ms-면역진단-신입-경력-"
-    },
-    {
-      "company": "GC녹십자MS",
-      "title": "생산(신입) (계약직)",
-      "url": "https://searchjob.co.kr/company/gc/",
-      "jobFunction": "생산·품질",
-      "employmentType": "신입(계약직)",
-      "location": "충북 음성",
-      "requiredQualifications": "고졸 이상",
-      "preferredQualifications": null,
-      "jobDescription": "의약품 원료·자재 칭량·투입, 조제 설비 가동, GMP 문서 기록",
-      "postedDate": null,
-      "deadline": "2026-11-15",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "SEARCHJOB",
-      "status": "confirmed",
-      "note": "SEARCHJOB 상세 검색 결과 기준.",
-      "firstSeen": "2026-11-05",
-      "isNew": true,
-      "reused": false,
-      "id": "gc녹십자ms-생산-신입-계약직-"
+      "note": "SearchJob 기업 채용목록에서 2026-11-10 기준 D-6로 확인. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
+      "reused": true,
+      "id": "scan-20261110-aHR0cHM6Ly9zZWFyY2hqb2Iu",
+      "firstSeen": "2026-11-10",
+      "isNew": false
     },
     {
       "company": "아이센스",
@@ -3299,7 +2988,7 @@
       "status": "confirmed",
       "note": "잡코리아 검색결과에서 11/11 마감 및 신입/경력 표기 확인.",
       "firstSeen": "2026-11-05",
-      "isNew": true,
+      "isNew": false,
       "reused": false,
       "id": "아이센스-2026년-하반기-아이센스-신입-경력-대규모-채용"
     },
@@ -3321,7 +3010,7 @@
       "status": "confirmed",
       "note": "캐치 상위권 주요 채용정보에서 진행 중 공고 확인.",
       "firstSeen": "2026-11-05",
-      "isNew": true,
+      "isNew": false,
       "reused": false,
       "id": "이연제약-본사-신입-경력사원-채용",
       "excluded": "non-science"
@@ -3345,7 +3034,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/28). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3371,7 +3060,7 @@
       "status": "confirmed",
       "note": "사람인 상세공고와 잡코리아·캐치에서 동일 공고 및 2026-11-16 마감을 확인함. 경력 표기가 플랫폼별로 일부 다르지만 신입 지원 가능 표기가 있어 포함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": false
     },
@@ -3394,7 +3083,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/09/29). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3416,7 +3105,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3438,7 +3127,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3460,7 +3149,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3486,7 +3175,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3513,7 +3202,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3540,7 +3229,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3567,7 +3256,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3594,7 +3283,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3621,7 +3310,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3648,7 +3337,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3675,7 +3364,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3702,7 +3391,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3729,7 +3418,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3756,7 +3445,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "non-science",
       "reused": true
@@ -3784,7 +3473,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3811,7 +3500,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3834,7 +3523,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3857,7 +3546,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/06). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3880,7 +3569,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/04). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -3903,7 +3592,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "non-science",
       "reused": true
@@ -3927,7 +3616,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3949,7 +3638,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/30). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3971,7 +3660,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -3993,7 +3682,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/22). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4015,7 +3704,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4037,7 +3726,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/03). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "non-science"
     },
@@ -4060,7 +3749,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/06). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "non-science"
     },
@@ -4083,7 +3772,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/06). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4105,7 +3794,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/06). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4127,7 +3816,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -4150,7 +3839,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/29). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -4173,7 +3862,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/30). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4195,7 +3884,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/19). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -4218,7 +3907,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -4241,7 +3930,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/23). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4263,7 +3952,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/21). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -4286,7 +3975,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "non-science",
       "reused": true
@@ -4310,7 +3999,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/04). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4332,7 +4021,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/03). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4354,7 +4043,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/03). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "non-science"
     },
@@ -4377,7 +4066,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4399,7 +4088,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/28). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "non-science"
     },
@@ -4422,7 +4111,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4444,7 +4133,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4466,7 +4155,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4488,7 +4177,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/09/30). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4510,7 +4199,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/09/16). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4532,7 +4221,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/04). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "small-company"
     },
@@ -4555,7 +4244,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/21). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "small-company"
     },
@@ -4578,7 +4267,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/02). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "small-company"
     },
@@ -4601,7 +4290,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/28). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "small-company"
     },
@@ -4624,7 +4313,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/29). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "small-company"
     },
@@ -4647,7 +4336,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/28). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "small-company"
     },
@@ -4670,7 +4359,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/10/29). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "excluded": "small-company"
     },
@@ -4693,7 +4382,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/05). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4715,7 +4404,7 @@
       "status": "confirmed",
       "note": "2026-11-09 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/04). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-09",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4743,7 +4432,7 @@
       "reused": false,
       "id": "scan-20261110-aHR0cHM6Ly93d3cuc2tjYXJl",
       "firstSeen": "2026-11-10",
-      "isNew": true
+      "isNew": false
     },
     {
       "company": "GC녹십자",
@@ -4765,73 +4454,7 @@
       "reused": true,
       "id": "scan-20261110-aHR0cHM6Ly93d3cuc2FyYW1p",
       "firstSeen": "2026-11-10",
-      "isNew": true
-    },
-    {
-      "company": "GC녹십자웰빙",
-      "title": "의약품 품질관리(원료·제품시험, 신입)",
-      "url": "https://searchjob.co.kr/company/gc/",
-      "jobFunction": "품질관리(QC)",
-      "employmentType": "신입",
-      "location": null,
-      "requiredQualifications": null,
-      "preferredQualifications": null,
-      "jobDescription": "원료·제품의 이화학·기기분석·미생물 시험",
-      "postedDate": null,
-      "deadline": "2026-11-15",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "SearchJob",
-      "status": "confirmed",
-      "note": "SearchJob 기업 채용목록에서 2026-11-10 기준 D-6로 확인.",
-      "reused": false,
-      "id": "scan-20261110-aHR0cHM6Ly9zZWFyY2hqb2Iu",
-      "firstSeen": "2026-11-10",
-      "isNew": true
-    },
-    {
-      "company": "GC녹십자MS",
-      "title": "RA(신입/경력)",
-      "url": "https://searchjob.co.kr/company/gc/",
-      "jobFunction": "의료기기 인허가(RA)",
-      "employmentType": "신입/경력",
-      "location": "경기 용인",
-      "requiredQualifications": "경력 무관",
-      "preferredQualifications": null,
-      "jobDescription": "의료기기 수입 인허가 및 기허가 제품 변경허가·유지관리",
-      "postedDate": null,
-      "deadline": "2026-11-15",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "SearchJob",
-      "status": "confirmed",
-      "note": "SearchJob 기업 채용목록에서 2026-11-10 기준 D-6로 확인.",
-      "reused": false,
-      "id": "scan-20261110-aHR0cHM6Ly9zZWFyY2hqb2Iu",
-      "firstSeen": "2026-11-10",
-      "isNew": true
-    },
-    {
-      "company": "GC녹십자",
-      "title": "생산 운영 담당자 (Ochang Plant) (계약직)",
-      "url": "https://searchjob.co.kr/company/gc/",
-      "jobFunction": "생산 운영",
-      "employmentType": "신입 / 계약직",
-      "location": "충북 오창",
-      "requiredQualifications": "신입",
-      "preferredQualifications": null,
-      "jobDescription": "혈장 분획 공정(혈장 풀링, 단백질 분리) 수행",
-      "postedDate": null,
-      "deadline": "2026-11-15",
-      "processSchedule": null,
-      "source": "secondary",
-      "sourceLabel": "SearchJob",
-      "status": "confirmed",
-      "note": "SearchJob 기업 채용목록에서 2026-11-10 기준 D-6로 확인. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
-      "reused": true,
-      "id": "scan-20261110-aHR0cHM6Ly9zZWFyY2hqb2Iu",
-      "firstSeen": "2026-11-10",
-      "isNew": true
+      "isNew": false
     },
     {
       "id": "saramin-55518649",
@@ -4852,7 +4475,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4874,7 +4497,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4896,7 +4519,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/29). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4918,7 +4541,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/10/27). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -4929,19 +4552,24 @@
       "jobFunction": "약사",
       "employmentType": "경력무관 / 정규직",
       "location": "경기 안산시 단원구",
-      "requiredQualifications": "학력 대졸↑",
+      "requiredQualifications": "학력 대졸(4년) 이상; 약학 전공; 국내 약사면허 소지자",
       "preferredQualifications": null,
-      "jobDescription": null,
-      "postedDate": null,
+      "jobDescription": "의약품 제조 및 품질관리 전반 운영·관리, GMP 기준 제조공정 모니터링 및 기록서 승인, 식약처·대외 실사 대응, 일탈·변경관리 및 CAPA 수행.",
+      "postedDate": "2026-11-11",
       "deadline": "2026-11-23",
-      "processSchedule": null,
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차 면접, 2차 면접",
+        "finalAnnouncement": null
+      },
       "source": "secondary",
-      "sourceLabel": "사람인(Claude 교차확인)",
+      "sourceLabel": "사람인 상세공고·잡코리아·잡플래닛 교차확인",
       "status": "confirmed",
-      "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
+      "note": "기존 confirmed 공고와 URL·마감일이 동일하여 기존 상세 필드를 재사용함.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
-      "addedBy": "claude"
+      "isNew": false,
+      "addedBy": "claude",
+      "reused": true
     },
     {
       "id": "saramin-55529956",
@@ -4962,7 +4590,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -4985,7 +4613,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5007,7 +4635,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요. 2026-11-15 배치3 재확인: 기업 공식 채용 경로 및 접근 가능한 2차 플랫폼을 재탐색했으며, 동일 URL·제목·마감일은 기존 상세정보를 재사용함.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude",
       "reused": true
     },
@@ -5030,7 +4658,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5052,7 +4680,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5074,7 +4702,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5096,7 +4724,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5118,7 +4746,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/12). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5140,7 +4768,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5162,7 +4790,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/10). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5184,7 +4812,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5206,7 +4834,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5228,7 +4856,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(수정일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5250,7 +4878,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/11). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5272,7 +4900,7 @@
       "status": "confirmed",
       "note": "2026-11-12 Claude 더블체크로 추가. 사람인 목록 기준(등록일 26/11/09). 마감일 미표기(채용시/상시). 상세 JD·전형일정은 미수집, 지원 전 공고 원문 확인 필요.",
       "firstSeen": "2026-11-12",
-      "isNew": true,
+      "isNew": false,
       "addedBy": "claude"
     },
     {
@@ -5291,11 +4919,11 @@
       "source": "official",
       "sourceLabel": "SK Careers 공식 채용사이트",
       "status": "confirmed",
-      "note": "공식 상세페이지에서 신입·정규직·접수기간·직무·자격요건을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
-      "reused": false,
+      "note": "기존 confirmed 공고와 URL·마감일 동일하여 상세정보 재사용. 전형: 서류전형 > SKCT > 면접(1차/2차) > 검진 > 처우협의 > 최종합격.",
+      "reused": true,
       "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
       "firstSeen": "2026-11-15",
-      "isNew": true
+      "isNew": false
     },
     {
       "company": "SK바이오텍",
@@ -5313,11 +4941,11 @@
       "source": "official",
       "sourceLabel": "SK Careers 공식 채용사이트",
       "status": "confirmed",
-      "note": "공식 상세페이지에서 신입·정규직·세종 근무·접수기간을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
-      "reused": false,
+      "note": "기존 confirmed 공고와 URL·마감일 동일하여 상세정보 재사용. 전형: 서류전형 > SKCT > 면접(1차/2차) > 검진 > 처우협의 > 최종합격.",
+      "reused": true,
       "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
       "firstSeen": "2026-11-15",
-      "isNew": true
+      "isNew": false
     },
     {
       "company": "SK바이오텍",
@@ -5335,11 +4963,11 @@
       "source": "official",
       "sourceLabel": "SK Careers 공식 채용사이트",
       "status": "confirmed",
-      "note": "공식 상세페이지에서 신입·정규직·세종 근무·접수기간을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
-      "reused": false,
+      "note": "기존 confirmed 공고와 URL·마감일 동일하여 상세정보 재사용. 전형: 서류전형 > SKCT > 면접(1차/2차) > 검진 > 처우협의 > 최종합격.",
+      "reused": true,
       "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
       "firstSeen": "2026-11-15",
-      "isNew": true
+      "isNew": false
     },
     {
       "company": "SK바이오텍",
@@ -5357,11 +4985,225 @@
       "source": "official",
       "sourceLabel": "SK Careers 공식 채용사이트",
       "status": "confirmed",
-      "note": "공식 상세페이지에서 신입·정규직·세종 근무·접수기간을 확인함. 전형: 서류전형 > SKCT > 1차/2차 면접 > 검진 > 처우협의 > 최종합격.",
-      "reused": false,
+      "note": "기존 confirmed 공고와 URL·마감일 동일하여 상세정보 재사용. 전형: 서류전형 > SKCT > 면접(1차/2차) > 검진 > 처우협의 > 최종합격.",
+      "reused": true,
       "id": "scan-20261115-aHR0cHM6Ly93d3cuc2",
       "firstSeen": "2026-11-15",
+      "isNew": false
+    },
+    {
+      "company": "셀트리온제약",
+      "title": "㈜셀트리온제약 신입/경력 수시채용",
+      "url": "https://m.saramin.co.kr/job-search/view?cn=job-industry&cns=recently-list&rec_idx=55598173&referNonce=&t_category=job_recruit&t_content=generic",
+      "jobFunction": "부문별 모집",
+      "employmentType": "신입/경력 / 정규직·계약직",
+      "location": "인천 연수구",
+      "requiredQualifications": "학력무관(예정자 가능), 신입 지원 가능",
+      "preferredQualifications": null,
+      "jobDescription": "셀트리온제약의 부문별 신입·경력 수시채용 공고이며, 상세 모집 직무는 사람인 공고 원문에서 확인 필요.",
+      "postedDate": "2026-11-17",
+      "deadline": "2026-11-25",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "사람인",
+      "status": "confirmed",
+      "note": "사람인 상세페이지에서 신입 지원 가능, 인천 연수구, 접수기간 2026-11-17~11-25를 확인함. 상세 직무별 자격요건은 공고 내 이미지/세부내용 접근 제한으로 추가 확인 필요.",
+      "reused": false,
+      "id": "셀트리온제약-셀트리온제약-신입-경력-수시채용",
       "isNew": true
+    },
+    {
+      "company": "SK플라즈마",
+      "title": "SK플라즈마 PV/PMS 신입(전환형 인턴) 모집",
+      "url": "https://www.skcareers.com/Recruit/Detail/R262530",
+      "jobFunction": "PV/PMS",
+      "employmentType": "인턴(3개월, 정규직 전환 가능)",
+      "location": "경기 성남시 판교 SK플라즈마 본사",
+      "requiredQualifications": "학사 이상, 전공 무관, 경력 무관, 약사 면허증 보유자",
+      "preferredQualifications": "국가보훈 대상자 및 장애인 우대",
+      "jobDescription": "RMP에 따른 능동감시와 조사기관·CRO 관리, 국내외 PV 문서 업데이트 및 규제기관 대응, ICSR 보고와 파트너 reconciliation, PV SOP 관리 및 임직원 약물감시 교육",
+      "postedDate": "2026-11-17",
+      "deadline": "2026-11-26",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "SK Careers 공식 채용사이트",
+      "status": "confirmed",
+      "note": "공식 상세페이지에서 신입·전환형 인턴, 3개월 근무 및 정규직 전환 가능, 약사 면허 요건과 접수기간을 확인함.",
+      "reused": false,
+      "id": "sk플라즈마-sk플라즈마-pv-pms-신입-전환형-인턴-모집",
+      "isNew": true
+    },
+    {
+      "company": "SK케미칼",
+      "title": "[SK케미칼] 청주공장 의약품 생산·공정관리 신입(전환형 인턴)",
+      "url": "https://m.saramin.co.kr/job-search/view?rec_idx=55591395&searchword=sk&t_category=search&t_content=connect_recruit",
+      "jobFunction": "의약품 생산·공정관리",
+      "employmentType": "신입·전환형 인턴(6개월, 정규직 전환 가능); 계약직",
+      "location": "충북 청주시 흥덕구",
+      "requiredQualifications": "신입; 대졸(4년) 이상(졸업예정자 가능)",
+      "preferredQualifications": null,
+      "jobDescription": "청주공장 의약품 생산·공정관리 직무. 상세 업무·우대사항은 사람인 상세페이지에 별도 공개되지 않았으며, 전형은 서류전형, SKCT, 1차면접, 2차면접, 채용검진, 최종합격 순으로 안내됨.",
+      "postedDate": "2026-11-17",
+      "deadline": "2026-11-29",
+      "processSchedule": {
+        "documentAnnouncement": null,
+        "interviewDate": "1차면접, 2차면접(일정 미공개)",
+        "finalAnnouncement": null
+      },
+      "source": "secondary",
+      "sourceLabel": "사람인 상세공고(잡코리아 기존 공고와 교차확인)",
+      "status": "confirmed",
+      "note": "2026-11-20 기준 진행중 확인. 기존 2026-10-26 공고와 별개의 신규 URL·마감일 공고이며, 사람인 상세페이지에서 신입·졸업예정자 가능 및 11/29 마감을 직접 확인함.",
+      "reused": false,
+      "id": "sk케미칼-sk케미칼-청주공장-의약품-생산-공정관리-신입-전환형-인턴-",
+      "isNew": true
+    },
+    {
+      "company": "보령",
+      "title": "[생산품질부문] 예산캠퍼스 미생물 품질관리 채용",
+      "url": "https://recruit.boryung.co.kr/job_posting/BjFiNIKR",
+      "jobFunction": "미생물 품질관리",
+      "employmentType": "신입 계약직(정규직 전환 가능)",
+      "location": "충남 예산군 예산캠퍼스",
+      "requiredQualifications": "대학교(4년 이상) 졸업자, 미생물학·생명과학·생명공학 등 관련 전공",
+      "preferredQualifications": "미생물학과 졸업 예정자 및 졸업자 우대",
+      "jobDescription": "미생물 환경모니터링, 수질·압축공기·질소 모니터링 및 미생물 관련 시험 업무.",
+      "postedDate": "2026-11-18",
+      "deadline": "2026-11-30",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "보령 공식 채용 홈페이지",
+      "status": "confirmed",
+      "note": "상세페이지에서 신입, 근무지, 자격요건, 업무, 마감일을 직접 확인.",
+      "reused": false,
+      "id": "보령-생산품질부문-예산캠퍼스-미생물-품질관리-채용",
+      "isNew": true
+    },
+    {
+      "company": "보령",
+      "title": "예산공장 생산본부 고형제2팀 채용",
+      "url": "https://recruit.boryung.co.kr/job_posting/xULbir13",
+      "jobFunction": "내용고형제 포장 생산",
+      "employmentType": "정규직",
+      "location": "충남 예산군 예산캠퍼스",
+      "requiredQualifications": "고졸 이상 기졸업자, 2교대 근무 가능자",
+      "preferredQualifications": "동종업계 경력자",
+      "jobDescription": "내용고형제 블리스터 포장 및 병 포장 업무.",
+      "postedDate": "2026-10-21",
+      "deadline": "2026-11-22",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "보령 공식 채용 홈페이지",
+      "status": "confirmed",
+      "note": "경력 무관 공고로 신입 지원 가능. 상세페이지에서 전형·근무조건을 확인.",
+      "reused": false,
+      "id": "보령-예산공장-생산본부-고형제2팀-채용",
+      "isNew": true
+    },
+    {
+      "company": "보령",
+      "title": "[보령] 2027년 상반기 영업(MR) 신입사원 공개채용",
+      "url": "https://recruit.boryung.co.kr/recruit",
+      "jobFunction": "국내영업(MR)",
+      "employmentType": "신입 정규직",
+      "location": "전국",
+      "requiredQualifications": "공식 채용 목록에서 신입 정규직으로 표시됨. 세부 자격요건은 상세 공고 확인 필요.",
+      "preferredQualifications": null,
+      "jobDescription": "전국 단위 의약품 영업(MR) 업무.",
+      "postedDate": null,
+      "deadline": "2026-11-22",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "보령 공식 채용 홈페이지",
+      "status": "confirmed",
+      "note": "공식 채용 목록에서 신입 공개채용 및 진행 중 상태 확인.",
+      "reused": false,
+      "id": "보령-보령-2027년-상반기-영업-mr-신입사원-공개채용",
+      "isNew": true
+    },
+    {
+      "company": "일동제약",
+      "title": "2026년 설비관리 계약직 포지션 채용(신입/경력)",
+      "url": "https://careers.ildong.com/apply",
+      "jobFunction": "생산 설비관리",
+      "employmentType": "신입/경력 계약직",
+      "location": "충북 청주공장",
+      "requiredQualifications": "신입 지원 가능(공식 채용 목록 표기). 세부 자격요건은 상세 공고 확인 필요.",
+      "preferredQualifications": null,
+      "jobDescription": "제약 생산시설 설비관리 업무.",
+      "postedDate": "2026-11-16",
+      "deadline": "2026-11-23",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "일동제약 공식 채용 홈페이지",
+      "status": "confirmed",
+      "note": "공식 채용 페이지에서 4일 남음 상태와 마감일을 확인.",
+      "reused": false,
+      "id": "일동제약-2026년-설비관리-계약직-포지션-채용-신입-경력-",
+      "isNew": true
+    },
+    {
+      "company": "SD바이오센서",
+      "title": "[11월/신입경력/수원] CGMS 센서 개발자 채용",
+      "url": "https://sdbiosensor.recruiter.co.kr/",
+      "jobFunction": "센서 개발 연구개발",
+      "employmentType": "신입/경력 정규직",
+      "location": "경기 수원",
+      "requiredQualifications": "신입 석사 이상 또는 경력 3년 이상 학사, 화학·고분자·재료·생명공학 등 관련 전공, 포트폴리오 제출",
+      "preferredQualifications": "바이오센서 제작, 생체재료·의료기기 개발, 인허가 문서 작성, 센서 신호 데이터 분석 경험",
+      "jobDescription": "CGMS 센서 조성·생체적합성 고분자 적용법 개발, 센서 제작·성능평가 및 개발문서 관리.",
+      "postedDate": "2026-11-10",
+      "deadline": "2026-11-22",
+      "processSchedule": null,
+      "source": "official",
+      "sourceLabel": "SD바이오센서 공식 채용 홈페이지",
+      "status": "confirmed",
+      "note": "공식 공고를 검색 결과로 확인했으며 상세 원문은 채용사이트에서 직접 열람 시도.",
+      "reused": false,
+      "id": "sd바이오센서-11월-신입경력-수원-cgms-센서-개발자-채용",
+      "isNew": true
+    },
+    {
+      "company": "동아에스티",
+      "title": "동아ST 2026년 하반기 수시채용",
+      "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50380658?Oem_Code=C1&PageGbn=ST&sc=419",
+      "jobFunction": "직무별 수시채용(통합공고)",
+      "employmentType": "신입·경력",
+      "location": null,
+      "requiredQualifications": "공고에 신입·경력 통합으로 표시됨. 직무별 세부 자격요건은 상세페이지 확인 필요.",
+      "preferredQualifications": null,
+      "jobDescription": "동아ST 2026년 하반기 직무별 수시채용 통합공고.",
+      "postedDate": null,
+      "deadline": "2026-11-29",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "잡코리아",
+      "status": "confirmed",
+      "note": "공식 페이지 검색이 제한되어 잡코리아 상세 공고에서 신입·경력 및 마감일을 확인.",
+      "reused": false,
+      "id": "동아에스티-동아st-2026년-하반기-수시채용",
+      "isNew": true
+    },
+    {
+      "company": "한독",
+      "title": "[신입/경력] 생산 포장작업자",
+      "url": "https://pharmamedijob.co.kr/main/index.html",
+      "jobFunction": "생산 포장",
+      "employmentType": "신입/경력",
+      "location": "충북 전지역",
+      "requiredQualifications": "경력무관으로 표시됨. 세부 자격요건은 상세 공고 확인 필요.",
+      "preferredQualifications": null,
+      "jobDescription": "의약품 생산 현장의 포장작업 업무.",
+      "postedDate": null,
+      "deadline": "2026-11-29",
+      "processSchedule": null,
+      "source": "secondary",
+      "sourceLabel": "파마메디잡",
+      "status": "confirmed",
+      "note": "한독 공식 채용 페이지 검색이 제한되어 보조 플랫폼에서 신입/경력·경력무관 및 마감일 확인.",
+      "reused": false,
+      "id": "휴온스-휴온스메디텍-2026년-11월-각-부문-신입-및-경력직-모집",
+      "isNew": false
     }
   ],
   "excludedNote": "excluded=non-science: 문과 직무(총무/인사/영업/마케팅/구매/IR 등)는 사용자 요청(2026-11-09)으로 대시보드에서 숨김. 삭제 아님."
