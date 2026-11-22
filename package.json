@@ -4,9 +4,12 @@
   "description": "Pharma/bio entry-level job dashboard tooling",
   "scripts": {
     "saramin:check": "node tools/saramin_diff.js",
-    "saramin:apply": "node tools/saramin_diff.js --apply"
+    "saramin:apply": "node tools/saramin_diff.js --apply",
+    "official:check": "node tools/official_check.js",
+    "official:apply": "node tools/official_check.js --apply"
   },
   "dependencies": {
-    "cheerio": "^1.0.0"
+    "cheerio": "^1.0.0",
+    "playwright-core": "^1.48.0"
   }
 }
