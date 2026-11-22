@@ -12,7 +12,7 @@ function classifyPosting(p, info) {
   var MIXED = /생산|품질|연구|개발|바이오|\bQC\b|\bQA\b/i;
 
   if (p.excluded) {
-    var map = { "non-science": "영업·마케팅·경영지원 등 제외 직무", "small-company": "중소기업", "low-salary": "초봉 4천만원 미만" };
+    var map = { "non-science": "영업·마케팅·경영지원 등 제외 직무", "small-company": "중소기업", "low-salary": "초봉 4천만원 미만", "associate-only": "전문학사 이하 모집(학사 이상은 경력만)" };
     reasons.push(map[p.excluded] || "제외 표시");
   }
   if (NONBIO_EXCL.test(job) && !isCore && !MIXED.test(job)) reasons.push("영업·마케팅·RA·약사·경영지원 직무");
@@ -26,6 +26,8 @@ function classifyPosting(p, info) {
   else if (isIntern && !hasRegular) emp = convertible ? "conv_intern" : "intern_unknown";
   else if (/계약직|기간제/.test(et + " " + title) && !hasRegular && !convertible) reasons.push("기간제·계약직(전환 조건 없음)");
   if (/경력/.test(et) && !/신입|무관/.test(et)) reasons.push("경력직 전용");
+  var eduTxt = String(p.requiredQualifications || "") + " " + title;
+  if (/전문학사|초대졸|고졸|전문대|2~3년제/.test(eduTxt) && !/학사|대졸|석사|박사|대학원/.test(eduTxt.replace(/전문학사|초대졸|전문대졸?/g, "")) && !/부문|연구소/.test(title)) reasons.push("전문학사 이하 학력 모집");
 
   var pool = /상시|인재\s*풀|Talent\s*Pool/i.test(title + " " + jf + " " + et + " " + noteTxt);
 

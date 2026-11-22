@@ -5182,7 +5182,8 @@
       "note": "공식 페이지 검색이 제한되어 잡코리아 상세 공고에서 신입·경력 및 마감일을 확인.",
       "reused": false,
       "id": "동아에스티-동아st-2026년-하반기-수시채용",
-      "isNew": true
+      "isNew": true,
+      "excluded": "associate-only"
     },
     {
       "company": "한독",
