@@ -47,7 +47,7 @@ const SK_BIO = /(SK바이오팜|SK바이오사이언스|SK바이오텍|SK케미�
 
 const SITES = [
   { company: '셀트리온', url: 'https://celltrion.recruiter.co.kr/career/jobs', wait: '채용공고 목록', extract: extractCelltrion, label: '셀트리온 공식 채용사이트' },
-  { company: null, url: 'https://www.skcareers.com/Recruit', wait: '현재 총', prepare: prepareSK, extract: extractSK, label: 'SK Careers 공식 채용사이트', companyOf: (it) => { const m = (it.title + ' ' + it.rest).match(SK_BIO); return m ? m[1] : null; } },
+  { company: null, url: 'https://www.skcareers.com/Recruit', wait: '현재 총', prepare: prepareSK, extract: extractSK, label: 'SK Careers 공식 채용사이트', keep: (it) => /(신입|인턴|무관)/.test(it.rest), companyOf: (it) => { const m = (it.title + ' ' + it.rest).match(SK_BIO); return m ? m[1] : null; } },
 ];
 
 async function main() {
@@ -76,6 +76,7 @@ async function main() {
       for (const it of r.items) {
         const company = s.company || (s.companyOf && s.companyOf(it));
         if (!company) continue; // not a target company
+        if (s.keep && !s.keep(it)) continue; // experienced-only rows are excluded by the user's own rule
         const exists = db.postings.some((p) => {
           if (p.company !== company) return false;
           if (it.url && p.url && p.url.includes(it.url.split('/').pop())) return true;
