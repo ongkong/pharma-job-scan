@@ -90,6 +90,19 @@ function extractSamsung() {
   return { items, sawList: /채용공고/.test(body), total, openCount: items.length };
 }
 
+function extractDongaGreeting() {
+  const body = document.body.innerText.replace(/\s+/g, ' ');
+  const items = [];
+  document.querySelectorAll('a[data-testid="공고_아이템"][href*="/ko/o/"]').forEach((a) => {
+    const title = a.querySelector('[class*="OpeningListItemTitle"]')?.innerText.trim() || a.innerText.trim();
+    const company = a.querySelector('[data-testid="공고리스트_subtext_부문"]')?.innerText.trim() || '';
+    const rest = a.innerText.replace(/\s+/g, ' ').trim();
+    const deadline = rest.match(/(20\d{2})\.\s*(\d{1,2})\.\s*(\d{1,2}),\s*(\d{1,2}:\d{2})까지/);
+    items.push({ title, company, start: '', end: deadline ? `${deadline[1]}-${deadline[2].padStart(2, '0')}-${deadline[3].padStart(2, '0')}` : '', rest, url: new URL(a.getAttribute('href'), location.href).href });
+  });
+  return { items, sawList: /채용 중인 공고/.test(body), total: items.length, openCount: items.filter((it) => !/마감/.test(it.rest)).length };
+}
+
 async function prepareLG(page) {
   await page.locator('button').filter({ hasText: /^회사별$/ }).click({ force: true });
   await page.locator('button').filter({ hasText: /^LG화학$/ }).click({ force: true });
@@ -157,7 +170,7 @@ const SITES = [
   { company: '종근당', url: 'https://ckd.recruiter.co.kr/career/Posting', wait: '채용공고', selector: 'a[href*="/career/jobs/"]', titleSelector: 'h2, h3, strong, [class*="title"]', totalPattern: '총\\s*(\\d+)\\s*건', label: '종근당 공식 채용사이트', keep: (it) => !/(접수마감|마감\s|마감$|경력사원|경력직|경력 채용)/.test(it.rest) },
   { company: 'LG화학', url: 'https://careers.lg.com/apply', wait: '공고', prepare: prepareLG, selector: '.job-card-title', titleSelector: '.job-card-title', totalPattern: '전체\\s*(\\d+)\\s*건', label: 'LG Careers 공식 채용사이트', keep: (it) => !/(접수마감|마감\s|마감$)/.test(it.rest) && (/생명과학|바이오|의약|상시 인재등록/.test(it.rest)) },
   { company: null, url: 'https://kolmar.recruiter.co.kr/career/joblist', wait: '채용공고 목록', collect: (page) => readCards(page, { selector: 'a[href*="/career/jobs/"]', titleSelector: '[class*="title"]', totalPattern: '총\\s*(\\d+)\\s*건', listPattern: '채용공고 목록' }), label: 'HK이노엔 공식 채용사이트', keep: (it) => /HK이노엔/.test(it.rest) && !/(접수마감|마감\s|마감$)/.test(it.rest) && keepEntryLevel(it), companyOf: (it) => /HK이노엔/.test(it.rest) ? 'HK이노엔' : null },
-  { company: '동아에스티', url: 'https://talent.dongasocio.com/kr/page/jobs/jobList', wait: '채용 공고', selector: 'a[href*="jobDetail"], a[href*="jobView"]', titleSelector: 'h2, h3, strong, [class*="title"]', totalPattern: '(\\d+)\\s*개의 채용 공고', label: '동아쏘시오그룹 공식 채용사이트', keep: keepEntryLevel },
+  { company: null, url: 'https://applydongasocio.career.greetinghr.com/', wait: '채용 중인 공고', extract: extractDongaGreeting, label: '동아쏘시오그룹 GreetingHR 공식 채용사이트', keep: keepEntryLevel, companyOf: (it) => /에스티팜/.test(it.company + ' ' + it.title) ? '에스티팜' : /비티젠|BTGEN/i.test(it.company + ' ' + it.title) ? '비티젠' : /동아ST/.test(it.company + ' ' + it.title) ? '동아에스티' : null },
   { company: '보령', url: 'https://recruit.boryung.co.kr/recruit', wait: '진행 중인 채용 공고', selector: 'a[href*="/job_posting/"]', titleSelector: 'h3, h2, [class*="Title"]', label: '보령 공식 채용사이트', keep: (it) => !/(접수마감|마감\s|마감$)/.test(it.rest) && keepEntryLevel(it) },
 ];
 
