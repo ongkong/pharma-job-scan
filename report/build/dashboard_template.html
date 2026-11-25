@@ -633,7 +633,6 @@ function App() {
   };
 
   const sortFn = (a, b) => {
-    if (sortBy === "deadline") return a.company.localeCompare(b.company, "ko");
     if (sortBy === "company") return a.company.localeCompare(b.company, "ko");
     if (sortBy === "new") {
       const rank = g => {
@@ -655,31 +654,28 @@ function App() {
     return 0;
   };
 
+  const renderGroups = groups => groups.length
+    ? h("div", { className:"group-list" }, groups.map(g => h(CompanyGroup, {
+        key: g.key || g.company, company: g.company, postings: g.postings, today,
+        companyInfo, clsMap, appByPosting, favorites, onFav, onSelectCompany: setSelectedCompany
+      })))
+    : h("div", { className:"empty" }, "조건에 맞는 공고가 없습니다.");
+
   const renderSection = (title, sub, groups, always) => {
     if (groups.length === 0 && !always) return null;
     return h("div", { key: title },
       h("div", { className: "section-title" }, title, " ", h("span", { className: "section-sub" }, groups.reduce((n, g) => n + g.postings.length, 0) + "건" + (sub ? " · " + sub : ""))),
-      groups.length === 0
-        ? h("div", { className: "empty" }, "조건에 맞는 공고가 없습니다.")
-        : h("div", { className: "group-list" }, groups.map(g => h(CompanyGroup, {
-            key: title + g.company, company: g.company, postings: g.postings, today: today,
-            companyInfo: companyInfo, clsMap: clsMap, appByPosting: appByPosting, favorites, onFav: onFav, onSelectCompany: setSelectedCompany
-          })))
+      renderGroups(groups)
     );
   };
-  const renderDeadlineSections = () => {
-    const byDay = new Map();
+  const renderDeadlineList = () => {
+    const groups = new Map();
     for (const p of active.filter(passes).sort(byDeadline)) {
-      const day = calendarDay(p.deadline);
-      if (!byDay.has(day)) byDay.set(day, []);
-      byDay.get(day).push(p);
+      const key = JSON.stringify([calendarDay(p.deadline), p.company]);
+      if (!groups.has(key)) groups.set(key, { key, company:p.company, postings:[] });
+      groups.get(key).postings.push(p);
     }
-    if (!byDay.size) return h("div", { className:"empty" }, "조건에 맞는 공고가 없습니다.");
-    return Array.from(byDay, ([day, rows]) => {
-      const d = daysUntil(day, today);
-      const title = d === null ? "마감일 미정 · 상시 접수" : d === 0 ? "오늘 마감" : "D-" + d;
-      return renderSection(title, day, buildGroups(rows), true);
-    });
+    return renderGroups(Array.from(groups.values()));
   };
   const unreachable = data.unreachable || [];
 
@@ -724,7 +720,7 @@ function App() {
         h("option", { value: "salary" }, "평균연봉 높은순")
       )
     ),
-    sortBy === "deadline" ? renderDeadlineSections() : [
+    sortBy === "deadline" ? renderDeadlineList() : [
       renderSection("정규직 · 정규직 전환형 인턴", "바이오 생산·공정개발·분석/QC·R&D + 인접직무", buildGroups(sectionRows("main")), true),
       renderSection("상시 인재풀 등록형", "마감 없는 상시 채용·인재풀", buildGroups(sectionRows("pool")), false),
       renderSection("후순위 (비바이오 R&D)", "화학 합성·제형·화장품/식품 소재 연구 등", buildGroups(sectionRows("low")), false)
