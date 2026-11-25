@@ -1,6 +1,7 @@
 // Official career-site check (no LLM, 0 tokens). Additive only: never edits or closes existing postings.
 // Usage: node tools/official_check.js [--apply]   (needs: npm i playwright-core, and Chrome installed)
 const fs = require('fs');
+const { createHash } = require('node:crypto');
 const path = require('path');
 const APPLY = process.argv.includes('--apply');
 const DATA = path.join(__dirname, '..', 'data', 'postings.json');
@@ -100,7 +101,8 @@ function extractDongaGreeting() {
     const deadline = rest.match(/(20\d{2})\.\s*(\d{1,2})\.\s*(\d{1,2}),\s*(\d{1,2}:\d{2})까지/);
     items.push({ title, company, start: '', end: deadline ? `${deadline[1]}-${deadline[2].padStart(2, '0')}-${deadline[3].padStart(2, '0')}` : '', rest, url: new URL(a.getAttribute('href'), location.href).href });
   });
-  return { items, sawList: /채용 중인 공고/.test(body), total: items.length, openCount: items.filter((it) => !/마감/.test(it.rest)).length };
+  const count = body.match(/채용 중인 공고\s*[(]?\s*(\d+)\s*(?:개|건|[)])/);
+  return { items, sawList: /채용 중인 공고/.test(body), total: count ? Number(count[1]) : null, openCount: items.length };
 }
 
 async function prepareLG(page) {
@@ -203,14 +205,15 @@ async function main() {
         if (s.keep && !s.keep(it)) continue; // experienced-only rows are excluded by the user's own rule
         const exists = db.postings.some((p) => {
           if (p.company !== company) return false;
-          if (it.url && p.url && p.url.includes(it.url.split('/').pop())) return true;
+          if (it.url && it.url !== s.url && !it.url.includes('#') && p.url === it.url && norm(p.title) === norm(it.title) && (p.deadline || '') === it.end) return true;
           return similar(norm(p.title), norm(it.title)) && (p.deadline || '') === it.end;
         });
         if (exists) continue;
+        if (!APPLY && it.url) console.log('SOURCE ' + it.url);
         console.log(`NEW ${company} | ${it.title} | ${it.start}~${it.end} | ${it.rest}`);
         if (APPLY) {
           db.postings.push({
-            id: `official-${company}-${it.end.replace(/-/g, '')}-${Buffer.from(it.title).toString('hex').slice(0, 12)}`,
+            id: 'official-' + createHash('sha256').update(JSON.stringify([company, it.url, it.title, it.end])).digest('hex').slice(0, 24),
             company, title: it.title, url: it.url || s.url, jobFunction: '분야별 상이(공고 확인 필요)',
             employmentType: it.rest, location: null, requiredQualifications: null, preferredQualifications: null,
             jobDescription: null, postedDate: it.start, deadline: it.end, processSchedule: null,

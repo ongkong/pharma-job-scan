@@ -19,7 +19,7 @@ function Write-Log { param([string]$m) Add-Content -LiteralPath $logFile -Value 
 
 if ((Test-Path -LiteralPath $doneFile) -and -not $Force) { Write-Log "skip: already done today"; exit 0 }
 
-$mutex = [System.Threading.Mutex]::new($false, "Local\PharmaJobScanClaudeCheck")
+$mutex = [System.Threading.Mutex]::new($false, "Local\PharmaJobScanDaily-Codex")
 $hasMutex = $false
 try {
     $hasMutex = $mutex.WaitOne(0)
@@ -45,8 +45,7 @@ try {
     }
 
     # Integrity: nothing removed or modified (additive only). Restore on violation.
-    $check = "const fs=require('fs');const a=JSON.parse(fs.readFileSync(process.argv[1],'utf8')).postings;const b=JSON.parse(fs.readFileSync('data/postings.json','utf8')).postings;const m=new Map(b.map(p=>[p.id,p]));for(const p of a){const q=m.get(p.id);if(!q)throw new Error('removed '+p.id);if(JSON.stringify(q)!==JSON.stringify(p))throw new Error('modified '+p.id)}console.log('integrity ok, added '+(b.length-a.length))"
-    $integ = & node -e $check $backup 2>&1
+    $integ = & node tools/check_additions.js $backup data/postings.json 2>&1
     Write-Log ($integ | Out-String)
     if ($LASTEXITCODE -ne 0) {
         Copy-Item -LiteralPath $backup -Destination "data\postings.json" -Force

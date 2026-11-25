@@ -15,7 +15,7 @@ if (-not (Test-Path -LiteralPath $logDir)) { New-Item -ItemType Directory -Path 
 $logFile = Join-Path $logDir "saramin_check_log.txt"
 function Write-Log { param([string]$m) Add-Content -LiteralPath $logFile -Value $m -Encoding UTF8 }
 
-$mutex = [System.Threading.Mutex]::new($false, "Local\PharmaJobScanSaramin")
+$mutex = [System.Threading.Mutex]::new($false, "Local\PharmaJobScanDaily-Codex")
 $hasMutex = $false
 try {
     $hasMutex = $mutex.WaitOne(0)

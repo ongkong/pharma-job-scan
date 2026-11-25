@@ -13,6 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
+const { priorityCompanies } = require('./priority_companies');
 
 const args = process.argv.slice(2);
 const flag = (n) => args.includes(n);
@@ -33,6 +34,8 @@ const TARGETS = [
 ];
 
 const norm = (s) => (s || '').replace(/\(주\)|㈜|\s/g, '');
+const listed = new Set(TARGETS.map(([word]) => norm(word)));
+for (const word of priorityCompanies()) if (!listed.has(norm(word))) TARGETS.push([word]);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
 const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -69,7 +72,7 @@ const BUSINESS_ONLY = /총무|인사|영업|\bMR\b|마케팅|구매|\bIR\b|상�
 const STEM_ROLE = /연구개발|공정개발|제품개발|연구|R&D|QC|품질관리|품질보증|QA|생산|제조|공정|분석|시험|밸리데이션|임상|엔지니어|설비/i;
 const isBusinessOnly = (title) => BUSINESS_ONLY.test(title || '') && !STEM_ROLE.test(title || '');
 
-function parsePage(html, word, exclude) {
+function parsePage(html, word, exclude, page = 1) {
   const $ = cheerio.load(html);
   const items = $('.item_recruit');
   const rows = [];
@@ -83,19 +86,28 @@ function parsePage(html, word, exclude) {
     if (!rec || !company.includes(norm(word))) return;
     if (exclude && exclude.test(company)) return;
     const exp = cond[1] || '';
-    if (!/신입|무관/.test(exp)) return;
+    const title = (a.attr('title') || a.text()).trim();
+    if (!/신입|무관|인턴/.test(exp + ' ' + title + ' ' + (cond[3] || ''))) return;
     rows.push({
-      rec, company, title: (a.attr('title') || a.text()).trim(), deadline: parseDeadline(e.find('.job_date .date').first().text()),
+      rec, company, title, deadline: parseDeadline(e.find('.job_date .date').first().text()),
       exp, loc: cond[0] || null, edu: cond[2] || '', type: cond[3] || '', day: e.find('.job_day').first().text().trim(),
     });
   });
-  return { total: items.length, rows };
+  const ids = items.find('.job_tit a').map((_, a) => ($(a).attr('href') || '').match(/rec_idx=(\d+)/)?.[1]).get();
+  const empty = /검색\s*결과가\s*없습니다|검색된\s*채용정보가\s*없습니다/.test($('#recruit_info, .wrap_listjobs, .no_result').text());
+  const hasNext = $('.pagination a, .wrap_paging a').toArray().some(a => {
+    const el = $(a);
+    return Number(el.text().trim()) > page || /다음/.test(el.attr('aria-label') || el.text());
+  });
+  return { total: items.length, ids, rows, empty, hasNext };
 }
 
-async function getHtml(word) {
+async function getHtml(word, page = 1) {
   if (FIXTURE) return fs.readFileSync(FIXTURE, 'utf8');
   const url = `https://www.saramin.co.kr/zf_user/search/recruit?searchType=search&searchword=${encodeURIComponent(word)}&recruitPageCount=40`;
-  const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'ko-KR,ko;q=0.9' } });
+  const res = await fetch(url + '&recruitPage=' + page, {
+    signal: AbortSignal.timeout(15000), headers: { 'User-Agent': UA, 'Accept-Language': 'ko-KR,ko;q=0.9' },
+  });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.text();
 }
@@ -121,14 +133,23 @@ async function getHtml(word) {
   const found = new Map(); const failed = [];
   for (const [word, exclude] of FIXTURE ? [['종근당']] : TARGETS) {
     try {
-      const { total, rows } = parsePage(await getHtml(word), word, exclude);
-      if (total === 0) throw new Error('no result items parsed (blocked or markup changed)');
-      rows.forEach((r) => found.set(r.rec, r));
+      const seen = new Set();
+      for (let page = 1; ; page++) {
+        const { total, ids, rows, empty, hasNext } = parsePage(await getHtml(word, page), word, exclude, page);
+        if (!total && !empty) throw new Error('no result items parsed (blocked or markup changed), page ' + page);
+        if (total && !ids.some(id => !seen.has(id))) throw new Error('pagination or posting identifiers could not be verified, page ' + page);
+        ids.forEach(id => seen.add(id));
+        rows.forEach(r => found.set(r.rec, r));
+        if (FIXTURE || (!hasNext && total < 40)) break;
+        if (page === 50) throw new Error('pagination limit reached; remaining pages unverified');
+        await sleep(1200);
+      }
     } catch (err) { failed.push(`${word}: ${err.message}`); }
     if (!FIXTURE) await sleep(1200);
   }
   const attempted = FIXTURE ? 1 : TARGETS.length;
-  if (failed.length > attempted * 0.3) {
+  const insufficientCoverage = failed.length > attempted * 0.3;
+  if (insufficientCoverage && APPLY) {
     console.error(`ABORT: ${failed.length}/${attempted} lookups failed, data left untouched.\n` + failed.join('\n'));
     process.exit(1);
   }
@@ -158,10 +179,9 @@ async function getHtml(word) {
 
   // Integrity: nothing removed, nothing closed, nothing modified except revived records.
   const next = [...data.postings, ...added];
-  const byId = new Map(next.map((p) => [p.id, p]));
-  for (const b of before) {
-    const a = byId.get(b.id);
-    if (!a) throw new Error('integrity: removed ' + b.id);
+  for (const [index, b] of before.entries()) {
+    const a = next[index]; // Existing entries retain their order; legacy IDs can repeat.
+    if (!a || a.id !== b.id) throw new Error('integrity: removed ' + b.id);
     if (JSON.stringify(a) !== JSON.stringify(b) && !(a.status === 'confirmed' && b.status !== 'confirmed')) throw new Error('integrity: modified ' + b.id);
   }
 
@@ -179,4 +199,5 @@ async function getHtml(word) {
     fs.writeFileSync(DATA, JSON.stringify(data, null, 2) + '\n', 'utf8');
     JSON.parse(fs.readFileSync(DATA, 'utf8'));
   }
+  if (insufficientCoverage) process.exitCode = 1;
 })().catch((e) => { console.error(e); process.exit(1); });

@@ -1,4 +1,10 @@
 // 공고 분류 규칙 (2026-11-09 사용자 기준). 대시보드에 인라인되고 Node에서도 테스트 가능.
+function startingSalaryAmount(info) {
+  const salary = String(info && info.startingSalary || "").split(/[（(]/)[0];
+  if (/미확인|확인\s*(불가|안)|정보\s*없/.test(salary)) return null;
+  const match = salary.match(/([\d,]{4,6})\s*만/);
+  return match ? Number(match[1].replace(/,/g, "")) : null;
+}
 function classifyPosting(p, info) {
   var title = p.title || "", jf = p.jobFunction || "", et = p.employmentType || "";
   var req = (p.requiredQualifications || ""), desc = p.jobDescription || "";
@@ -31,10 +37,7 @@ function classifyPosting(p, info) {
 
   var pool = /상시|인재\s*풀|Talent\s*Pool/i.test(title + " " + jf + " " + et + " " + noteTxt);
 
-  var salaryNum = null;
-  var ss = info && info.startingSalary ? String(info.startingSalary) : "";
-  var m = ss.match(/([\d,]{4,6})\s*만/);
-  if (m) { salaryNum = parseInt(m[1].replace(/,/g, ""), 10); if (isNaN(salaryNum)) salaryNum = null; }
+  var salaryNum = startingSalaryAmount(info);
   if (salaryNum !== null && salaryNum < 4000) reasons.push("초봉 4천만원 미만(" + salaryNum + "만원 추정)");
 
   var track = "adjacent";
@@ -55,4 +58,4 @@ function classifyPosting(p, info) {
   var recommend = (section === "main" || section === "pool") && track === "core" && salaryNum !== null && salaryNum >= 4000;
   return { recommend: recommend, section: section, reasons: reasons, track: track, emp: emp, pool: pool, master: master, newgrad: newgrad, salaryNum: salaryNum };
 }
-if (typeof module !== "undefined") module.exports = { classifyPosting };
+if (typeof module !== "undefined") module.exports = { classifyPosting, startingSalaryAmount };

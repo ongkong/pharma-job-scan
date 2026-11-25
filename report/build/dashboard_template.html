@@ -127,6 +127,16 @@
   .group-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .group-deadlines { display: flex; flex-wrap: wrap; gap: 5px; margin-left: auto; justify-content: flex-end; }
   .apps-panel { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin-bottom: 18px; background: var(--page-plane); }
+  .personal-panels { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; align-items:start; margin-bottom:16px; }
+  .personal-panels .apps-panel { margin:0; min-width:0; overflow-wrap:anywhere; }
+  .panel-title { cursor:pointer; font-weight:600; font-size:15px; padding:3px 0; }
+  .panel-title .apps-count { margin-left:6px; font-weight:400; }
+  .apps-panel[open] > .panel-title { margin-bottom:10px; }
+  .fav-picker, .fav-item { display:flex; align-items:center; gap:8px; }
+  .fav-picker select { min-width:0; flex:1; font:inherit; color:inherit; background:var(--page-plane); padding:6px; border:1px solid var(--border); border-radius:6px; }
+  .fav-item { justify-content:space-between; border-top:1px solid var(--gridline); padding:8px 0; font-size:13px; }
+  .fav-picker button, .fav-item button { flex:none; }
+  @media (max-width:700px) { .personal-panels { grid-template-columns:1fr; } }
   .apps-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
   .apps-head h2 { font-size: 15px; margin: 0; }
   .apps-count { font-size: 12px; color: var(--text-secondary); }
@@ -158,6 +168,10 @@
   .group-body { border-top: 1px solid var(--gridline); padding: 4px 14px 12px; }
   .posting-row { padding: 10px 0; border-bottom: 1px solid var(--gridline); }
   .posting-row:last-child { border-bottom: none; }
+  .quick-views { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 10px; }
+  .quick-views button { border:1px solid var(--border); background:var(--page-plane); color:inherit; padding:7px 14px; border-radius:16px; font:inherit; cursor:pointer; }
+  .quick-views button[aria-pressed="true"] { background:#224d42; color:white; }
+  .posting-row > .fav-btn { margin:6px 0; padding:4px 10px; }
   .posting-summary { width: 100%; background: none; border: none; padding: 0; text-align: left; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font: inherit; color: inherit; }
   .posting-main { flex: 1 1 320px; min-width: 0; }
   .posting-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 0 0 auto; }
@@ -335,7 +349,7 @@ function PostingRow(props) {
           h("span", { className: "tag" + (props.cls.salaryNum === null ? " hl" : "") }, props.cls.salaryNum === null ? "연봉 미확인" : "초봉 약 " + props.cls.salaryNum.toLocaleString() + "만원(추정)"),
           props.app
             ? h("span", { className: "tag st-" + props.app.status }, "내 지원: " + props.app.status)
-            : h("span", { className: "fav-btn", role: "button", onClick: e => { e.stopPropagation(); props.onFav && props.onFav(p); } }, "☆ 관심 추가")
+            : null
         ) : null,
         p.note ? h("div", { className: "note" }, p.note) : null
       ),
@@ -349,6 +363,8 @@ function PostingRow(props) {
         h("span", { className: "source-label" }, sourceLabel(p))
       )
     ),
+    h("button", { type: "button", className: "fav-btn", "aria-pressed": props.saved, onClick: () => props.onFav(p) },
+      props.saved ? "★ 관심 해제" : "☆ 관심 추가"),
     open ? h("div", { className: "posting-detail" },
       h("div", { className: "info-row" },
         h("a", { href: p.url, target: "_blank", rel: "noopener noreferrer", className: "title-link" }, "원문 공고 열기 →")
@@ -405,12 +421,41 @@ function CompanyGroup(props) {
       )
     ),
     open ? h("div", { className: "group-body" },
-      mainPostings.map(p => h(PostingRow, { key: p.id || p.title, posting: p, today: today, cls: props.clsMap.get(p), app: props.appByPosting.get(p.id), onFav: props.onFav }))
+      mainPostings.map(p => h(PostingRow, { key: favoriteKey(p), posting: p, today: today, cls: props.clsMap.get(p), app: props.appByPosting.get(p.id), saved: props.favorites.has(favoriteKey(p)), onFav: props.onFav }))
     ) : null
   );
 }
 
-function appKey(p) { return (p.id || p.title); }
+const FAVORITES_KEY = "pharma-job-scan.favorites.v1";
+const favoriteKey = p => JSON.stringify([p.company, p.id, p.title]);
+function readFavorites() {
+  const raw = localStorage.getItem(FAVORITES_KEY);
+  if (raw === null) return new Set();
+  const values = JSON.parse(raw);
+  if (!Array.isArray(values) || values.some(v => typeof v !== "string")) throw Error("invalid favorites");
+  return new Set(values);
+}
+function koreaDate() { return new Date(Date.now() + 9 * 3600000).toISOString().slice(0,10); }
+
+function FavoritesPanel({ postings, active, favorites, onFav, today }) {
+  const [choice, setChoice] = React.useState("");
+  const options = active.filter(p => !favorites.has(favoriteKey(p))).sort((a,b) => a.company.localeCompare(b.company,"ko"));
+  const saved = postings.filter(p => favorites.has(favoriteKey(p)));
+  const selected = options.find(p => favoriteKey(p) === choice);
+  return h("details", { className:"apps-panel" },
+    h("summary", { className:"panel-title" }, "내 관심 공고", h("span", { className:"apps-count" }, saved.length + "건")),
+    h("div", { className:"fav-picker" },
+      h("select", { "aria-label":"관심에 추가할 공고", value:selected ? choice : "", onChange:e => setChoice(e.target.value) },
+        h("option", { value:"" }, "회사 · 공고 선택"),
+        options.map(p => h("option", { key:favoriteKey(p), value:favoriteKey(p) }, p.company + " · " + p.title))),
+      h("button", { type:"button", className:"fav-btn", disabled:!selected, onClick:() => { onFav(selected); setChoice(""); } }, "☆ 관심 추가")),
+    h("p", { className:"note" }, "이 브라우저에만 저장됩니다."),
+    saved.map(p => h("div", { className:"fav-item", key:favoriteKey(p) },
+      h("div", null, h("strong", null, p.company), h("br"),
+        p.url ? h("a", { href:p.url, target:"_blank", rel:"noopener noreferrer", className:"title-link" }, p.title) : p.title,
+        (p.status === "closed_or_missing" || (p.deadline && p.deadline < today)) ? h("span", { className:"tag" }, "마감") : null),
+      h("button", { type:"button", className:"fav-btn", "aria-label":p.title + " 관심 해제", onClick:() => onFav(p) }, "해제"))));
+}
 
 function ApplicationsPanel(props) {
   const [showHidden, setShowHidden] = React.useState(false);
@@ -431,9 +476,9 @@ function ApplicationsPanel(props) {
   const counts = {};
   all.forEach(a => { counts[a.status] = (counts[a.status] || 0) + 1; });
   const fmtEv = e => e.label + " " + e.date.slice(5).replace("-", "/") + (e.dateEnd ? "~" + e.dateEnd.slice(5).replace("-", "/") : "") + " (" + dd(e.date) + ")";
-  return h("div", { className: "apps-panel" },
+  return h("details", { className: "apps-panel" },
+    h("summary", { className:"panel-title" }, "내 지원 현황", h("span", { className:"apps-count" }, all.length + "건")),
     h("div", { className: "apps-head" },
-      h("h2", null, "내 지원 현황"),
       h("span", { className: "apps-count" }, (props.apps && props.apps.statuses || []).filter(s => counts[s]).map(s => s + " " + counts[s]).join(" · ")),
       h("button", { className: "apps-toggle", onClick: () => setShowHidden(!showHidden) }, showHidden ? "서류 대기·면접 대기만 보기" : "작성중·관심·불합격 포함 전체 보기")
     ),
@@ -462,7 +507,13 @@ function App() {
   const data = window.__JOB_DATA__ || { lastUpdated: null, unreachable: [], postings: [] };
   const companyInfo = window.__COMPANY_INFO__ || {};
   const appsData = window.__APPLICATIONS__ || { applications: [] };
-  const today = (data.lastUpdated || new Date().toISOString()).slice(0,10);
+  const [today, setToday] = React.useState(koreaDate);
+  React.useEffect(() => {
+    const refresh = () => setToday(koreaDate());
+    const interval = setInterval(refresh, 60000);
+    window.addEventListener("focus", refresh);
+    return () => { clearInterval(interval); window.removeEventListener("focus", refresh); };
+  }, []);
 
   const [query, setQuery] = React.useState("");
   const [source, setSource] = React.useState("전체");
@@ -473,10 +524,30 @@ function App() {
   const appByPosting = new Map();
   ((appsData && appsData.applications) || []).forEach(a => { if (a.postingId) appByPosting.set(a.postingId, a); });
   const [toast, setToast] = React.useState("");
+  const [view, setView] = React.useState("전체");
+  const [favorites, setFavorites] = React.useState(() => {
+    try { return readFavorites(); } catch { return new Set(); }
+  });
+  React.useEffect(() => {
+    const refresh = event => {
+      if (event.key === FAVORITES_KEY || event.key === null) {
+        try { setFavorites(readFavorites()); } catch { setToast("브라우저의 관심 목록을 읽을 수 없습니다."); }
+      }
+    };
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
+  React.useEffect(() => {
+    if (toast) { const timer = setTimeout(() => setToast(""), 4000); return () => clearTimeout(timer); }
+  }, [toast]);
   const onFav = p => {
-    const line = "관심 추가: " + p.company + " / " + p.title + " (id: " + p.id + ")";
-    const done = ok => { setToast(ok ? "복사됨 — 채팅에 붙여넣으면 지원 현황에 '관심'으로 등록됩니다" : line); setTimeout(() => setToast(""), 4000); };
-    try { navigator.clipboard.writeText(line).then(() => done(true), () => done(false)); } catch (e) { done(false); }
+    try {
+      const next = readFavorites(), key = favoriteKey(p);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify([...next]));
+      setFavorites(next);
+      setToast(next.has(key) ? "이 브라우저에 관심 공고를 저장했습니다." : "관심 표시를 해제했습니다.");
+    } catch { setToast("저장하지 못했습니다. 브라우저의 사이트 데이터 설정을 확인하세요."); }
   };
   const live = (data.postings || []).filter(p => p.status !== "closed_or_missing" && !(p.deadline && daysUntil(p.deadline, today) < 0));
   const clsMap = new Map();
@@ -485,6 +556,12 @@ function App() {
   const [eduFilter, setEduFilter] = React.useState("전체");
   const passes = p => {
     const c = clsMap.get(p);
+    if (view === "지금 추천") {
+      const app = appByPosting.get(p.id);
+      if (app && !["관심", "작성중"].includes(app.status)) return false;
+      if (!(p.status === "confirmed" && c.recommend && c.section === "main" && c.newgrad !== "확인 필요" && c.emp !== "intern_unknown")) return false;
+    }
+    if (view === "내 관심" && !favorites.has(favoriteKey(p))) return false;
     if (trackFilter === "바이오 핵심" && c.track !== "core") return false;
     if (eduFilter === "석사 필수 제외" && c.master === "석사 필수") return false;
     if (eduFilter === "석사 필수만" && c.master !== "석사 필수") return false;
@@ -545,7 +622,7 @@ function App() {
         ? h("div", { className: "empty" }, "조건에 맞는 공고가 없습니다.")
         : h("div", { className: "group-list" }, groups.map(g => h(CompanyGroup, {
             key: title + g.company, company: g.company, postings: g.postings, today: today,
-            companyInfo: companyInfo, clsMap: clsMap, appByPosting: appByPosting, onFav: onFav, onSelectCompany: setSelectedCompany
+            companyInfo: companyInfo, clsMap: clsMap, appByPosting: appByPosting, favorites, onFav: onFav, onSelectCompany: setSelectedCompany
           })))
     );
   };
@@ -560,11 +637,17 @@ function App() {
         h("h1", null, "채용공고 대시보드")
       ),
       h("div", { className: "updated" },
-        h("div", { className: "updated-label" }, "업데이트"),
+        h("div", { className: "updated-label" }, "마지막 공고 점검"),
         h("div", { className: "updated-date" }, data.lastUpdated || "없음")
       )
     ),
-    h(ApplicationsPanel, { apps: appsData, today: today }),
+    h("div", { className:"personal-panels" },
+      h(ApplicationsPanel, { apps: appsData, today }),
+      h(FavoritesPanel, { postings:data.postings || [], active, favorites, onFav, today })),
+    h("div", { className: "quick-views", role: "group", "aria-label": "공고 보기" },
+      ["전체", "지금 추천", "내 관심"].map(name => h("button", { type: "button", key: name, "aria-pressed": view === name, onClick: () => setView(name) }, name))),
+    view === "지금 추천" ? h("p", { className:"note" }, "신입 지원 가능 표시 · 바이오 핵심 직무 · 추정 초봉 4천만원 이상. 졸업 시점과 전공 요건은 원문에서 확인하세요.") : null,
+    view === "내 관심" ? h("p", { className:"note" }, "이 브라우저에서 관심 표시한 모집 중 공고입니다.") : null,
     h("div", { className: "filters" },
       h("input", { placeholder: "기업명·공고명 검색", value: query, onChange: e => setQuery(e.target.value) }),
       h("select", { value: trackFilter, onChange: e => setTrackFilter(e.target.value) },
@@ -591,7 +674,7 @@ function App() {
     renderSection("정규직 · 정규직 전환형 인턴", "바이오 생산·공정개발·분석/QC·R&D + 인접직무", mainGroups, true),
     renderSection("상시 인재풀 등록형", "마감 없는 상시 채용·인재풀", poolGroups, false),
     renderSection("후순위 (비바이오 R&D)", "화학 합성·제형·화장품/식품 소재 연구 등", lowGroups, false),
-    excludedAll.length > 0
+    view === "전체" && excludedAll.length > 0
       ? h("details", { className: "unreachable" },
           h("summary", null, "필터로 제외된 공고 " + excludedAll.length + "건 (사유 확인용)"),
           h("ul", { className: "excl-list" }, excludedAll.map((p, i) => h("li", { key: i }, p.company + " · " + p.title + " — " + clsMap.get(p).reasons.join(", "))))
