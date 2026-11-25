@@ -152,8 +152,15 @@
   .tag.st-관심 { }
   .tag.st-작성중 { background: var(--status-warning-bg); color: #8a5a00; border-color: transparent; }
   .tag.st-지원완료 { color: var(--text-primary); }
+  .tag.st-결과-대기, .panel-title .apps-count.st-결과-대기 {
+    color: var(--status-critical);
+    color: color-mix(in srgb, var(--status-critical) 80%, var(--text-primary));
+    font-weight: 700;
+  }
+  .tag.st-결과-대기 { background: var(--status-critical-bg); border-color: currentColor; }
   .tag.st-서류합격 { background: var(--status-new-bg, #e6f4ea); color: #1e6b34; border-color: transparent; }
-  .tag.st-불합격, .tag.st-제외 { opacity: .6; }
+  .tag.st-불합격 { color: var(--text-secondary); }
+  .tag.st-제외 { opacity: .6; }
   .tag.rec { background: #e6f4ea; color: #1e6b34; border-color: transparent; font-weight: 600; }
   .fav-btn { font-size: 12px; border: 1px solid var(--border); background: var(--page-plane); color: var(--text-secondary); border-radius: 999px; padding: 1px 10px; cursor: pointer; }
   .toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 13px; z-index: 50; max-width: 90vw; }
@@ -367,7 +374,7 @@ function PostingRow(props) {
           props.cls.emp === "intern_unknown" ? h("span", { className: "tag hl" }, "인턴(전환 여부 확인 필요)") : null,
           h("span", { className: "tag" + (props.cls.salaryNum === null ? " hl" : "") }, props.cls.salaryNum === null ? "연봉 미확인" : "초봉 약 " + props.cls.salaryNum.toLocaleString() + "만원(추정)"),
           props.app
-            ? h("span", { className: "tag st-" + props.app.status }, "내 지원: " + props.app.status)
+            ? h("span", { className: "tag st-" + props.app.status.replace(/\s+/g, "-") }, "내 지원: " + props.app.status)
             : null
         ) : null,
         p.note ? h("div", { className: "note" }, p.note) : null
@@ -501,7 +508,7 @@ function ApplicationsPanel(props) {
           a.role ? h("div", { className: "app-role" }, a.role) : null
         ),
         h("div", { style: { display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" } },
-          h("span", { className: "tag st-" + a.status }, label),
+          h("span", { className: "tag st-" + a.status.replace(/\s+/g, "-") }, label),
           a.deadline && daysUntil(a.deadline, today) >= 0 ? h("span", { className: "tag" + (daysUntil(a.deadline, today) <= 3 ? " hl" : ""), title: a.deadline + (a.deadlineTime ? " " + a.deadlineTime : "") }, "마감 " + dd(a.deadline) + (a.deadlineTime ? " " + a.deadlineTime : "")) : null
         ),
         h("div", { className: "app-sub" },
@@ -515,7 +522,7 @@ function ApplicationsPanel(props) {
   const drafts = all.filter(beforeApplication);
   const visible = showHidden ? submitted : waiting;
   return h("details", { className: "apps-panel" },
-    h("summary", { className:"panel-title" }, "내 지원 현황", h("span", { className:"apps-count" }, "결과 대기 " + waiting.length + "건")),
+    h("summary", { className:"panel-title" }, "내 지원 현황", h("span", { className:"apps-count" + (waiting.length ? " st-결과-대기" : "") }, "결과 대기 " + waiting.length + "건")),
     h("div", { className:"apps-head" },
       h("button", { type:"button", className:"apps-toggle", "aria-expanded":showHidden, onClick:() => setShowHidden(!showHidden) },
         showHidden ? "결과 대기만 보기" : "작성중·관심·불합격 포함 전체 보기")),
