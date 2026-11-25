@@ -433,6 +433,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   .fav-picker, .fav-item { display:flex; align-items:center; gap:8px; }
   .fav-picker select { min-width:0; flex:1; font:inherit; color:inherit; background:var(--page-plane); padding:6px; border:1px solid var(--border); border-radius:6px; }
   .fav-item { justify-content:space-between; border-top:1px solid var(--gridline); padding:8px 0; font-size:13px; }
+  .fav-deadline { margin-top:4px; font-size:12px; color:var(--text-secondary); font-variant-numeric:tabular-nums; }
+  .fav-deadline .deadline-chip { margin-inline-start:6px; }
   .fav-picker button, .fav-item button { flex:none; }
   @media (max-width:700px) { .personal-panels { grid-template-columns:1fr; } }
   .apps-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
@@ -7258,13 +7260,28 @@ function parseSalary(str) {
 function formatDateRange(p) {
   if (p.postedDate && p.deadline) return "게시 " + p.postedDate + " ~ 마감 " + p.deadline;
   if (p.deadline) return "마감 " + p.deadline;
-  if (isLowPriority(p)) return "상시채용";
-  return "마감일 미정";
+  return undatedDeadline(p);
 }
 
-function isLowPriority(p) {
-  const text = (p.employmentType || "") + " " + (p.note || "") + " " + (p.title || "");
-  return /인턴|상시/.test(text);
+function undatedDeadline(p) {
+  const text = [p.title, p.employmentType].filter(Boolean).join(" ");
+  if (/채용\s*시\s*(?:마감|까지)|충원\s*시\s*마감/.test(text)) return "채용 시 마감";
+  if (/상시\s*(?:접수|채용|모집|등록)|상시\s*[(]|인재\s*풀|talent\s*pool/i.test(text)) return "상시 접수";
+  return "마감일 미확인";
+}
+
+function FavoriteDeadline({ posting, today }) {
+  const days = daysUntil(posting.deadline, today);
+  const closed = posting.status === "closed_or_missing";
+  if (!Number.isFinite(days)) return h("div", { className:"fav-deadline" }, closed ? "모집 종료 · 마감일 미확인" : undatedDeadline(posting));
+  const [year, month, day] = posting.deadline.split("-");
+  const date = (year === today.slice(0,4) ? "" : year + "년 ") + Number(month) + "월 " + Number(day) + "일";
+  const ended = closed || days < 0;
+  const label = ended ? "마감" : days === 0 ? "오늘 마감" : "D-" + days;
+  const urgency = ended ? "" : days <= 3 ? " urgent" : days <= 7 ? " soon" : "";
+  return h("div", { className:"fav-deadline" },
+    h("time", { dateTime:posting.deadline }, date),
+    h("span", { className:"deadline-chip" + urgency }, label));
 }
 
 function sourceLabel(p) {
@@ -7461,7 +7478,7 @@ function FavoritesPanel({ postings, active, favorites, onFav, today }) {
     saved.map(p => h("div", { className:"fav-item", key:favoriteKey(p) },
       h("div", null, h("strong", null, p.company), h("br"),
         p.url ? h("a", { href:p.url, target:"_blank", rel:"noopener noreferrer", className:"title-link" }, p.title) : p.title,
-        (p.status === "closed_or_missing" || (p.deadline && p.deadline < today)) ? h("span", { className:"tag" }, "마감") : null),
+        h(FavoriteDeadline, { posting:p, today })),
       h("button", { type:"button", className:"fav-btn", "aria-label":p.title + " 관심 해제", onClick:() => onFav(p) }, "해제"))));
 }
 
