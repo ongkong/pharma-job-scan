@@ -145,6 +145,8 @@
   .apps-toggle { margin-left: auto; font-size: 12px; background: none; border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; cursor: pointer; color: var(--text-secondary); }
   .app-row { display: grid; grid-template-columns: minmax(0, 2.2fr) auto minmax(0, 2fr); gap: 4px 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--gridline); font-size: 13px; }
   .app-row .app-name { font-weight: 600; }
+  .record-number { font-size:12px; font-weight:400; color:var(--text-secondary); margin-right:6px; font-variant-numeric:tabular-nums; }
+  .app-list-heading { margin:12px 0 4px; font-size:12px; font-weight:600; color:var(--text-secondary); }
   .app-row .app-role { color: var(--text-secondary); font-size: 12.5px; }
   .app-row .app-sub { font-size: 12px; color: var(--text-secondary); }
   .tag.st-관심 { }
@@ -478,45 +480,48 @@ function ApplicationsPanel(props) {
   const [showHidden, setShowHidden] = React.useState(false);
   const all = (props.apps && props.apps.applications) || [];
   const today = props.today;
-  const shownStatuses = ["지원완료", "인적성·면접 대기", "서류합격"];
-  const visible = all.filter(a => showHidden || shownStatuses.indexOf(a.status) >= 0);
+  const pendingStatuses = ["결과 대기", "지원완료", "인적성·면접 대기", "서류합격"];
+  const beforeApplication = a => ["관심", "작성중", "제외"].includes(a.status) && !a.appliedDate && !a.recordNumber;
+  const submitted = all.filter(a => !beforeApplication(a));
+  const waiting = submitted.filter(a => pendingStatuses.includes(a.status));
+  const newestFirst = (a, b) => {
+    const date = x => x.recordDate || x.appliedDate || "";
+    return date(b).localeCompare(date(a)) || (b.recordNumber || 0) - (a.recordNumber || 0) || a.company.localeCompare(b.company,"ko");
+  };
   const dd = x => { const d = daysUntil(x, today); return d === null ? null : (d < 0 ? "마감" : d === 0 ? "D-DAY" : "D-" + d); };
   const nextEv = a => (a.nextEvents || []).filter(e => daysUntil(e.dateEnd || e.date, today) >= 0).sort((x, y) => x.date.localeCompare(y.date))[0];
-  const key = a => {
-    const d = a.deadline ? daysUntil(a.deadline, today) : null;
-    const e = nextEv(a);
-    const de = e ? daysUntil(e.date, today) : null;
-    const open = d !== null && d >= 0 ? d : null;
-    return open !== null ? open : (de !== null ? 1000 + de : 100000);
-  };
-  const sorted = visible.slice().sort((x, y) => key(x) - key(y));
-  const counts = {};
-  all.forEach(a => { counts[a.status] = (counts[a.status] || 0) + 1; });
   const fmtEv = e => e.label + " " + e.date.slice(5).replace("-", "/") + (e.dateEnd ? "~" + e.dateEnd.slice(5).replace("-", "/") : "") + " (" + dd(e.date) + ")";
-  return h("details", { className: "apps-panel" },
-    h("summary", { className:"panel-title" }, "내 지원 현황", h("span", { className:"apps-count" }, all.length + "건")),
-    h("div", { className: "apps-head" },
-      h("span", { className: "apps-count" }, (props.apps && props.apps.statuses || []).filter(s => counts[s]).map(s => s + " " + counts[s]).join(" · ")),
-      h("button", { className: "apps-toggle", onClick: () => setShowHidden(!showHidden) }, showHidden ? "서류 대기·면접 대기만 보기" : "작성중·관심·불합격 포함 전체 보기")
-    ),
-    sorted.length === 0 ? h("div", { className: "empty" }, "등록된 지원 내역이 없습니다.") : sorted.map(a => {
+  function renderRow(a) {
       const ev = nextEv(a);
+      const label = a.status === "불합격" && a.memo === "서류 탈락" ? a.memo : a.status;
       return h("div", { className: "app-row", key: a.id },
         h("div", null,
-          h("div", { className: "app-name" }, a.company),
-          h("div", { className: "app-role" }, a.role)
+          h("div", { className: "app-name" },
+            a.recordNumber ? h("span", { className:"record-number" }, String(a.recordNumber).padStart(2,"0")) : null, a.company),
+          a.role ? h("div", { className: "app-role" }, a.role) : null
         ),
         h("div", { style: { display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" } },
-          h("span", { className: "tag st-" + a.status }, a.status),
+          h("span", { className: "tag st-" + a.status }, label),
           a.deadline && daysUntil(a.deadline, today) >= 0 ? h("span", { className: "tag" + (daysUntil(a.deadline, today) <= 3 ? " hl" : ""), title: a.deadline + (a.deadlineTime ? " " + a.deadlineTime : "") }, "마감 " + dd(a.deadline) + (a.deadlineTime ? " " + a.deadlineTime : "")) : null
         ),
         h("div", { className: "app-sub" },
           ev ? h("div", null, "다음 일정: " + fmtEv(ev)) : null,
           a.appliedDate ? h("div", null, "지원 " + a.appliedDate.slice(5).replace("-", "/")) : null,
-          a.memo ? h("div", null, a.memo) : null
+          a.recordDate && a.recordDate !== a.appliedDate ? h("div", null, "기록 " + a.recordDate.slice(5).replace("-", "/")) : null,
+          a.memo && a.memo !== label ? h("div", null, a.memo) : null
         )
       );
-    })
+  }
+  const drafts = all.filter(beforeApplication);
+  const visible = showHidden ? submitted : waiting;
+  return h("details", { className: "apps-panel" },
+    h("summary", { className:"panel-title" }, "내 지원 현황", h("span", { className:"apps-count" }, "결과 대기 " + waiting.length + "건")),
+    h("div", { className:"apps-head" },
+      h("button", { type:"button", className:"apps-toggle", "aria-expanded":showHidden, onClick:() => setShowHidden(!showHidden) },
+        showHidden ? "결과 대기만 보기" : "작성중·관심·불합격 포함 전체 보기")),
+    showHidden ? h("h3", { className:"app-list-heading" }, "지원 이력 " + submitted.length + "건 · 최신순") : null,
+    visible.length ? visible.slice().sort(newestFirst).map(renderRow) : h("div", { className:"empty" }, showHidden ? "지원 이력이 없습니다." : "결과를 기다리는 지원 건이 없습니다."),
+    showHidden && drafts.length ? h("div", null, h("h3", { className:"app-list-heading" }, "지원 전 · 관심 / 작성중 등"), drafts.sort(newestFirst).map(renderRow)) : null
   );
 }
 
